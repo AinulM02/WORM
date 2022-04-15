@@ -68,10 +68,11 @@ class _navbarState extends State<navbar> {
     return Scaffold(
       body: screens[currentIndex],
       bottomNavigationBar: BottomNavigationBar(
-        type: BottomNavigationBarType.fixed,
-        backgroundColor: Color.fromRGBO(246, 246, 246, 1),
+        type: BottomNavigationBarType.shifting,
+        iconSize: 20,
+        selectedIconTheme: IconThemeData(color: Color.fromRGBO(254, 204, 118, 1),size:25),
+        selectedLabelStyle: TextStyle(fontWeight: FontWeight.bold),  
         selectedItemColor: Color.fromRGBO(254, 204, 118, 1),
-        unselectedItemColor: Color.fromRGBO(121, 131, 146, 1),
         // selectedFontSize: 15,
         currentIndex: currentIndex,
         // showUnselectedLabels: false,
@@ -80,18 +81,22 @@ class _navbarState extends State<navbar> {
           BottomNavigationBarItem(
             icon: Icon(Icons.home),
             label: 'Home',
+            backgroundColor: Color.fromARGB(255, 41, 40, 40),
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.schedule),
             label: 'Jadwal',
+            backgroundColor: Color.fromARGB(255, 41, 40, 40),
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.payment),
             label: 'Pembayaran',
+            backgroundColor: Color.fromARGB(255, 41, 40, 40),
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.person),
             label: 'Profile',
+            backgroundColor: Color.fromARGB(255, 41, 40, 40),
           ),
         ],
       ),
