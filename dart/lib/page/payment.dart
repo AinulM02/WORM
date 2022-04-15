@@ -69,7 +69,10 @@ class _payment extends State<payment> {
       appBar: AppBar(
         title: const Text(
           "Rekap Pembayaran",
-          style: TextStyle(color: Colors.white),
+          style: TextStyle(
+            color: Colors.white,
+            fontSize: 18,
+            ),
         ),
         backgroundColor: Color.fromARGB(255, 41, 40, 40),
       ),
