@@ -11,7 +11,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'WORM ',
+      title: 'WOR ',
       // ignore: unnecessary_new
       theme: new ThemeData(
           scaffoldBackgroundColor: const Color.fromRGBO(246, 246, 246, 1),
