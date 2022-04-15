@@ -13,7 +13,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'WOR ',
       // ignore: unnecessary_new
-      theme: new ThemeData(
+      theme: ThemeData(
           scaffoldBackgroundColor: const Color.fromRGBO(246, 246, 246, 1),
           fontFamily: 'Poppins'),
       home: const navbar(),
