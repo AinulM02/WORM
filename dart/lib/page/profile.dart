@@ -1,3 +1,5 @@
+// ignore_for_file: camel_case_types, deprecated_member_use
+
 import 'package:flutter/material.dart';
 
 class profile extends StatefulWidget {
@@ -7,7 +9,6 @@ class profile extends StatefulWidget {
   State<profile> createState() => _profileState();
 }
 
-// ignore: camel_case_types
 class _profileState extends State<profile> {
   @override
   Widget build(BuildContext context) {
@@ -96,7 +97,7 @@ class _profileState extends State<profile> {
               ],
             ),
               child: FlatButton(
-                child: Text('FAQ'),
+                child: const Text('FAQ'),
                 color: Colors.white,
                 textColor: Colors.black,
                 onPressed: () {},
@@ -119,7 +120,7 @@ class _profileState extends State<profile> {
               ],
             ),
             child: FlatButton(
-              child: Text('About'),
+              child: const Text('About'),
               color: Colors.white,
               textColor: Colors.black,
               onPressed: () {},

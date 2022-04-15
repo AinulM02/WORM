@@ -1,9 +1,5 @@
 // import 'dart:html';
 import 'package:flutter/material.dart';
-import 'package:worm/page/jadwalPage.dart';
-import 'package:worm/page/payment.dart';
-import 'package:worm/page/profile.dart';
-import 'package:worm/widgets/navbar.dart';
 import 'package:slide_digital_clock/slide_digital_clock.dart';
 
 class MyHomePage extends StatefulWidget {
@@ -28,21 +24,21 @@ class _MyHomePageState extends State<MyHomePage> {
         children: <Widget>[
           
           Container(
-            margin: EdgeInsets.only(right: 16, left: 16, top: 10),
-            child: Text("Hi, Ainul"),
+            margin: const EdgeInsets.only(right: 16, left: 16, top: 10),
+            child: const Text("Hi, Ainul"),
             
           ),
           const SizedBox(
             height: 10,
           ),
           Container(
-            margin: EdgeInsets.only(right: 16, left: 16),
+            margin: const EdgeInsets.only(right: 16, left: 16),
 
             child: DigitalClock(
               showSecondsDigit: false,
               is24HourTimeFormat: false,
               areaDecoration: BoxDecoration(
-                color: Color.fromRGBO( 47, 47, 47, 1),
+                color: const Color.fromRGBO( 47, 47, 47, 1),
                 borderRadius: BorderRadius.circular(10.0),
               ),
               hourMinuteDigitTextStyle: const TextStyle(

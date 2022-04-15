@@ -1,5 +1,6 @@
+// ignore_for_file: camel_case_types
+
 import 'package:flutter/material.dart';
-import 'package:worm/widgets/navbar.dart';
 
 class payment extends StatefulWidget {
   const payment({Key? key}) : super(key: key);
@@ -74,15 +75,15 @@ class _payment extends State<payment> {
             fontSize: 18,
             ),
         ),
-        backgroundColor: Color.fromARGB(255, 41, 40, 40),
+        backgroundColor: const Color.fromARGB(255, 41, 40, 40),
       ),
       body: Column(children: [
-        Padding(padding: const EdgeInsets.all(16.0)),
+        const Padding(padding: EdgeInsets.all(16.0)),
         Container(
-          margin: EdgeInsets.only(right: 16, left: 16, bottom: 16),
+          margin: const EdgeInsets.only(right: 16, left: 16, bottom: 16),
           height: 220,
           width: 400,
-          color: Color(0xFFe5e5e5),
+          color: const Color(0xFFe5e5e5),
           child: Container(
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(10),
@@ -126,10 +127,10 @@ class _payment extends State<payment> {
           ),
         ),
         Container(
-          margin: EdgeInsets.only(right: 16, left: 16, bottom: 16),
+          margin: const EdgeInsets.only(right: 16, left: 16, bottom: 16),
           height: 220,
           width: 400,
-          color: Color(0xFFe5e5e5),
+          color: const Color(0xFFe5e5e5),
           child: Container(
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(10),

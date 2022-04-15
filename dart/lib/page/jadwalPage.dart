@@ -1,5 +1,6 @@
+// ignore_for_file: camel_case_types
+
 import 'package:flutter/material.dart';
-import 'package:worm/widgets/navbar.dart';
 
 class jadwalPage extends StatefulWidget {
   const jadwalPage({Key? key}) : super(key: key);
