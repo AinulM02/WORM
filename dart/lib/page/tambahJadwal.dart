@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:date_time_picker/date_time_picker.dart';
-import 'package:worm/page/jadwalPage.dart';
+import 'package:worm/widgets/navbar.dart';
 
 class tambahJadwal extends StatefulWidget {
   const tambahJadwal({Key? key}) : super(key: key);
@@ -23,23 +23,32 @@ class _tambahJadwalState extends State<tambahJadwal> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Column(
+      body: ListView(
         children: [
           Container(
-            margin: const EdgeInsets.only(top: 60, right: 16, left: 16),
+            margin: const EdgeInsets.only(top: 15, right: 16, left: 16),
             height: 70,
             child: Row(
               children: [
                 IconButton(
-                    onPressed: () => setState(() {
-                          jadwalPage();
-                        }),
-                    icon: Icon(Icons.undo))
+                    onPressed: () => Navigator.push(context,
+                            MaterialPageRoute(builder: (context) {
+                          return const navbar();
+                        })),
+                    icon: Icon(Icons.undo)),
+                Text(
+                  "Tambah Jadwal",
+                  style: TextStyle(
+                    color: Color.fromARGB(255, 24, 24, 24),
+                    fontWeight: FontWeight.bold,
+                    fontSize: 16,
+                  ),
+                )
               ],
             ),
           ),
           Container(
-            margin: const EdgeInsets.only(top: 60, right: 16, left: 16),
+            margin: const EdgeInsets.only(top: 30, right: 16, left: 16),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: const [
@@ -123,6 +132,27 @@ class _tambahJadwalState extends State<tambahJadwal> {
                     border: OutlineInputBorder(),
                   ),
                 ),
+              ],
+            ),
+          ),
+          Container(
+            margin: const EdgeInsets.only(top: 20, right: 16, left: 16),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.end,
+              children: [
+                ElevatedButton(
+                    onPressed: () {
+                      // Respond to button press
+                    },
+                    child: Text(
+                      'Save',
+                      style: TextStyle(
+                        color: Color.fromRGBO(254, 204, 118, 1),
+                      ),
+                    ),
+                    style: ElevatedButton.styleFrom(
+                      primary: Color.fromARGB(255, 0, 0, 0),
+                    )),
               ],
             ),
           ),
