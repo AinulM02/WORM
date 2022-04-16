@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:getwidget/getwidget.dart';
 
 class jadwalPage extends StatefulWidget {
   const jadwalPage({Key? key}) : super(key: key);
@@ -12,15 +13,53 @@ class _jadwalPageState extends State<jadwalPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Column(children: <Widget>[
-        const Padding(padding: EdgeInsets.all(16.0)),
+        const Padding(padding: EdgeInsets.all(18.0)),
         Container(
           margin: const EdgeInsets.only(right: 16, left: 16),
-          height: 580,
+          height: 80,
           decoration: BoxDecoration(
             color: Colors.white,
             borderRadius: BorderRadius.circular(10),
-            boxShadow: [
-              const BoxShadow(
+            boxShadow: const [
+              BoxShadow(
+                color: Colors.grey,
+                blurRadius: 2,
+                offset: Offset(0, 0), // Shadow position
+              ),
+            ],
+          ),
+          child: Column(
+            children: <Widget>[
+              const ListTile(
+                title: Text(
+                  "Progress",
+                  textAlign: TextAlign.left,
+                  style: TextStyle(fontSize: 15,color: Colors.black, fontWeight: FontWeight.normal),
+                  ),
+                  trailing: Text(
+                    "80%",
+                    style: TextStyle(fontWeight: FontWeight.bold),
+                    ),
+              ),
+              GFProgressBar(
+                margin: const EdgeInsets.only(right: 16, left: 16),
+                percentage: 0.8,
+                lineHeight: 10,
+                backgroundColor: const Color.fromARGB(255, 209, 209, 209),
+                progressBarColor: const Color.fromRGBO(254, 204, 118, 1),
+              )
+            ],
+          ),    
+        ),
+        const Padding(padding: EdgeInsets.only(top: 10)),
+        Container(
+          margin: const EdgeInsets.only(right: 16, left: 16),
+          height: 480,
+          decoration: BoxDecoration(
+            color: Colors.white,
+            borderRadius: BorderRadius.circular(10),
+            boxShadow: const [
+              BoxShadow(
                 color: Colors.grey,
                 blurRadius: 2,
                 offset: Offset(0, 0), // Shadow position
