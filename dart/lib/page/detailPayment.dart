@@ -134,10 +134,7 @@ class _detailPayment extends State<detailPayment> {
                         )
                       ],
                     ),
-                    onTap: () => Navigator.push(context,
-                            MaterialPageRoute(builder: (context) {
-                          return payment();
-                        }))),
+                ),
               ],
             ),
           ),
