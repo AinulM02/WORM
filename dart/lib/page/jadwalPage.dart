@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:worm/page/tambahJadwal.dart';
 
 class jadwalPage extends StatefulWidget {
   const jadwalPage({Key? key}) : super(key: key);
@@ -41,16 +42,17 @@ class _jadwalPageState extends State<jadwalPage> {
                   ),
                 ),
               ),
-
               const ListTile(
                 title: Text("Progres 1"),
                 subtitle: Text(
                   "Progres sudah selesai",
                 ),
                 trailing: Text("10.00 PM"),
+                // onTap: (){
+                //   Navigator.pus
+                // },
               ),
               const Divider(),
-
               const ListTile(
                 title: Text("Progres 2"),
                 subtitle: Text(
@@ -59,7 +61,6 @@ class _jadwalPageState extends State<jadwalPage> {
                 trailing: Text("11.00 PM"),
               ),
               const Divider(),
-
               const ListTile(
                 title: Text("Progres 3"),
                 subtitle: Text(
@@ -68,13 +69,12 @@ class _jadwalPageState extends State<jadwalPage> {
                 trailing: Text("12.00 PM"),
               ),
               const Divider(),
-
               const ListTile(
                 title: Text("Progres 4"),
                 subtitle: Text(
                   "Progres sudah selesai",
                 ),
-                trailing: Text("12.00 PM"),                
+                trailing: Text("12.00 PM"),
               ),
               const Divider(),
             ],
