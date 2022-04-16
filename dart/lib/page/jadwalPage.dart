@@ -73,7 +73,7 @@ class _jadwalPageState extends State<jadwalPage> {
           child: ListView(
             children: <Widget>[
               Container(
-                margin: const EdgeInsets.only(top: 16, bottom: 16),
+                margin: const EdgeInsets.only( bottom: 16),
                 alignment: Alignment.center,
                 child: const Text(
                   "Jadwal Kegiatan",

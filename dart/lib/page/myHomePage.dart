@@ -103,6 +103,7 @@ class _MyHomePageState extends State<MyHomePage> {
             child: ListView(
               children: <Widget>[
                 Container(
+                  margin: const EdgeInsets.only(bottom: 16),
                   alignment: Alignment.center,
                   child: const Text(
                     "Jadwal Kegiatan",
