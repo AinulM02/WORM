@@ -18,7 +18,7 @@ class MyApp extends StatelessWidget {
         scaffoldBackgroundColor: const Color.fromRGBO(246, 246, 246, 1),
         fontFamily: 'Poppins',
       ),
-      home: const jadwalPage(),
+      home: const navbar(),
     );
   }
 }
