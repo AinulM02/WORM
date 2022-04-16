@@ -36,12 +36,8 @@ dependencies:
   cupertino_icons: ^1.0.2
   convex_bottom_bar: ^3.0.0
   slide_digital_clock: ^1.0.2
-<<<<<<< HEAD
-  getwidget: ^2.0.4
-  
-=======
   date_time_picker: ^2.1.0
->>>>>>> 87a94ba655b7c1c58e1c499b93a0a6cf41334a6e
+
 
 dev_dependencies:
   flutter_test:
