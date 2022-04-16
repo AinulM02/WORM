@@ -1,6 +1,7 @@
 // import 'dart:html';
 import 'package:flutter/material.dart';
 import 'package:slide_digital_clock/slide_digital_clock.dart';
+import 'package:getwidget/getwidget.dart';
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({Key? key}) : super(key: key);
@@ -10,58 +11,46 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: ListView(
+      body: Column(
         children: <Widget>[
-          Container(
-            margin: const EdgeInsets.only(right: 16, left: 16, top: 16),
-            child: const Text(
-              "Hi, Ainul", 
-              style: TextStyle(
-                fontSize: 16,
-                fontWeight: FontWeight.normal),
-                ),
+          const Padding(padding: EdgeInsets.all(10)),
+          const Text(
+            "Hi, Ainul",
+            textAlign: TextAlign.start,
+            style: TextStyle(fontSize: 16, fontWeight: FontWeight.normal),
           ),
-
           const SizedBox(
             height: 10,
           ),
-
-          Container(
-            margin: const EdgeInsets.only(right: 16, left: 16),
-            child: DigitalClock(
-              showSecondsDigit: false,
-              is24HourTimeFormat: true,
-              areaDecoration: BoxDecoration(
-                color: const Color.fromRGBO( 47, 47, 47, 1),
-                borderRadius: BorderRadius.circular(10),
-              ),
-              hourMinuteDigitTextStyle: const TextStyle(
-                color: Colors.white,
-                fontSize: 50,
-              ),
-              amPmDigitTextStyle: const TextStyle(
-                  color: Colors.white, 
-                  fontWeight: FontWeight.bold
-                  ),
+          DigitalClock(
+            showSecondsDigit: false,
+            is24HourTimeFormat: true,
+            areaDecoration: BoxDecoration(
+              color: const Color.fromRGBO(47, 47, 47, 1),
+              borderRadius: BorderRadius.circular(10),
             ),
+            hourMinuteDigitTextStyle: const TextStyle(
+              color: Colors.white,
+              fontSize: 50,
+            ),
+            amPmDigitTextStyle: const TextStyle(
+                color: Colors.white, fontWeight: FontWeight.bold),
           ),
-
           const SizedBox(
             height: 10,
           ),
 
           Container(
             margin: const EdgeInsets.only(right: 16, left: 16),
-            height: 480,
+            height: 77,
             decoration: BoxDecoration(
               color: Colors.white,
               borderRadius: BorderRadius.circular(10),
-              boxShadow: [
-                const BoxShadow(
+              boxShadow: const [
+                BoxShadow(
                   color: Colors.grey,
                   blurRadius: 2,
                   offset: Offset(0, 0), // Shadow position
@@ -70,8 +59,50 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
             child: Column(
               children: <Widget>[
+                const ListTile(
+                  title: Text(
+                    "Progress",
+                    textAlign: TextAlign.left,
+                    style: TextStyle(
+                        fontSize: 15,
+                        color: Colors.black,
+                        fontWeight: FontWeight.normal),
+                  ),
+                  trailing: Text(
+                    "80%",
+                    style: TextStyle(fontWeight: FontWeight.bold),
+                  ),
+                ),
+                GFProgressBar(
+                  margin: const EdgeInsets.only(right: 16, left: 16),
+                  percentage: 0.8,
+                  lineHeight: 10,
+                  backgroundColor: const Color.fromARGB(255, 209, 209, 209),
+                  progressBarColor: const Color.fromRGBO(254, 204, 118, 1),
+                )
+              ],
+            ),
+          ),
+
+          const Padding(padding: EdgeInsets.all(4)),
+
+          Container(
+            margin: const EdgeInsets.only(right: 16, left: 16),
+            height: 380,
+            decoration: BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.circular(10),
+              boxShadow: const [
+                BoxShadow(
+                  color: Colors.grey,
+                  blurRadius: 2,
+                  offset: Offset(0, 0), // Shadow position
+                ),
+              ],
+            ),
+            child: ListView(
+              children: <Widget>[
                 Container(
-                  margin: const EdgeInsets.only(top: 16, bottom: 16),
                   alignment: Alignment.center,
                   child: const Text(
                     "Jadwal Kegiatan",
