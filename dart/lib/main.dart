@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:worm/page/jadwalPage.dart';
+import 'package:worm/page/tambahJadwal.dart';
 import 'package:worm/widgets/navbar.dart';
 
 void main() {
@@ -13,9 +15,9 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'WORM',
       theme: ThemeData(
-          scaffoldBackgroundColor: const Color.fromRGBO(246, 246, 246, 1),
-          fontFamily: 'Poppins',
-          ),
+        scaffoldBackgroundColor: const Color.fromRGBO(246, 246, 246, 1),
+        fontFamily: 'Poppins',
+      ),
       home: const navbar(),
     );
   }
