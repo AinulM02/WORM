@@ -1,6 +1,7 @@
 // ignore_for_file: camel_case_types
 
 import 'package:flutter/material.dart';
+import 'package:worm/page/detailPayment.dart';
 
 class payment extends StatefulWidget {
   const payment({Key? key}) : super(key: key);
@@ -19,120 +20,131 @@ class _payment extends State<payment> {
           style: TextStyle(
             color: Colors.white,
             fontSize: 18,
-            ),
+          ),
         ),
         backgroundColor: const Color.fromARGB(255, 41, 40, 40),
       ),
       body: Column(children: [
         const Padding(padding: EdgeInsets.all(16.0)),
-        Container(
-          margin: const EdgeInsets.only(right: 16, left: 16, bottom: 16),
-          height: 220,
-          width: 400,
-          color: const Color(0xFFe5e5e5),
+        InkWell(
           child: Container(
-            decoration: BoxDecoration(
-              color: Colors.white,
-              borderRadius: BorderRadius.circular(10),
-              boxShadow: [
-                const BoxShadow(
-                  color: Colors.grey,
-                  blurRadius: 2,
-                  offset: Offset(0, 0), // Shadow position
-                ),
-              ],
-            ),
-            child: ListView(
-              children: const [
-                ListTile(
-                  title: Text("Maret 2022"),
-                  trailing: Text(
-                    "Masih utang la bang",
-                    style: TextStyle(color: Colors.red),
+            margin: const EdgeInsets.only(right: 16, left: 16, bottom: 16),
+            height: 220,
+            width: 400,
+            color: const Color(0xFFe5e5e5),
+            child: Container(
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(10),
+                boxShadow: [
+                  const BoxShadow(
+                    color: Colors.grey,
+                    blurRadius: 2,
+                    offset: Offset(0, 0), // Shadow position
                   ),
-                ),
-                Divider(
-                  color: Colors.grey,
-                ),
-                ListTile(
-                  title: Text("Wedding Organize"),
-                  subtitle: Text(
-                    "Rp. 100.000.000, -",
-                    maxLines: 2,
-                    overflow: TextOverflow.ellipsis,
+                ],
+              ),
+              child: ListView(
+                children: const [
+                  ListTile(
+                    title: Text("Maret 2022"),
+                    trailing: Text(
+                      "Masih utang la bang",
+                      style: TextStyle(color: Colors.red),
+                    ),
                   ),
-                ),
-                Divider(
-                  color: Colors.grey,
-                ),
-                ListTile(
-                  title: Text(
-                    "Terbayar",
-                    style: TextStyle(color: Color(0xFF666D66)),
+                  Divider(
+                    color: Colors.grey,
                   ),
-                  trailing: Text(
-                    "Rp. 20.000, -",
-                    style: TextStyle(color: Colors.green),
+                  ListTile(
+                    title: Text("Wedding Organize"),
+                    subtitle: Text(
+                      "Rp. 100.000.000, -",
+                      maxLines: 2,
+                      overflow: TextOverflow.ellipsis,
+                    ),
                   ),
-                ),
-              ],
+                  Divider(
+                    color: Colors.grey,
+                  ),
+                  ListTile(
+                    title: Text(
+                      "Terbayar",
+                      style: TextStyle(color: Color(0xFF666D66)),
+                    ),
+                    trailing: Text(
+                      "Rp. 20.000, -",
+                      style: TextStyle(color: Colors.green),
+                    ),
+                  ),
+                ],
+              ),
             ),
           ),
+          onTap: () =>
+              Navigator.push(context, MaterialPageRoute(builder: (context) {
+            return detailPayment();
+          })),
         ),
-        
-        Container(
-          margin: const EdgeInsets.only(right: 16, left: 16, bottom: 16),
-          height: 220,
-          width: 400,
-          color: const Color(0xFFe5e5e5),
+        InkWell(
           child: Container(
-            decoration: BoxDecoration(
-              color: Colors.white,
-              borderRadius: BorderRadius.circular(10),
-              boxShadow: [
-                const BoxShadow(
-                  color: Colors.grey,
-                  blurRadius: 2,
-                  offset: Offset(0, 0), // Shadow position
-                ),
-              ],
-            ),
-            child: ListView(
-              children: const [
-                ListTile(
-                  title: Text("Maret 2022"),
-                  trailing: Text(
-                    "Hore Lunas",
-                    style: TextStyle(color: Colors.green),
+            margin: const EdgeInsets.only(right: 16, left: 16, bottom: 16),
+            height: 220,
+            width: 400,
+            color: const Color(0xFFe5e5e5),
+            child: Container(
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(10),
+                boxShadow: [
+                  const BoxShadow(
+                    color: Colors.grey,
+                    blurRadius: 2,
+                    offset: Offset(0, 0), // Shadow position
                   ),
-                ),
-                Divider(
-                  color: Colors.grey,
-                ),
-                ListTile(
-                  title: Text("Wedding Organize"),
-                  subtitle: Text(
-                    "Rp. 100.000.000, -",
-                    maxLines: 2,
-                    overflow: TextOverflow.ellipsis,
+                ],
+              ),
+              child: ListView(
+                children: const [
+                  ListTile(
+                    title: Text("Maret 2022"),
+                    trailing: Text(
+                      "Hore Lunas",
+                      style: TextStyle(color: Colors.green),
+                    ),
                   ),
-                ),
-                Divider(
-                  color: Colors.grey,
-                ),
-                ListTile(
-                  title: Text(
-                    "Terbayar",
-                    style: TextStyle(color: Color(0xFF666D66)),
+                  Divider(
+                    color: Colors.grey,
                   ),
-                  trailing: Text(
-                    "Rp. 100.000.000, -",
-                    style: TextStyle(color: Color(0xFF828282)),
+                  ListTile(
+                    title: Text("Wedding Organize"),
+                    subtitle: Text(
+                      "Rp. 100.000.000, -",
+                      maxLines: 2,
+                      overflow: TextOverflow.ellipsis,
+                    ),
                   ),
-                ),
-              ],
+                  Divider(
+                    color: Colors.grey,
+                  ),
+                  ListTile(
+                    title: Text(
+                      "Terbayar",
+                      style: TextStyle(color: Color(0xFF666D66)),
+                    ),
+                    trailing: Text(
+                      "Rp. 100.000.000, -",
+                      style: TextStyle(color: Color(0xFF828282)),
+                    ),
+                  ),
+                ],
+              ),
             ),
           ),
+          onTap: () =>
+              Navigator.push(context, MaterialPageRoute(builder: (context) {
+            return detailPayment();
+          })),
         ),
       ]),
     );
