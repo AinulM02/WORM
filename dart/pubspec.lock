@@ -88,7 +88,6 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
-<<<<<<< HEAD
   getwidget:
     dependency: "direct main"
     description:
@@ -96,7 +95,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.0.5"
-=======
   intl:
     dependency: transitive
     description:
@@ -104,7 +102,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.17.0"
->>>>>>> 87a94ba655b7c1c58e1c499b93a0a6cf41334a6e
   lints:
     dependency: transitive
     description:
