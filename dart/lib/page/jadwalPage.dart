@@ -10,6 +10,7 @@ class jadwalPage extends StatefulWidget {
 }
 
 class _jadwalPageState extends State<jadwalPage> {
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -17,7 +18,7 @@ class _jadwalPageState extends State<jadwalPage> {
         const Padding(padding: EdgeInsets.all(18.0)),
         Container(
           margin: const EdgeInsets.only(right: 16, left: 16),
-          height: 77,
+          height: 87,
           decoration: BoxDecoration(
             color: Colors.white,
             borderRadius: BorderRadius.circular(10),
@@ -36,20 +37,20 @@ class _jadwalPageState extends State<jadwalPage> {
                   "Progress",
                   textAlign: TextAlign.left,
                   style: TextStyle(
-                      fontSize: 15,
+                      fontSize: 16,
                       color: Colors.black,
-                      fontWeight: FontWeight.normal),
+                      fontWeight: FontWeight.w500),
                 ),
                 trailing: Text(
                   "80%",
-                  style: TextStyle(fontWeight: FontWeight.bold),
+                  style: TextStyle(fontWeight: FontWeight.w500),
                 ),
               ),
               GFProgressBar(
                 margin: const EdgeInsets.only(right: 16, left: 16),
                 percentage: 0.8,
                 lineHeight: 10,
-                backgroundColor: const Color.fromARGB(255, 209, 209, 209),
+                backgroundColor: const Color.fromRGBO(255, 255, 255, 1),
                 progressBarColor: const Color.fromRGBO(254, 204, 118, 1),
               )
             ],
@@ -73,13 +74,11 @@ class _jadwalPageState extends State<jadwalPage> {
           child: ListView(
             children: <Widget>[
               Container(
-                margin: const EdgeInsets.only(bottom: 16),
                 alignment: Alignment.center,
                 child: const Text(
                   "Jadwal Kegiatan",
                   style: TextStyle(
-                    color: Color.fromARGB(255, 24, 24, 24),
-                    fontWeight: FontWeight.bold,
+                    fontWeight: FontWeight.w500,
                     fontSize: 16,
                   ),
                 ),
@@ -90,9 +89,6 @@ class _jadwalPageState extends State<jadwalPage> {
                   "Progres sudah selesai",
                 ),
                 trailing: Text("10.00 PM"),
-                // onTap: (){
-                //   Navigator.pus
-                // },
                 onTap: () => Navigator.push(context,
                     MaterialPageRoute(builder: (context) {
                   return const tambahJadwal();

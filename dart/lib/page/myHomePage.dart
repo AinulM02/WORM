@@ -20,7 +20,10 @@ class _MyHomePageState extends State<MyHomePage> {
           const Text(
             "Hi, Ainul",
             textAlign: TextAlign.start,
-            style: TextStyle(fontSize: 16, fontWeight: FontWeight.normal),
+            style: TextStyle(
+              fontSize: 16, 
+              fontWeight: FontWeight.w500
+            ),
           ),
           const SizedBox(
             height: 10,
@@ -45,7 +48,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
           Container(
             margin: const EdgeInsets.only(right: 16, left: 16),
-            height: 77,
+            height: 87,
             decoration: BoxDecoration(
               color: Colors.white,
               borderRadius: BorderRadius.circular(10),
@@ -64,20 +67,19 @@ class _MyHomePageState extends State<MyHomePage> {
                     "Progress",
                     textAlign: TextAlign.left,
                     style: TextStyle(
-                        fontSize: 15,
-                        color: Colors.black,
-                        fontWeight: FontWeight.normal),
+                        fontSize: 16,
+                        fontWeight: FontWeight.w500),
                   ),
                   trailing: Text(
                     "80%",
-                    style: TextStyle(fontWeight: FontWeight.bold),
+                    style: TextStyle(fontWeight: FontWeight.w500),
                   ),
                 ),
                 GFProgressBar(
                   margin: const EdgeInsets.only(right: 16, left: 16),
                   percentage: 0.8,
                   lineHeight: 10,
-                  backgroundColor: const Color.fromARGB(255, 209, 209, 209),
+                  backgroundColor: const Color.fromRGBO(255, 255, 255, 1),
                   progressBarColor: const Color.fromRGBO(254, 204, 118, 1),
                 )
               ],
@@ -103,13 +105,11 @@ class _MyHomePageState extends State<MyHomePage> {
             child: ListView(
               children: <Widget>[
                 Container(
-                  margin: const EdgeInsets.only(bottom: 16),
                   alignment: Alignment.center,
                   child: const Text(
                     "Jadwal Kegiatan",
                     style: TextStyle(
-                      color: Color.fromARGB(255, 24, 24, 24),
-                      fontWeight: FontWeight.bold,
+                      fontWeight: FontWeight.w500,
                       fontSize: 16,
                     ),
                   ),

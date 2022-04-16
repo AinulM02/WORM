@@ -12,36 +12,47 @@ class detailPayment extends StatefulWidget {
 }
 
 class _detailPayment extends State<detailPayment> {
+  
   @override
   Widget build(BuildContext context) {
     // final args = ModalRoute.of(context)!.settings.arguments as int;
     return Scaffold(
-      backgroundColor: Color(0xFFe5e5e5),
       appBar: AppBar(
         title: const Text(
-          "Rekap Pembayaran",
-          style: TextStyle(color: Colors.white),
+          "Detail Pembayaran",
+          style: TextStyle(
+            color: Colors.black,
+            fontSize: 17,
+            fontWeight: FontWeight.w600,
+          ),
         ),
-        backgroundColor: Color.fromARGB(255, 41, 40, 40),
+        backgroundColor: Color.fromRGBO(246, 246, 246, 1),
       ),
       body: ListView(children: <Widget>[
-        Padding(padding: const EdgeInsets.all(16.0)),
+        Padding(padding: const EdgeInsets.all(8)),
         Container(
-          margin: EdgeInsets.only(right: 16, left: 16, bottom: 16),
+          margin: EdgeInsets.only(right: 16, left: 16, bottom: 8),
           height: 300,
           width: 400,
           color: Color(0xFFe5e5e5),
           child: Container(
             decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(10),
               color: Colors.white,
+              borderRadius: BorderRadius.circular(10),
+              boxShadow: const [
+                BoxShadow(
+                  color: Colors.grey,
+                  blurRadius: 2,
+                  offset: Offset(0, 0), // Shadow position
+                ),
+              ],
             ),
             child: ListView(
               children: [
                 ListTile(
                   title: Text("Ainul Muhlasin"),
                   subtitle: Text(
-                    "Rp. 85.000.000, -",
+                    "Rp85.000.000,-",
                     maxLines: 2,
                     overflow: TextOverflow.ellipsis,
                   ),
@@ -67,7 +78,7 @@ class _detailPayment extends State<detailPayment> {
                   color: Colors.grey,
                 ),
                 ListTile(
-                  title: Text("Rp. 5.000.000, -"),
+                  title: Text("Rp5.000.000,-"),
                   trailing: Row(
                     mainAxisSize: MainAxisSize.min,
                     children: <Widget>[
@@ -91,7 +102,7 @@ class _detailPayment extends State<detailPayment> {
                   color: Colors.grey,
                 ),
                 ListTile(
-                  title: Text("Rp. 10.000.000, -"),
+                  title: Text("Rp10.000.000,-"),
                   trailing: Row(
                     mainAxisSize: MainAxisSize.min,
                     children: <Widget>[
@@ -115,7 +126,7 @@ class _detailPayment extends State<detailPayment> {
                   color: Colors.grey,
                 ),
                 ListTile(
-                    title: Text("Rp. 20.000.000, -"),
+                    title: Text("Rp20.000.000,-"),
                     trailing: Row(
                       mainAxisSize: MainAxisSize.min,
                       children: <Widget>[
@@ -146,8 +157,15 @@ class _detailPayment extends State<detailPayment> {
           color: Color(0xFFe5e5e5),
           child: Container(
               decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(10),
                 color: Colors.white,
+                borderRadius: BorderRadius.circular(10),
+                boxShadow: const [
+                  BoxShadow(
+                    color: Colors.grey,
+                    blurRadius: 2,
+                    offset: Offset(0, 0), // Shadow position
+                  ),
+                ],
               ),
               child: Column(
                 children: [
@@ -159,10 +177,10 @@ class _detailPayment extends State<detailPayment> {
                     textAlign: TextAlign.center,
                   ),
                 ],
-              )),
+              )
+          ),
         )
       ]),
-      // bottomNavigationBar: const navbar(),
     );
   }
 }

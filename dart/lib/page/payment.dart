@@ -11,6 +11,7 @@ class payment extends StatefulWidget {
 }
 
 class _payment extends State<payment> {
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -18,17 +19,18 @@ class _payment extends State<payment> {
         title: const Text(
           "Rekap Pembayaran",
           style: TextStyle(
-            color: Colors.white,
-            fontSize: 18,
+            color: Colors.black,
+            fontSize: 17,
+            fontWeight: FontWeight.w600,
           ),
         ),
-        backgroundColor: const Color.fromARGB(255, 41, 40, 40),
+        backgroundColor: Color.fromRGBO(246, 246, 246, 1),
       ),
       body: Column(children: [
-        const Padding(padding: EdgeInsets.all(16.0)),
+        const Padding(padding: EdgeInsets.all(8)),
         InkWell(
           child: Container(
-            margin: const EdgeInsets.only(right: 16, left: 16, bottom: 16),
+            margin: const EdgeInsets.only(right: 16, left: 16, bottom: 8),
             height: 220,
             width: 400,
             color: const Color(0xFFe5e5e5),
@@ -59,7 +61,7 @@ class _payment extends State<payment> {
                   ListTile(
                     title: Text("Wedding Organize"),
                     subtitle: Text(
-                      "Rp. 100.000.000, -",
+                      "Rp100.000.000,-",
                       maxLines: 2,
                       overflow: TextOverflow.ellipsis,
                     ),
@@ -73,7 +75,7 @@ class _payment extends State<payment> {
                       style: TextStyle(color: Color(0xFF666D66)),
                     ),
                     trailing: Text(
-                      "Rp. 20.000, -",
+                      "Rp20.000,-",
                       style: TextStyle(color: Colors.green),
                     ),
                   ),
@@ -88,7 +90,7 @@ class _payment extends State<payment> {
         ),
         InkWell(
           child: Container(
-            margin: const EdgeInsets.only(right: 16, left: 16, bottom: 16),
+            margin: const EdgeInsets.only(right: 16, left: 16, bottom: 8),
             height: 220,
             width: 400,
             color: const Color(0xFFe5e5e5),
@@ -119,7 +121,7 @@ class _payment extends State<payment> {
                   ListTile(
                     title: Text("Wedding Organize"),
                     subtitle: Text(
-                      "Rp. 100.000.000, -",
+                      "Rp100.000.000,-",
                       maxLines: 2,
                       overflow: TextOverflow.ellipsis,
                     ),
@@ -133,7 +135,7 @@ class _payment extends State<payment> {
                       style: TextStyle(color: Color(0xFF666D66)),
                     ),
                     trailing: Text(
-                      "Rp. 100.000.000, -",
+                      "Rp100.000.000,-",
                       style: TextStyle(color: Color(0xFF828282)),
                     ),
                   ),
