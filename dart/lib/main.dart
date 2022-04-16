@@ -11,17 +11,12 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'WOR ',
-      // ignore: unnecessary_new
+      title: 'WORM',
       theme: ThemeData(
           scaffoldBackgroundColor: const Color.fromRGBO(246, 246, 246, 1),
-          fontFamily: 'Poppins'),
+          fontFamily: 'Poppins',
+          ),
       home: const navbar(),
-      // initialRoute: '/',
-      // routes: {
-      //   '/': (context) => MyHomePage(),
-      //   '/jadwal': (context) => jadwalPage(),
-      // },
     );
   }
 }

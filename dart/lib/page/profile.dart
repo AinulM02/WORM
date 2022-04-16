@@ -1,5 +1,3 @@
-// ignore_for_file: camel_case_types, deprecated_member_use
-
 import 'package:flutter/material.dart';
 
 class profile extends StatefulWidget {
@@ -10,6 +8,7 @@ class profile extends StatefulWidget {
 }
 
 class _profileState extends State<profile> {
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -18,10 +17,6 @@ class _profileState extends State<profile> {
           Container(
             height: 270,
             decoration: const BoxDecoration(
-              // borderRadius: BorderRadius.only(
-              //   bottomLeft: Radius.elliptical(45, 15) ,
-              //   bottomRight: Radius.elliptical(45, 15),
-              // ),
               gradient: LinearGradient(
                 colors: [Color.fromARGB(255, 31, 31, 31), Color.fromARGB(214, 10, 10, 10)],
                 begin: Alignment.centerLeft,
@@ -40,8 +35,8 @@ class _profileState extends State<profile> {
                       color: Colors.white,
                       fontWeight: FontWeight.bold,
                       fontSize: 18,
-                      ),
                     ),
+                  ),
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -57,11 +52,11 @@ class _profileState extends State<profile> {
                   ],
                 ),
                 Container(
-                  margin: const EdgeInsets.only(top: 20, ) ,
+                  margin: const EdgeInsets.only(top: 20) ,
                   width: 150,
                   height: 25,
                   decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(15),
+                    borderRadius: BorderRadius.circular(10),
                     color: Colors.white,
                   ),
                   child: const Center(
@@ -71,12 +66,11 @@ class _profileState extends State<profile> {
                         fontSize: 16,
                         color: Colors.black,
                         fontWeight: FontWeight.normal,
-                        ),
-                        textAlign: TextAlign.center,
                       ),
+                      textAlign: TextAlign.center,
                     ),
+                  ),
                 ),
-
               ],
             ),
           ),
@@ -86,8 +80,7 @@ class _profileState extends State<profile> {
             height: 60,
             decoration: BoxDecoration(
               color: Colors.white,
-              borderRadius: BorderRadius.circular(5),
-              // ignore: prefer_const_literals_to_create_immutables
+              borderRadius: BorderRadius.circular(10),
               boxShadow: [
                 const BoxShadow(
                   color: Colors.grey,
@@ -109,8 +102,7 @@ class _profileState extends State<profile> {
             height: 60,
             decoration: BoxDecoration(
               color: Colors.white,
-              borderRadius: BorderRadius.circular(5),
-              // ignore: prefer_const_literals_to_create_immutables
+              borderRadius: BorderRadius.circular(10),
               boxShadow: [
                 const BoxShadow(
                   color: Colors.grey,
@@ -126,7 +118,6 @@ class _profileState extends State<profile> {
               onPressed: () {},
             ),
           ),
-
         ],
       ),
     );

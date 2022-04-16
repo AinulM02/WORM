@@ -12,61 +12,7 @@ class payment extends StatefulWidget {
 class _payment extends State<payment> {
   @override
   Widget build(BuildContext context) {
-    // final args = ModalRoute.of(context)!.settings.arguments as int;
     return Scaffold(
-      // appBar: AppBar(
-      //   title: const Text("Rekap Pembayaran"),
-      // ),
-      // body: Column(children: [
-      //   Padding(padding: const EdgeInsets.all(16.0)),
-      //   Container(
-      //     margin: EdgeInsets.only(right: 16, left: 16, bottom: 16),
-      //     height: 150,
-      //     width: 400,
-      //     color: Color.fromRGBO(246, 246, 246, 1),
-      //     child: ListView(
-      //       children: const [
-      //         ListTile(
-      //           title: Text("Maret 2022"),
-      //         ),
-      //         ListTile(
-      //           title: Text("Progres 3"),
-      //           subtitle: Text(
-      //             "Progres sudah selesai",
-      //             maxLines: 2,
-      //             overflow: TextOverflow.ellipsis,
-      //           ),
-      //         ),
-      //         Divider(
-      //           color: Colors.black,
-      //         ),
-      //       ],
-      //     ),
-      //   ),
-      //   Container(
-      //     margin: EdgeInsets.only(right: 16, left: 16, bottom: 16),
-      //     height: 150,
-      //     width: 400,
-      //     color: Color.fromRGBO(246, 246, 246, 1),
-      //     child: ListView(
-      //       children: const [
-      //         ListTile(
-      //           title: Text("Progres 3"),
-      //           subtitle: Text(
-      //             "Progres sudah selesai",
-      //             maxLines: 2,
-      //             overflow: TextOverflow.ellipsis,
-      //           ),
-      //           trailing: Text("10.00 PM"),
-      //         ),
-      //         Divider(
-      //           color: Colors.black,
-      //         ),
-      //       ],
-      //     ),
-      //   ),
-      // ]),
-      // // bottomNavigationBar: const navbar(),
       appBar: AppBar(
         title: const Text(
           "Rekap Pembayaran",
@@ -86,8 +32,15 @@ class _payment extends State<payment> {
           color: const Color(0xFFe5e5e5),
           child: Container(
             decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(10),
               color: Colors.white,
+              borderRadius: BorderRadius.circular(10),
+              boxShadow: [
+                const BoxShadow(
+                  color: Colors.grey,
+                  blurRadius: 2,
+                  offset: Offset(0, 0), // Shadow position
+                ),
+              ],
             ),
             child: ListView(
               children: const [
@@ -126,6 +79,7 @@ class _payment extends State<payment> {
             ),
           ),
         ),
+        
         Container(
           margin: const EdgeInsets.only(right: 16, left: 16, bottom: 16),
           height: 220,
@@ -133,8 +87,15 @@ class _payment extends State<payment> {
           color: const Color(0xFFe5e5e5),
           child: Container(
             decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(10),
               color: Colors.white,
+              borderRadius: BorderRadius.circular(10),
+              boxShadow: [
+                const BoxShadow(
+                  color: Colors.grey,
+                  blurRadius: 2,
+                  offset: Offset(0, 0), // Shadow position
+                ),
+              ],
             ),
             child: ListView(
               children: const [

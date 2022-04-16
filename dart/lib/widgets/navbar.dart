@@ -22,19 +22,18 @@ class _navbarState extends State<navbar> {
     const payment(),
     const profile(),
   ];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: screens[currentIndex],
       bottomNavigationBar: BottomNavigationBar(
         type: BottomNavigationBarType.shifting,
-        iconSize: 20,
+        iconSize: 30,
         selectedIconTheme: const IconThemeData(color: Color.fromRGBO(254, 204, 118, 1),size:25),
-        selectedLabelStyle: const TextStyle(fontWeight: FontWeight.bold),  
+        selectedLabelStyle: const TextStyle(fontWeight: FontWeight.normal),  
         selectedItemColor: const Color.fromRGBO(254, 204, 118, 1),
-        // selectedFontSize: 15,
         currentIndex: currentIndex,
-        // showUnselectedLabels: false,
         onTap: (index) => setState(() => currentIndex = index),
         items: const [
           BottomNavigationBarItem(
