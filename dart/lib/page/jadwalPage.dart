@@ -73,7 +73,7 @@ class _jadwalPageState extends State<jadwalPage> {
           child: ListView(
             children: <Widget>[
               Container(
-                margin: const EdgeInsets.only( bottom: 16),
+                margin: const EdgeInsets.only(bottom: 16),
                 alignment: Alignment.center,
                 child: const Text(
                   "Jadwal Kegiatan",
@@ -84,7 +84,7 @@ class _jadwalPageState extends State<jadwalPage> {
                   ),
                 ),
               ),
-              const ListTile(
+              ListTile(
                 title: Text("Progres 1"),
                 subtitle: Text(
                   "Progres sudah selesai",
@@ -93,6 +93,10 @@ class _jadwalPageState extends State<jadwalPage> {
                 // onTap: (){
                 //   Navigator.pus
                 // },
+                onTap: () => Navigator.push(context,
+                    MaterialPageRoute(builder: (context) {
+                  return const tambahJadwal();
+                })),
               ),
               const Divider(),
               const ListTile(
