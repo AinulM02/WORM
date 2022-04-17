@@ -73,54 +73,54 @@ class _jadwalPageState extends State<jadwalPage> {
               ),
             ],
           ),
-          child: ListView(
+          child: Column(
             children: <Widget>[
               Container(
-                alignment: Alignment.center,
+                margin: const EdgeInsets.only(top: 20, bottom: 20),
                 child: const Text(
                   "Jadwal Kegiatan",
-                  style: TextStyle(
-                    fontWeight: FontWeight.w500,
-                    fontSize: 16,
-                  ),
+                  style: TextStyle(fontWeight: FontWeight.w500, fontSize: 16),
                 ),
               ),
-              ListTile(
-                title: const Text("Progres 1"),
-                subtitle: const Text(
-                  "Progres sudah selesai",
+              SizedBox(
+                height: MediaQuery.of(context).size.height * 0.64,
+                child: ListView(
+                  children: const [
+                    ListTile(
+                      title: Text("Progres 1"),
+                      subtitle: Text(
+                        "Progres sudah selesai",
+                      ),
+                      trailing: Text("22.00"),
+                    ),
+                    Divider(),
+                    ListTile(
+                      title: Text("Progres 2"),
+                      subtitle: Text(
+                        "Progres sudah selesai",
+                      ),
+                      trailing: Text("23.00"),
+                    ),
+                    Divider(),
+                    ListTile(
+                      title: Text("Progres 3"),
+                      subtitle: Text(
+                        "Progres sudah selesai",
+                      ),
+                      trailing: Text("00.00"),
+                    ),
+                    Divider(),
+                    ListTile(
+                      title: Text("Progres 4"),
+                      subtitle: Text(
+                        "Progres sudah selesai",
+                      ),
+                      trailing: Text("12.00"),
+                    ),
+                    Divider(),
+                  ],
                 ),
-                trailing: Text("10.00 PM"),
-                onTap: () => Navigator.push(context,
-                    MaterialPageRoute(builder: (context) {
-                  return const tambahJadwal();
-                })),
               ),
-              const Divider(),
-              const ListTile(
-                title: Text("Progres 2"),
-                subtitle: Text(
-                  "Progres sudah selesai",
-                ),
-                trailing: Text("11.00 PM"),
-              ),
-              const Divider(),
-              const ListTile(
-                title: Text("Progres 3"),
-                subtitle: Text(
-                  "Progres sudah selesai",
-                ),
-                trailing: Text("12.00 PM"),
-              ),
-              const Divider(),
-              const ListTile(
-                title: Text("Progres 4"),
-                subtitle: Text(
-                  "Progres sudah selesai",
-                ),
-                trailing: Text("12.00 PM"),
-              ),
-              const Divider(),
             ],
           ),
         ),

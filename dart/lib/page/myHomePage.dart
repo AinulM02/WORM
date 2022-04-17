@@ -109,11 +109,11 @@ class _MyHomePageState extends State<MyHomePage> {
                   margin: const EdgeInsets.only(top:20,bottom: 20),
                   child: const Text(
                     "Jadwal Kegiatan",
-                    style: TextStyle(fontWeight: FontWeight.normal,fontSize: 15),
+                    style: TextStyle(fontWeight: FontWeight.w500,fontSize: 16),
                     ),
                 ),
                 SizedBox(
-                  height: MediaQuery.of(context).size.height * 0.52,
+                  height: MediaQuery.of(context).size.height * 0.51,
                   child: ListView(
                     children: const [
                       ListTile(
