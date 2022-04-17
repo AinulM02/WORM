@@ -14,7 +14,7 @@ class _profileState extends State<profile> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: ListView(
+      body: Column(
         children: <Widget>[
           Container(
             height: 270,
@@ -30,7 +30,7 @@ class _profileState extends State<profile> {
               mainAxisAlignment: MainAxisAlignment.start,
               children: <Widget>[
                 Container(
-                  margin: const EdgeInsets.only(top: 16, bottom: 16),
+                  margin: const EdgeInsets.only(top: 20, bottom: 20),
                   child: const Text(
                     "Data Profile",
                     style: TextStyle(
@@ -80,6 +80,7 @@ class _profileState extends State<profile> {
           Container(
             margin: const EdgeInsets.only(top: 16,right: 16, left: 16),
             height: 60,
+            width: 400,
             decoration: BoxDecoration(
               color: Colors.white,
               borderRadius: BorderRadius.circular(10),
@@ -102,6 +103,7 @@ class _profileState extends State<profile> {
           Container(
             margin: const EdgeInsets.only(top: 10, right: 16, left: 16),
             height: 60,
+            width: 400,
             decoration: BoxDecoration(
               color: Colors.white,
               borderRadius: BorderRadius.circular(10),
