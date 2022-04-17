@@ -1,3 +1,5 @@
+// ignore_for_file: camel_case_types
+
 import 'package:flutter/material.dart';
 import 'package:date_time_picker/date_time_picker.dart';
 import 'package:worm/widgets/navbar.dart';
@@ -35,8 +37,8 @@ class _tambahJadwalState extends State<tambahJadwal> {
                             MaterialPageRoute(builder: (context) {
                           return const navbar();
                         })),
-                    icon: Icon(Icons.undo)),
-                Text(
+                    icon: const Icon(Icons.undo)),
+                const Text(
                   "Tambah Jadwal",
                   style: TextStyle(
                     color: Color.fromARGB(255, 24, 24, 24),
@@ -112,7 +114,7 @@ class _tambahJadwalState extends State<tambahJadwal> {
               children: [
                 IconButton(
                   onPressed: showTime,
-                  icon: new Icon(Icons.timer),
+                  icon: const Icon(Icons.timer),
                 ),
                 Text(time.format(context).toString()),
               ],
@@ -144,7 +146,7 @@ class _tambahJadwalState extends State<tambahJadwal> {
                     onPressed: () {
                       // Respond to button press
                     },
-                    child: Text(
+                    child: const Text(
                       'Save',
                       style: TextStyle(
                         color: Color.fromRGBO(254, 204, 118, 1),

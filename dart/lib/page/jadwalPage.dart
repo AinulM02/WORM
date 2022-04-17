@@ -1,3 +1,5 @@
+// ignore_for_file: camel_case_types
+
 import 'package:flutter/material.dart';
 import 'package:worm/page/tambahJadwal.dart';
 import 'package:getwidget/getwidget.dart';
@@ -18,7 +20,7 @@ class _jadwalPageState extends State<jadwalPage> {
         const Padding(padding: EdgeInsets.all(18.0)),
         Container(
           margin: const EdgeInsets.only(right: 16, left: 16),
-          height: 87,
+          height: MediaQuery.of(context).size.height * 0.10,
           decoration: BoxDecoration(
             color: Colors.white,
             borderRadius: BorderRadius.circular(10),
@@ -59,7 +61,7 @@ class _jadwalPageState extends State<jadwalPage> {
         const Padding(padding: EdgeInsets.only(top: 8)),
         Container(
           margin: const EdgeInsets.only(right: 16, left: 16),
-          height: 486,
+          height: MediaQuery.of(context).size.height * 0.732,
           decoration: BoxDecoration(
             color: Colors.white,
             borderRadius: BorderRadius.circular(10),
@@ -84,8 +86,8 @@ class _jadwalPageState extends State<jadwalPage> {
                 ),
               ),
               ListTile(
-                title: Text("Progres 1"),
-                subtitle: Text(
+                title: const Text("Progres 1"),
+                subtitle: const Text(
                   "Progres sudah selesai",
                 ),
                 trailing: Text("10.00 PM"),

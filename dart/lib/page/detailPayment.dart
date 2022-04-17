@@ -1,8 +1,7 @@
-import 'package:worm/page/payment.dart';
-import 'package:flutter/material.dart';
-import 'package:worm/widgets/navbar.dart';
+// ignore_for_file: camel_case_types
 
-// import 'package:flutter/src/widgets/container.dart';
+import 'package:flutter/material.dart';
+
 
 class detailPayment extends StatefulWidget {
   const detailPayment({Key? key}) : super(key: key);
@@ -26,15 +25,14 @@ class _detailPayment extends State<detailPayment> {
             fontWeight: FontWeight.w600,
           ),
         ),
-        backgroundColor: Color.fromRGBO(246, 246, 246, 1),
+        backgroundColor: const Color.fromRGBO(246, 246, 246, 1),
       ),
       body: ListView(children: <Widget>[
-        Padding(padding: const EdgeInsets.all(8)),
+        const Padding(padding: EdgeInsets.all(8)),
         Container(
-          margin: EdgeInsets.only(right: 16, left: 16, bottom: 8),
-          height: 300,
-          width: 400,
-          color: Color(0xFFe5e5e5),
+          margin: const EdgeInsets.only(right: 16, left: 16, bottom: 8),
+          height: MediaQuery.of(context).size.height * 0.7,
+          color: const Color(0xFFe5e5e5),
           child: Container(
             decoration: BoxDecoration(
               color: Colors.white,
@@ -50,8 +48,8 @@ class _detailPayment extends State<detailPayment> {
             child: ListView(
               children: [
                 ListTile(
-                  title: Text("Ainul Muhlasin"),
-                  subtitle: Text(
+                  title: const Text("Ainul Muhlasin"),
+                  subtitle: const Text(
                     "Rp85.000.000,-",
                     maxLines: 2,
                     overflow: TextOverflow.ellipsis,
@@ -60,7 +58,7 @@ class _detailPayment extends State<detailPayment> {
                     mainAxisSize: MainAxisSize.min,
                     children: <Widget>[
                       Column(
-                        children: [
+                        children: const [
                           Text("Maret 2022"),
                           SizedBox(
                             height: 5,
@@ -74,16 +72,17 @@ class _detailPayment extends State<detailPayment> {
                     ],
                   ),
                 ),
-                Divider(
+                const Padding(padding: EdgeInsets.all(8)),
+                const Divider(
                   color: Colors.grey,
                 ),
                 ListTile(
-                  title: Text("Rp5.000.000,-"),
+                  title: const Text("Rp5.000.000,-"),
                   trailing: Row(
                     mainAxisSize: MainAxisSize.min,
                     children: <Widget>[
                       Column(
-                        children: [
+                        children: const [
                           Text("12 Maret 2022",
                               style: TextStyle(color: Color(0xFF828282))),
                           SizedBox(
@@ -98,7 +97,7 @@ class _detailPayment extends State<detailPayment> {
                     ],
                   ),
                 ),
-                Divider(
+                const Divider(
                   color: Colors.grey,
                 ),
                 ListTile(
@@ -107,7 +106,7 @@ class _detailPayment extends State<detailPayment> {
                     mainAxisSize: MainAxisSize.min,
                     children: <Widget>[
                       Column(
-                        children: [
+                        children: const [
                           Text("12 Maret 2022",
                               style: TextStyle(color: Color(0xFF828282))),
                           SizedBox(
@@ -122,7 +121,7 @@ class _detailPayment extends State<detailPayment> {
                     ],
                   ),
                 ),
-                Divider(
+                const Divider(
                   color: Colors.grey,
                 ),
                 ListTile(
@@ -131,7 +130,7 @@ class _detailPayment extends State<detailPayment> {
                       mainAxisSize: MainAxisSize.min,
                       children: <Widget>[
                         Column(
-                          children: [
+                          children: const [
                             Text("12 Maret 2022",
                                 style: TextStyle(color: Color(0xFF828282))),
                             SizedBox(
@@ -151,10 +150,9 @@ class _detailPayment extends State<detailPayment> {
           ),
         ),
         Container(
-          margin: EdgeInsets.only(right: 16, left: 16),
+          margin: const EdgeInsets.only(right: 16, left: 16),
           height: 50,
-          width: 400,
-          color: Color(0xFFe5e5e5),
+          color: const Color(0xFFe5e5e5),
           child: Container(
               decoration: BoxDecoration(
                 color: Colors.white,
@@ -168,8 +166,8 @@ class _detailPayment extends State<detailPayment> {
                 ],
               ),
               child: Column(
-                children: [
-                  const SizedBox(
+                children: const [
+                  SizedBox(
                     height: 16,
                   ),
                   Text(

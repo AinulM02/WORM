@@ -1,3 +1,5 @@
+// ignore_for_file: camel_case_types
+
 import 'package:flutter/material.dart';
 
 class profile extends StatefulWidget {
@@ -81,8 +83,8 @@ class _profileState extends State<profile> {
             decoration: BoxDecoration(
               color: Colors.white,
               borderRadius: BorderRadius.circular(10),
-              boxShadow: [
-                const BoxShadow(
+              boxShadow: const [
+                BoxShadow(
                   color: Colors.grey,
                   blurRadius: 2,
                   offset: Offset(0, 0),
@@ -103,8 +105,8 @@ class _profileState extends State<profile> {
             decoration: BoxDecoration(
               color: Colors.white,
               borderRadius: BorderRadius.circular(10),
-              boxShadow: [
-                const BoxShadow(
+              boxShadow: const [
+                BoxShadow(
                   color: Colors.grey,
                   blurRadius: 2,
                   offset: Offset(0, 0),

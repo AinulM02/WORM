@@ -24,22 +24,21 @@ class _payment extends State<payment> {
             fontWeight: FontWeight.w600,
           ),
         ),
-        backgroundColor: Color.fromRGBO(246, 246, 246, 1),
+        backgroundColor: const Color.fromRGBO(246, 246, 246, 1),
       ),
       body: Column(children: [
         const Padding(padding: EdgeInsets.all(8)),
         InkWell(
           child: Container(
             margin: const EdgeInsets.only(right: 16, left: 16, bottom: 8),
-            height: 220,
-            width: 400,
+            height: MediaQuery.of(context).size.height * 0.28,
             color: const Color(0xFFe5e5e5),
             child: Container(
               decoration: BoxDecoration(
                 color: Colors.white,
                 borderRadius: BorderRadius.circular(10),
-                boxShadow: [
-                  const BoxShadow(
+                boxShadow: const [
+                  BoxShadow(
                     color: Colors.grey,
                     blurRadius: 2,
                     offset: Offset(0, 0), // Shadow position
@@ -85,21 +84,20 @@ class _payment extends State<payment> {
           ),
           onTap: () =>
               Navigator.push(context, MaterialPageRoute(builder: (context) {
-            return detailPayment();
+            return const detailPayment();
           })),
         ),
         InkWell(
           child: Container(
             margin: const EdgeInsets.only(right: 16, left: 16, bottom: 8),
-            height: 220,
-            width: 400,
+            height: MediaQuery.of(context).size.height * 0.28,
             color: const Color(0xFFe5e5e5),
             child: Container(
               decoration: BoxDecoration(
                 color: Colors.white,
                 borderRadius: BorderRadius.circular(10),
-                boxShadow: [
-                  const BoxShadow(
+                boxShadow: const [
+                  BoxShadow(
                     color: Colors.grey,
                     blurRadius: 2,
                     offset: Offset(0, 0), // Shadow position
@@ -145,7 +143,7 @@ class _payment extends State<payment> {
           ),
           onTap: () =>
               Navigator.push(context, MaterialPageRoute(builder: (context) {
-            return detailPayment();
+            return const detailPayment();
           })),
         ),
       ]),

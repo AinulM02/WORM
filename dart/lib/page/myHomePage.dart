@@ -48,7 +48,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
           Container(
             margin: const EdgeInsets.only(right: 16, left: 16),
-            height: 87,
+            height: MediaQuery.of(context).size.height * 0.10,
             decoration: BoxDecoration(
               color: Colors.white,
               borderRadius: BorderRadius.circular(10),
@@ -90,7 +90,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
           Container(
             margin: const EdgeInsets.only(right: 16, left: 16),
-            height: 380,
+            height: MediaQuery.of(context).size.height * 0.60,
             decoration: BoxDecoration(
               color: Colors.white,
               borderRadius: BorderRadius.circular(10),

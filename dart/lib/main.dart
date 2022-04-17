@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:worm/page/jadwalPage.dart';
-import 'package:worm/page/tambahJadwal.dart';
 import 'package:worm/widgets/navbar.dart';
 
 void main() {
