@@ -29,8 +29,8 @@ class _navbarState extends State<navbar> {
       body: screens[currentIndex],
       bottomNavigationBar: BottomNavigationBar(
         type: BottomNavigationBarType.shifting,
-        iconSize: 30,
-        selectedIconTheme: const IconThemeData(color: Color.fromRGBO(254, 204, 118, 1),size:25),
+        iconSize: 25,
+        selectedIconTheme: const IconThemeData(color: Color.fromRGBO(254, 204, 118, 1),size:30),
         selectedLabelStyle: const TextStyle(fontWeight: FontWeight.normal),  
         selectedItemColor: const Color.fromRGBO(254, 204, 118, 1),
         currentIndex: currentIndex,
