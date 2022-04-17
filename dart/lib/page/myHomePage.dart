@@ -115,7 +115,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 SizedBox(
                   height: MediaQuery.of(context).size.height * 0.52,
                   child: ListView(
-                    children: const <Widget>[
+                    children: const [
                       ListTile(
                         title: Text("Progres 1"),
                         subtitle: Text(
