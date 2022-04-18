@@ -75,10 +75,23 @@ class _jadwalPageState extends State<jadwalPage> {
           child: Column(
             children: <Widget>[
               Container(
-                margin: const EdgeInsets.only(top: 20, bottom: 20),
-                child: const Text(
-                  "Jadwal Kegiatan",
-                  style: TextStyle(fontWeight: FontWeight.w500, fontSize: 16),
+                margin: const EdgeInsets.only(top: 3),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    const Text(
+                      "Jadwal Kegiatan",
+                      style:
+                          TextStyle(fontWeight: FontWeight.w500, fontSize: 16),
+                    ),
+                    IconButton(
+                        color: Colors.amber,
+                        onPressed: () => Navigator.push(context,
+                                MaterialPageRoute(builder: (context) {
+                              return const tambahJadwal();
+                            })),
+                        icon: Icon(Icons.add)),
+                  ],
                 ),
               ),
               SizedBox(
