@@ -1,6 +1,7 @@
 // ignore_for_file: camel_case_types
 
 import 'package:flutter/material.dart';
+import 'package:worm/page/detailJadwal.dart';
 import 'package:worm/page/tambahJadwal.dart';
 import 'package:getwidget/getwidget.dart';
 
@@ -106,7 +107,7 @@ class _jadwalPageState extends State<jadwalPage> {
                       trailing: Text("22.00"),
                       onTap: () => Navigator.push(context,
                           MaterialPageRoute(builder: (context) {
-                        return const tambahJadwal();
+                        return const detailJadwal();
                       })),
                     ),
                     Divider(),
