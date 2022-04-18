@@ -12,7 +12,6 @@ class jadwalPage extends StatefulWidget {
 }
 
 class _jadwalPageState extends State<jadwalPage> {
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -85,13 +84,17 @@ class _jadwalPageState extends State<jadwalPage> {
               SizedBox(
                 height: MediaQuery.of(context).size.height * 0.64,
                 child: ListView(
-                  children: const [
+                  children: [
                     ListTile(
                       title: Text("Progres 1"),
                       subtitle: Text(
                         "Progres sudah selesai",
                       ),
                       trailing: Text("22.00"),
+                      onTap: () => Navigator.push(context,
+                          MaterialPageRoute(builder: (context) {
+                        return const tambahJadwal();
+                      })),
                     ),
                     Divider(),
                     ListTile(
