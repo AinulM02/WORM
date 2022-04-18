@@ -19,13 +19,39 @@ class _detailJadwalState extends State<detailJadwal> {
           margin: const EdgeInsets.only(top: 15, right: 16, left: 16),
           height: 70,
           child: Row(
-            children: [
-              IconButton(
-                  onPressed: () => Navigator.push(context,
-                          MaterialPageRoute(builder: (context) {
-                        return const navbar();
-                      })),
-                  icon: const Icon(Icons.undo)),
+            children: <Widget>[
+              Container(
+                height: 48,
+                width: 48,
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(5),
+                  boxShadow: const [
+                    BoxShadow(
+                      color: Colors.grey,
+                      blurRadius: 1,
+                      offset: Offset(0, 0), 
+                    ),
+                  ],
+                ),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    IconButton(
+                      alignment: Alignment.centerRight,
+                      onPressed: () => Navigator.push(context,
+                                MaterialPageRoute(builder: (context) {
+                              return const navbar();
+                            })),
+                        icon: const Icon(
+                          Icons.arrow_back_ios,
+                          size: 22,
+                        )),                   
+                  ],
+                ),
+              ),
+              const Padding(padding: EdgeInsets.only(left: 15)),
               const Text(
                 "Detail Kegiatan",
                 style: TextStyle(
