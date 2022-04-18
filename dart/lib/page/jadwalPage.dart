@@ -78,25 +78,30 @@ class _jadwalPageState extends State<jadwalPage> {
               Container(
                 margin: const EdgeInsets.only(top: 3),
                 child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.start,
                   children: [
-                    const Text(
-                      "Jadwal Kegiatan",
-                      style:
-                          TextStyle(fontWeight: FontWeight.w500, fontSize: 16),
+                    Container(
+                      margin: const EdgeInsets.only(left: 20),
+                      child: const Text(
+                        "Jadwal Kegiatan",
+                        style:
+                            TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+                      ),
                     ),
+                    const Padding(padding: EdgeInsets.only(left: 140)),
                     IconButton(
+                      alignment: Alignment.bottomRight,
                         color: Colors.amber,
                         onPressed: () => Navigator.push(context,
                                 MaterialPageRoute(builder: (context) {
                               return const tambahJadwal();
                             })),
-                        icon: Icon(Icons.add)),
+                        icon: const Icon(Icons.add)),
                   ],
                 ),
               ),
               SizedBox(
-                height: MediaQuery.of(context).size.height * 0.64,
+                height: MediaQuery.of(context).size.height * 0.662,
                 child: ListView(
                   children: [
                     ListTile(
