@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:worm/page/uploadPayment.dart';
+import 'package:worm/widgets/navbar.dart';
 
 class detailPayment extends StatefulWidget {
   const detailPayment({Key? key}) : super(key: key);
@@ -15,20 +16,69 @@ class _detailPayment extends State<detailPayment> {
   Widget build(BuildContext context) {
     // final args = ModalRoute.of(context)!.settings.arguments as int;
     return Scaffold(
-      appBar: AppBar(
-        title: const Text(
-          "Detail Pembayaran",
-          style: TextStyle(
-            color: Colors.black,
-            fontSize: 17,
-            fontWeight: FontWeight.w600,
-          ),
-        ),
-        backgroundColor: const Color.fromRGBO(246, 246, 246, 1),
-      ),
-      body: ListView(
+      // appBar: AppBar(
+      //   title: const Text(
+      //     "Detail Pembayaran",
+      //     style: TextStyle(
+      //       color: Colors.black,
+      //       fontSize: 17,
+      //       fontWeight: FontWeight.w600,
+      //     ),
+      //   ),
+      //   backgroundColor: const Color.fromRGBO(246, 246, 246, 1),
+      // ),
+      body: Column(
         children: <Widget>[
-          const Padding(padding: EdgeInsets.all(8)),
+          const Padding(padding: EdgeInsets.all(18.0)),
+          const Padding(padding: EdgeInsets.only(top: 8)),
+          Container(
+            margin: const EdgeInsets.only(top: 15, right: 16, left: 16),
+            height: 70,
+            child: Row(
+              children: <Widget>[
+                Container(
+                  height: 48,
+                  width: 48,
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(5),
+                    boxShadow: const [
+                      BoxShadow(
+                        color: Colors.grey,
+                        blurRadius: 1,
+                        offset: Offset(0, 0),
+                      ),
+                    ],
+                  ),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      IconButton(
+                          alignment: Alignment.centerRight,
+                          onPressed: () => Navigator.push(context,
+                                  MaterialPageRoute(builder: (context) {
+                                return const navbar();
+                              })),
+                          icon: const Icon(
+                            Icons.arrow_back_ios,
+                            size: 22,
+                          )),
+                    ],
+                  ),
+                ),
+                const Padding(padding: EdgeInsets.only(left: 15)),
+                const Text(
+                  "Detail Pembayaran",
+                  style: TextStyle(
+                    color: Color.fromARGB(255, 24, 24, 24),
+                    fontWeight: FontWeight.bold,
+                    fontSize: 16,
+                  ),
+                )
+              ],
+            ),
+          ),
           Container(
             margin: const EdgeInsets.only(right: 16, left: 16, bottom: 8),
             height: MediaQuery.of(context).size.height * 0.7,
@@ -153,6 +203,7 @@ class _detailPayment extends State<detailPayment> {
             child: Container(
               margin: const EdgeInsets.only(right: 16, left: 16),
               height: 50,
+              width: 400,
               color: const Color(0xFFe5e5e5),
               child: Container(
                   decoration: BoxDecoration(

@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:worm/page/detailPayment.dart';
 
+
 class payment extends StatefulWidget {
   const payment({Key? key}) : super(key: key);
 
@@ -15,19 +16,36 @@ class _payment extends State<payment> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text(
-          "Rekap Pembayaran",
-          style: TextStyle(
-            color: Colors.black,
-            fontSize: 17,
-            fontWeight: FontWeight.w600,
+      // appBar: AppBar(
+      //   title: const Text(
+      //     "Rekap Pembayaran",
+      //     style: TextStyle(
+      //       color: Colors.black,
+      //       fontSize: 17,
+      //       fontWeight: FontWeight.w600,
+      //     ),
+      //   ),
+      //   backgroundColor: const Color.fromRGBO(246, 246, 246, 1),
+      // ),
+      body: Column(children: [
+        const Padding(padding: EdgeInsets.all(18.0)),
+        const Padding(padding: EdgeInsets.only(top: 8)),
+        Container(
+          margin: const EdgeInsets.only(top: 18,bottom: 18),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: const <Widget>[
+              Text(
+                "Rekap Pembayaran",
+                style: TextStyle(
+                  color: Color.fromARGB(255, 24, 24, 24),
+                  fontWeight: FontWeight.bold,
+                  fontSize: 16,
+                ),
+              )
+            ],
           ),
         ),
-        backgroundColor: const Color.fromRGBO(246, 246, 246, 1),
-      ),
-      body: Column(children: [
-        const Padding(padding: EdgeInsets.all(8)),
         InkWell(
           child: Container(
             margin: const EdgeInsets.only(right: 16, left: 16, bottom: 8),
