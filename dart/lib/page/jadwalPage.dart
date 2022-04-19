@@ -79,16 +79,17 @@ class _jadwalPageState extends State<jadwalPage> {
                 margin: const EdgeInsets.only(top: 3),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     Container(
-                      margin: const EdgeInsets.only(left: 20),
+                      margin: const EdgeInsets.only(left: 110),
                       child: const Text(
                         "Jadwal Kegiatan",
                         style:
-                            TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+                            TextStyle(fontWeight: FontWeight.normal, fontSize: 16),
                       ),
                     ),
-                    const Padding(padding: EdgeInsets.only(left: 140)),
+                    const Padding(padding: EdgeInsets.only(left: 60)),
                     IconButton(
                       alignment: Alignment.bottomRight,
                         color: Colors.amber,

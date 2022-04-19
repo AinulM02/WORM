@@ -25,22 +25,49 @@ class _tambahJadwalState extends State<tambahJadwal> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: ListView(
+      body: Column(
+        mainAxisAlignment: MainAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.end,
         children: [
+          const Padding(padding: EdgeInsets.all(18.0)),
+          const Padding(padding: EdgeInsets.only(top: 8)),
           Container(
             margin: const EdgeInsets.only(top: 15, right: 16, left: 16),
             height: 70,
             child: Row(
-              children: [
-                IconButton(
-                    onPressed: () => Navigator.push(context,
-                            MaterialPageRoute(builder: (context) {
-                          return const navbar();
-                        })),
-                    icon: const Icon(
-                      Icons.arrow_back_ios,
-                      size: 22,
-                    )),
+              children: <Widget>[
+                Container(
+                  height: 48,
+                  width: 48,
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(5),
+                    boxShadow: const [
+                      BoxShadow(
+                        color: Colors.grey,
+                        blurRadius: 1,
+                        offset: Offset(0, 0),
+                      ),
+                    ],
+                  ),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      IconButton(
+                          alignment: Alignment.centerRight,
+                          onPressed: () => Navigator.push(context,
+                                  MaterialPageRoute(builder: (context) {
+                                return const navbar();
+                              })),
+                          icon: const Icon(
+                            Icons.arrow_back_ios,
+                            size: 22,
+                          )),
+                    ],
+                  ),
+                ),
+                const Padding(padding: EdgeInsets.only(left: 15)),
                 const Text(
                   "Tambah Jadwal",
                   style: TextStyle(
@@ -51,7 +78,7 @@ class _tambahJadwalState extends State<tambahJadwal> {
                 )
               ],
             ),
-          ),
+          ),          
           Container(
             margin: const EdgeInsets.only(top: 30, right: 16, left: 16),
             child: Column(
@@ -141,10 +168,9 @@ class _tambahJadwalState extends State<tambahJadwal> {
             ),
           ),
           Container(
-            margin: const EdgeInsets.only(top: 20, right: 16, left: 16),
+            margin: const EdgeInsets.only(top: 10,right: 20),
             child: Column(
-              crossAxisAlignment: CrossAxisAlignment.end,
-              children: [
+              children: <Widget>[
                 ElevatedButton(
                     onPressed: () {
                       // Respond to button press
@@ -152,7 +178,8 @@ class _tambahJadwalState extends State<tambahJadwal> {
                     child: const Text(
                       'Save',
                       style: TextStyle(
-                        color: Color.fromRGBO(254, 204, 118, 1),
+                        color: Color.fromRGBO(254, 204, 118, 1,
+                        ),
                       ),
                     ),
                     style: ElevatedButton.styleFrom(
