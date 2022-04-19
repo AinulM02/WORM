@@ -30,7 +30,7 @@ class _detailJadwalState extends State<detailJadwal> {
                     BoxShadow(
                       color: Colors.grey,
                       blurRadius: 1,
-                      offset: Offset(0, 0), 
+                      offset: Offset(0, 0),
                     ),
                   ],
                 ),
@@ -39,15 +39,15 @@ class _detailJadwalState extends State<detailJadwal> {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     IconButton(
-                      alignment: Alignment.centerRight,
-                      onPressed: () => Navigator.push(context,
+                        alignment: Alignment.centerRight,
+                        onPressed: () => Navigator.push(context,
                                 MaterialPageRoute(builder: (context) {
                               return const navbar();
                             })),
                         icon: const Icon(
                           Icons.arrow_back_ios,
                           size: 22,
-                        )),                   
+                        )),
                   ],
                 ),
               ),
@@ -78,7 +78,74 @@ class _detailJadwalState extends State<detailJadwal> {
             ],
           ),
           child: Column(
-            children: <Widget>[],
+            children: <Widget>[
+              Container(
+                margin: const EdgeInsets.only(right: 16, left: 16, top: 20),
+                child: Row(
+                  children: [
+                    Text("Nama      :"),
+                    Text("   Ainul M"),
+                  ],
+                ),
+              ),
+              Container(
+                margin: const EdgeInsets.only(right: 16, left: 16, top: 20),
+                child: Row(
+                  children: [
+                    Text("Tanggal  :"),
+                    Text("   Kamis, 20 April 2022"),
+                  ],
+                ),
+              ),
+              Container(
+                margin: const EdgeInsets.only(right: 16, left: 16, top: 20),
+                child: Row(
+                  children: [
+                    Text("Waktu      :"),
+                    Text("   14.00 WIB"),
+                  ],
+                ),
+              ),
+              Container(
+                margin: const EdgeInsets.only(right: 16, left: 16, top: 20),
+                child: Row(
+                  children: [
+                    Text("Kegiatan :"),
+                    Text("   Meeting dengan Customer"),
+                  ],
+                ),
+              ),
+              Container(
+                margin: const EdgeInsets.only(right: 16, left: 16, top: 20),
+                child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text("Detail       :"),
+                    Flexible(
+                      child: Text(
+                        "   Kedua mempelai diharapkan hadir untuk bertemu dengan pihak WO",
+                        maxLines: 5,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              Container(
+                margin: const EdgeInsets.only(right: 16, left: 16, top: 20),
+                child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text("Tempat   :"),
+                    Flexible(
+                      child: Text(
+                        "   Kantor Alvia, Jalan Raya Sambung - Kecamatan Diwek Kabupaten Jombang - Jawa Timur",
+                        maxLines: 5,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ],
           ),
         ),
       ]),

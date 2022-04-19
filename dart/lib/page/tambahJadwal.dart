@@ -37,7 +37,10 @@ class _tambahJadwalState extends State<tambahJadwal> {
                             MaterialPageRoute(builder: (context) {
                           return const navbar();
                         })),
-                    icon: const Icon(Icons.undo)),
+                    icon: const Icon(
+                      Icons.arrow_back_ios,
+                      size: 22,
+                    )),
                 const Text(
                   "Tambah Jadwal",
                   style: TextStyle(
