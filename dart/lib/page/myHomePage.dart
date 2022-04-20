@@ -15,40 +15,45 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Column(
+        mainAxisAlignment: MainAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
-          const Padding(padding: EdgeInsets.all(10)),
-          const Text(
-            "Hi, Ainul",
-            textAlign: TextAlign.start,
-            style: TextStyle(
-              fontSize: 16, 
-              fontWeight: FontWeight.w500
+          const Padding(padding: EdgeInsets.all(16)),
+          Container(
+            margin: EdgeInsets.only(left: 20),
+            child: const Text(
+              "Hi, Ainul",
+              textAlign: TextAlign.start,
+              style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
             ),
           ),
           const SizedBox(
             height: 10,
           ),
-          DigitalClock(
-            showSecondsDigit: false,
-            is24HourTimeFormat: true,
-            areaDecoration: BoxDecoration(
-              color: const Color.fromRGBO(47, 47, 47, 1),
-              borderRadius: BorderRadius.circular(10),
+          Container(
+            margin: EdgeInsets.only(left: 16),
+            child: DigitalClock(
+              areaWidth: 380,
+              showSecondsDigit: false,
+              is24HourTimeFormat: true,
+              areaDecoration: BoxDecoration(
+                color: const Color.fromRGBO(47, 47, 47, 1),
+                borderRadius: BorderRadius.circular(10),
+              ),
+              hourMinuteDigitTextStyle: const TextStyle(
+                color: Colors.white,
+                fontSize: 50,
+              ),
+              amPmDigitTextStyle: const TextStyle(
+                  color: Colors.white, fontWeight: FontWeight.bold),
             ),
-            hourMinuteDigitTextStyle: const TextStyle(
-              color: Colors.white,
-              fontSize: 50,
-            ),
-            amPmDigitTextStyle: const TextStyle(
-                color: Colors.white, fontWeight: FontWeight.bold),
           ),
           const SizedBox(
             height: 10,
           ),
-
           Container(
             margin: const EdgeInsets.only(right: 16, left: 16),
-            height: MediaQuery.of(context).size.height * 0.10,
+            height: MediaQuery.of(context).size.height * 0.11,
             decoration: BoxDecoration(
               color: Colors.white,
               borderRadius: BorderRadius.circular(10),
@@ -66,9 +71,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   title: Text(
                     "Progress",
                     textAlign: TextAlign.left,
-                    style: TextStyle(
-                        fontSize: 16,
-                        fontWeight: FontWeight.w500),
+                    style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
                   ),
                   trailing: Text(
                     "80%",
@@ -85,12 +88,9 @@ class _MyHomePageState extends State<MyHomePage> {
               ],
             ),
           ),
-
           const Padding(padding: EdgeInsets.all(4)),
-
           Container(
             margin: const EdgeInsets.only(right: 16, left: 16),
-            height: MediaQuery.of(context).size.height * 0.60,
             decoration: BoxDecoration(
               color: Colors.white,
               borderRadius: BorderRadius.circular(10),
@@ -102,18 +102,17 @@ class _MyHomePageState extends State<MyHomePage> {
                 ),
               ],
             ),
-            
-            child: Column(         
-              children: <Widget>[    
+            child: Column(
+              children: <Widget>[
                 Container(
-                  margin: const EdgeInsets.only(top:20,bottom: 20),
+                  margin: const EdgeInsets.only(top: 16, bottom: 16),
                   child: const Text(
                     "Jadwal Kegiatan",
-                    style: TextStyle(fontWeight: FontWeight.w500,fontSize: 16),
-                    ),
+                    style: TextStyle(fontWeight: FontWeight.w500, fontSize: 16),
+                  ),
                 ),
                 SizedBox(
-                  height: MediaQuery.of(context).size.height * 0.51,
+                  height: MediaQuery.of(context).size.height * 0.47,
                   child: ListView(
                     children: const [
                       ListTile(
@@ -152,7 +151,6 @@ class _MyHomePageState extends State<MyHomePage> {
                   ),
                 ),
               ],
-              
             ),
           ),
         ],

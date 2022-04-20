@@ -29,10 +29,9 @@ class _tambahJadwalState extends State<tambahJadwal> {
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.end,
         children: [
-          const Padding(padding: EdgeInsets.all(18.0)),
-          const Padding(padding: EdgeInsets.only(top: 8)),
+          const Padding(padding: EdgeInsets.all(16.0)),
           Container(
-            margin: const EdgeInsets.only(top: 15, right: 16, left: 16),
+            margin: const EdgeInsets.only(top: 16, right: 16, left: 16),
             height: 70,
             child: Row(
               children: <Widget>[

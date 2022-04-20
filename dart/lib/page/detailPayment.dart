@@ -82,7 +82,6 @@ class _detailPayment extends State<detailPayment> {
           Container(
             margin: const EdgeInsets.only(right: 16, left: 16, bottom: 8),
             height: MediaQuery.of(context).size.height * 0.7,
-            color: const Color(0xFFe5e5e5),
             child: Container(
               decoration: BoxDecoration(
                 color: Colors.white,
@@ -204,7 +203,6 @@ class _detailPayment extends State<detailPayment> {
               margin: const EdgeInsets.only(right: 16, left: 16),
               height: 50,
               width: 400,
-              color: const Color(0xFFe5e5e5),
               child: Container(
                   decoration: BoxDecoration(
                     color: Colors.white,
