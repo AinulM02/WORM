@@ -42,7 +42,7 @@ class _detailJadwalState extends State<detailJadwal> {
                         alignment: Alignment.centerRight,
                         onPressed: () => Navigator.push(context,
                                 MaterialPageRoute(builder: (context) {
-                              return const navbar();
+                              return navbar(index: 1);
                             })),
                         icon: const Icon(
                           Icons.arrow_back_ios,

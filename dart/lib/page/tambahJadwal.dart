@@ -57,7 +57,7 @@ class _tambahJadwalState extends State<tambahJadwal> {
                           alignment: Alignment.centerRight,
                           onPressed: () => Navigator.push(context,
                                   MaterialPageRoute(builder: (context) {
-                                return const navbar();
+                                return navbar(index: 2);
                               })),
                           icon: const Icon(
                             Icons.arrow_back_ios,

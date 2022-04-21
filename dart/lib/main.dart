@@ -16,7 +16,7 @@ class MyApp extends StatelessWidget {
         scaffoldBackgroundColor: const Color.fromRGBO(246, 246, 246, 1),
         fontFamily: 'Poppins',
       ),
-      home: const navbar(),
+      home: navbar(index: 0),
     );
   }
 }

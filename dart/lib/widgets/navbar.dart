@@ -6,16 +6,18 @@ import 'package:worm/page/jadwalPage.dart';
 import 'package:worm/page/payment.dart';
 import 'package:worm/page/profile.dart';
 
-
 class navbar extends StatefulWidget {
-  const navbar({Key? key}) : super(key: key);
+  int index;
+  navbar({Key? key, required this.index}) : super(key: key);
 
   @override
-  State<navbar> createState() => _navbarState();
+  State<navbar> createState() => _navbarState(index);
 }
 
 class _navbarState extends State<navbar> {
-  int currentIndex = 0;
+  int currentIndex;
+  _navbarState(this.currentIndex);
+
   final screens = [
     const MyHomePage(),
     const jadwalPage(),
@@ -30,8 +32,9 @@ class _navbarState extends State<navbar> {
       bottomNavigationBar: BottomNavigationBar(
         type: BottomNavigationBarType.shifting,
         iconSize: 25,
-        selectedIconTheme: const IconThemeData(color: Color.fromRGBO(254, 204, 118, 1),size:30),
-        selectedLabelStyle: const TextStyle(fontWeight: FontWeight.normal),  
+        selectedIconTheme: const IconThemeData(
+            color: Color.fromRGBO(254, 204, 118, 1), size: 30),
+        selectedLabelStyle: const TextStyle(fontWeight: FontWeight.normal),
         selectedItemColor: const Color.fromRGBO(254, 204, 118, 1),
         currentIndex: currentIndex,
         onTap: (index) => setState(() => currentIndex = index),
