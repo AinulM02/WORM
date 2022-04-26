@@ -2,7 +2,9 @@
 
 import 'package:flutter/material.dart';
 import 'package:date_time_picker/date_time_picker.dart';
+import 'package:worm/page/jadwalPage.dart';
 import 'package:worm/widgets/navbar.dart';
+import 'package:worm/service/sceduleService.dart';
 
 class tambahJadwal extends StatefulWidget {
   const tambahJadwal({Key? key}) : super(key: key);
@@ -12,6 +14,12 @@ class tambahJadwal extends StatefulWidget {
 }
 
 class _tambahJadwalState extends State<tambahJadwal> {
+  TextEditingController _nameKegiatanController = TextEditingController();
+  TextEditingController _detailKegiatanController = TextEditingController();
+  TextEditingController _tanggalController = TextEditingController();
+  TextEditingController _jamController = TextEditingController();
+  TextEditingController _tempatController = TextEditingController();
+
   TimeOfDay time = TimeOfDay.now();
   void showTime() {
     showTimePicker(context: context, initialTime: TimeOfDay.now())
@@ -77,17 +85,18 @@ class _tambahJadwalState extends State<tambahJadwal> {
                 )
               ],
             ),
-          ),          
+          ),
           Container(
             margin: const EdgeInsets.only(top: 30, right: 16, left: 16),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
-              children: const [
+              children: [
                 Text(
                   "Nama Kegiatan",
                 ),
                 TextField(
                   obscureText: true,
+                  controller: _nameKegiatanController,
                   decoration: InputDecoration(
                     border: OutlineInputBorder(),
                   ),
@@ -167,17 +176,38 @@ class _tambahJadwalState extends State<tambahJadwal> {
             ),
           ),
           Container(
-            margin: const EdgeInsets.only(top: 10,right: 20),
+            margin: const EdgeInsets.only(top: 10, right: 20),
             child: Column(
               children: <Widget>[
                 ElevatedButton(
-                    onPressed: () {
-                      // Respond to button press
+                    onPressed: () async {
+                      Map<String, dynamic> body = {
+                        'name_kegiatan': _nameKegiatanController.text,
+                        'detail_kegiatan': _detailKegiatanController.text,
+                        'tanggal': _tanggalController.text,
+                        'jam': _jamController.text,
+                        'tempat': _tempatController.text,
+                      };
+
+                      await SceduleService().createSchedule(body).then((value) {
+                        Navigator.push(context,
+                            MaterialPageRoute(builder: (context) {
+                          return const jadwalPage();
+                        }));
+                        ScaffoldMessenger.of(context).showSnackBar(
+                            const SnackBar(
+                                content: Text(
+                                    'You have successfully create a scedule')));
+                      });
                     },
                     child: const Text(
                       'Save',
                       style: TextStyle(
-                        color: Color.fromRGBO(254, 204, 118, 1,
+                        color: Color.fromRGBO(
+                          254,
+                          204,
+                          118,
+                          1,
                         ),
                       ),
                     ),

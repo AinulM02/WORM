@@ -1,9 +1,13 @@
 // ignore_for_file: camel_case_types
 
+import 'dart:async';
+
 import 'package:flutter/material.dart';
+import 'package:worm/model/sceduleModel.dart';
 import 'package:worm/page/detailJadwal.dart';
 import 'package:worm/page/tambahJadwal.dart';
 import 'package:getwidget/getwidget.dart';
+import 'package:worm/service/sceduleService.dart';
 
 class jadwalPage extends StatefulWidget {
   const jadwalPage({Key? key}) : super(key: key);
@@ -13,8 +17,30 @@ class jadwalPage extends StatefulWidget {
 }
 
 class _jadwalPageState extends State<jadwalPage> {
+  late Future<Scedule> _scedule;
+  int id = 0;
+
+  @override
+  void initState() {
+    super.initState();
+    _scedule = SceduleService().getAllSchedule();
+  }
+
+  void refreshData() {
+    id++;
+  }
+
+  FutureOr onGoBack(dynamic value) {
+    refreshData();
+    setState(() {});
+  }
+
   @override
   Widget build(BuildContext context) {
+    final height = MediaQuery.of(context).size.height;
+    final bottomNavigation = MediaQuery.of(context).viewInsets.bottom;
+    final pageHeight = height - bottomNavigation;
+
     return Scaffold(
       body: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -104,52 +130,65 @@ class _jadwalPageState extends State<jadwalPage> {
                     ),
                   ),
                   SizedBox(
-                    height: MediaQuery.of(context).size.height * 0.65,
-                    child: ListView(
-                      children: [
-                        ListTile(
-                          title: Text("Progres 1"),
-                          subtitle: Text(
-                            "Progres sudah selesai",
-                          ),
-                          trailing: Text("22.00"),
-                          onTap: () => Navigator.push(context,
-                              MaterialPageRoute(builder: (context) {
-                            return const detailJadwal();
-                          })),
-                        ),
-                        Divider(),
-                        ListTile(
-                          title: Text("Progres 2"),
-                          subtitle: Text(
-                            "Progres sudah selesai",
-                          ),
-                          trailing: Text("23.00"),
-                        ),
-                        Divider(),
-                        ListTile(
-                          title: Text("Progres 3"),
-                          subtitle: Text(
-                            "Progres sudah selesai",
-                          ),
-                          trailing: Text("00.00"),
-                        ),
-                        Divider(),
-                        ListTile(
-                          title: Text("Progres 4"),
-                          subtitle: Text(
-                            "Progres sudah selesai",
-                          ),
-                          trailing: Text("12.00"),
-                        ),
-                        Divider(),
-                      ],
+                    height: MediaQuery.of(context).size.height * 0.68,
+                    child: FutureBuilder(
+                      future: _scedule,
+                      builder: (context, AsyncSnapshot<Scedule> snapshot) {
+                        var state = snapshot.connectionState;
+                        if (state != ConnectionState.done) {
+                          return Center(
+                            child: CircularProgressIndicator(),
+                          );
+                        } else {
+                          if (snapshot.hasData) {
+                            return ListView.builder(
+                              shrinkWrap: true,
+                              scrollDirection: Axis.vertical,
+                              itemBuilder: (context, index) {
+                                var scedule = snapshot.data!.data[index];
+                                return InkWell(
+                                  onTap: () {
+                                    Navigator.push(context,
+                                        MaterialPageRoute(builder: (context) {
+                                      return const detailJadwal();
+                                    }));
+                                  },
+                                  child: listItem(scedule),
+                                );
+                              },
+                              itemCount: snapshot.data!.data.length,
+                            );
+                          } else if (snapshot.hasError) {
+                            return Center(
+                              child: Text(
+                                snapshot.error.toString(),
+                              ),
+                            );
+                          } else {
+                            return Text('');
+                          }
+                        }
+                      },
                     ),
                   ),
                 ],
               ),
             ),
           ]),
+    );
+  }
+
+  Widget listItem(Scedules view) {
+    return ListTile(
+      title: Text(view.namaKegiatan),
+      subtitle: Text(
+        "Progres sudah selesai",
+      ),
+      trailing: Text(view.jam),
+      onTap: () =>
+          Navigator.push(context, MaterialPageRoute(builder: (context) {
+        return const detailJadwal();
+      })),
     );
   }
 }
