@@ -14,11 +14,11 @@ class tambahJadwal extends StatefulWidget {
 }
 
 class _tambahJadwalState extends State<tambahJadwal> {
-  TextEditingController _nameKegiatanController = TextEditingController();
-  TextEditingController _detailKegiatanController = TextEditingController();
-  TextEditingController _tanggalController = TextEditingController();
-  TextEditingController _jamController = TextEditingController();
-  TextEditingController _tempatController = TextEditingController();
+  TextEditingController _nameKegiatanController = new TextEditingController();
+  TextEditingController _detailKegiatanController = new TextEditingController();
+  TextEditingController _tanggalController = new TextEditingController();
+  TextEditingController _jamController = new TextEditingController();
+  TextEditingController _tempatController = new TextEditingController();
 
   TimeOfDay time = TimeOfDay.now();
   void showTime() {
@@ -95,7 +95,6 @@ class _tambahJadwalState extends State<tambahJadwal> {
                   "Nama Kegiatan",
                 ),
                 TextField(
-                  obscureText: true,
                   controller: _nameKegiatanController,
                   decoration: InputDecoration(
                     border: OutlineInputBorder(),
@@ -108,12 +107,12 @@ class _tambahJadwalState extends State<tambahJadwal> {
             margin: const EdgeInsets.only(top: 20, right: 16, left: 16),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
-              children: const [
+              children: [
                 Text(
                   "Detail Kegiatan",
                 ),
                 TextField(
-                  obscureText: true,
+                  controller: _detailKegiatanController,
                   decoration: InputDecoration(
                     border: OutlineInputBorder(),
                   ),
@@ -142,7 +141,7 @@ class _tambahJadwalState extends State<tambahJadwal> {
                 print(val);
                 return null;
               },
-              onSaved: (val) => print(val),
+              onSaved: (val) => _tanggalController,
             ),
           ),
           Container(
@@ -162,11 +161,12 @@ class _tambahJadwalState extends State<tambahJadwal> {
             margin: const EdgeInsets.only(top: 20, right: 16, left: 16),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
-              children: const [
+              children: [
                 Text(
                   "Tempat Kegiatan",
                 ),
                 TextField(
+                  controller: _tempatController,
                   obscureText: true,
                   decoration: InputDecoration(
                     border: OutlineInputBorder(),
