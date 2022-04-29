@@ -25,7 +25,7 @@ class _tambahJadwalState extends State<tambahJadwal> {
     showTimePicker(context: context, initialTime: TimeOfDay.now())
         .then((value) {
       setState(() {
-        time = value!;
+        _jamController.text = value!.format(context).toString();
       });
     });
   }
@@ -96,7 +96,7 @@ class _tambahJadwalState extends State<tambahJadwal> {
                 ),
                 TextField(
                   controller: _nameKegiatanController,
-                  decoration: InputDecoration(
+                  decoration: const InputDecoration(
                     border: OutlineInputBorder(),
                   ),
                 ),
@@ -113,7 +113,7 @@ class _tambahJadwalState extends State<tambahJadwal> {
                 ),
                 TextField(
                   controller: _detailKegiatanController,
-                  decoration: InputDecoration(
+                  decoration: const InputDecoration(
                     border: OutlineInputBorder(),
                   ),
                 ),
@@ -136,7 +136,7 @@ class _tambahJadwalState extends State<tambahJadwal> {
                 }
                 return true;
               },
-              onChanged: (val) => print(val),
+              onChanged: (val) => setState(() => _tanggalController.text = val),
               validator: (val) {
                 print(val);
                 return null;
@@ -153,7 +153,7 @@ class _tambahJadwalState extends State<tambahJadwal> {
                   onPressed: showTime,
                   icon: const Icon(Icons.timer),
                 ),
-                Text(time.format(context).toString()),
+                Text(_jamController.text),
               ],
             ),
           ),
@@ -182,7 +182,7 @@ class _tambahJadwalState extends State<tambahJadwal> {
                 ElevatedButton(
                     onPressed: () async {
                       Map<String, dynamic> body = {
-                        'name_kegiatan': _nameKegiatanController.text,
+                        'nama_kegiatan': _nameKegiatanController.text,
                         'detail_kegiatan': _detailKegiatanController.text,
                         'tanggal': _tanggalController.text,
                         'jam': _jamController.text,

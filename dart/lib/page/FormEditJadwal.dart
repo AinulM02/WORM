@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:worm/page/tambahJadwal.dart';
 import 'package:worm/widgets/navbar.dart';
-import 'package:worm/page/FormEditJadwal.dart';
 
 class detailJadwal extends StatefulWidget {
   const detailJadwal({Key? key}) : super(key: key);
@@ -147,14 +145,6 @@ class _detailJadwalState extends State<detailJadwal> {
                   ],
                 ),
               ),
-              IconButton(
-                  alignment: Alignment.bottomRight,
-                  color: Colors.amber,
-                  onPressed: () => Navigator.push(context,
-                          MaterialPageRoute(builder: (context) {
-                        return const tambahJadwal();
-                      })),
-                  icon: const Icon(Icons.add)),
             ],
           ),
         ),

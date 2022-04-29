@@ -19,14 +19,16 @@ class SceduleService {
     }
   }
 
-  Future<bool> createSchedule(Map<String, dynamic> body) async {
+  Future createSchedule(Map<String, dynamic> body) async {
     final response = await http.post(Uri.parse(_baseUrl + "scedule"),
         body: body, headers: tokenData);
 
-    if (response.statusCode == 200) {
-      return true;
-    } else {
-      throw Exception('Failed data');
+    try {
+      if (response.statusCode == 201) {
+        return true;
+      }
+    } catch (e) {
+      print(e);
     }
   }
 
