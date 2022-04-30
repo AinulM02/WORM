@@ -5,21 +5,21 @@ import 'package:worm/page/pembayaran/detailPayment.dart';
 import 'package:worm/model/paymentModel.dart';
 import 'package:worm/service/paymentService.dart';
 
-class payment extends StatefulWidget {
-  const payment({Key? key}) : super(key: key);
+class PagePayment extends StatefulWidget {
+  const PagePayment({Key? key}) : super(key: key);
 
   @override
-  State<payment> createState() => _payment();
+  State<PagePayment> createState() => _PagePayment();
 }
 
-class _payment extends State<payment> {
-  late Future<Payment> _payment;
+class _PagePayment extends State<PagePayment> {
+  late Future<Payment> _payments;
   int id = 0;
 
   @override
   void initState() {
     super.initState();
-    _payment = PaymentService().getAllPayment();
+    _payments = PaymentService().getAllPayment();
   }
 
   void refreshData() {
@@ -34,7 +34,6 @@ class _payment extends State<payment> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      
       body: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -60,49 +59,49 @@ class _payment extends State<payment> {
               ),
             ),
             FutureBuilder(
-                      future: _payment,
-                      builder: (context, AsyncSnapshot<Payment> snapshot) {
-                        var state = snapshot.connectionState;
-                        if (state != ConnectionState.done) {
-                          return Center(
-                            child: CircularProgressIndicator(),
-                          );
-                        } else {
-                          if (snapshot.hasData) {
-                            return ListView.builder(
-                              shrinkWrap: true,
-                              scrollDirection: Axis.vertical,
-                              itemBuilder: (context, index) {
-                                var scedule = snapshot.data!.data[index];
-                                return InkWell(
-                                  onTap: () {
-                                    Navigator.push(context,
-                                        MaterialPageRoute(builder: (context) {
-                                      return const detailPayment();
-                                    }));
-                                  },
-                                  child: listItem(scedule),
-                                );
-                              },
-                              itemCount: snapshot.data!.data.length,
-                            );
-                          } else if (snapshot.hasError) {
-                            return Center(
-                              child: Text(
-                                snapshot.error.toString(),
-                              ),
-                            );
-                          } else {
-                            return Text('');
-                          }
-                        }
+              future: _payments,
+              builder: (context, AsyncSnapshot<Payment> snapshot) {
+                var state = snapshot.connectionState;
+                if (state != ConnectionState.done) {
+                  return Center(
+                    child: CircularProgressIndicator(),
+                  );
+                } else {
+                  if (snapshot.hasData) {
+                    return ListView.builder(
+                      shrinkWrap: true,
+                      scrollDirection: Axis.vertical,
+                      itemBuilder: (context, index) {
+                        var payment = snapshot.data!.data[index];
+                        return InkWell(
+                          onTap: () {
+                            Navigator.push(context,
+                                MaterialPageRoute(builder: (context) {
+                              return const detailPayment();
+                            }));
+                          },
+                          child: listItem(payment),
+                        );
                       },
-                    ),
+                      itemCount: snapshot.data!.data.length,
+                    );
+                  } else if (snapshot.hasError) {
+                    return Center(
+                      child: Text(
+                        snapshot.error.toString(),
+                      ),
+                    );
+                  } else {
+                    return Text('');
+                  }
+                }
+              },
+            ),
           ]),
     );
   }
 
-  Widget InkWell(payments view) {
+  Widget listItem(payments view) {
     return Container(
       margin: const EdgeInsets.only(right: 16, left: 16, bottom: 8),
       child: Container(

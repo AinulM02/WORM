@@ -21,7 +21,7 @@ class _navbarState extends State<navbar> {
   final screens = [
     const MyHomePage(),
     const jadwalPage(),
-    const payment(),
+    const PagePayment(),
     const profile(),
   ];
 
