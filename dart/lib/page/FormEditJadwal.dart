@@ -7,6 +7,8 @@ import 'package:worm/page/detailJadwal.dart';
 import 'package:worm/page/jadwalPage.dart';
 import 'package:worm/widgets/navbar.dart';
 import 'package:worm/service/sceduleService.dart';
+import 'package:worm/widgets/date.dart';
+import 'package:intl/intl.dart';
 
 class editJadwal extends StatefulWidget {
   static final url = "/form-edit";
@@ -33,6 +35,21 @@ class _tambahJadwalState extends State<editJadwal> {
     });
   }
 
+  final TextStyle valueStyle = TextStyle(fontSize: 16.0);
+  Future<Null> _selectDate(BuildContext context, DateTime tgl) async {
+    // Initial DateTime FIinal Picked
+    final DateTime? picked = await showDatePicker(
+        context: context,
+        initialDate: tgl,
+        firstDate: DateTime(2015),
+        lastDate: DateTime(2101));
+
+    if (picked != null && picked != tgl)
+      setState(() {
+        _tanggalController.text = picked.toString();
+      });
+  }
+
   @override
   Widget build(BuildContext context) {
     final Scedules schedule =
@@ -41,6 +58,7 @@ class _tambahJadwalState extends State<editJadwal> {
     if (schedule != null) {
       _nameKegiatanController.text = schedule.namaKegiatan;
       _detailKegiatanController.text = schedule.detailKegiatan;
+      _tanggalController.text = schedule.tanggal.toString();
       _jamController.text = schedule.jam;
       _tempatController.text = schedule.tempat;
     }
@@ -133,28 +151,39 @@ class _tambahJadwalState extends State<editJadwal> {
               ],
             ),
           ),
+          // Container(
+          //   margin: const EdgeInsets.only(top: 20, right: 16, left: 16),
+          //   child: DateTimePicker(
+          //     dateMask: 'd MMM, yyyy',
+          //     initialValue: schedule.tanggal.toString(),
+          //     firstDate: DateTime(2000),
+          //     lastDate: DateTime(2100),
+          //     icon: const Icon(Icons.event),
+          //     dateLabelText: 'Tanggal pelaksanaan',
+          //     selectableDayPredicate: (date) {
+          //       // Disable weekend days to select from the calendar
+          //       if (date.weekday == 6 || date.weekday == 7) {
+          //         return false;
+          //       }
+          //       return true;
+          //     },
+          //     onChanged: (val) => setState(() => _tanggalController.text = val),
+          //     validator: (val) {
+          //       print(val);
+          //       return null;
+          //     },
+          //     onSaved: (val) => _tanggalController,
+          //   ),
+          // ),
           Container(
             margin: const EdgeInsets.only(top: 20, right: 16, left: 16),
-            child: DateTimePicker(
-              dateMask: 'd MMM, yyyy',
-              initialValue: schedule.tanggal.toString(),
-              firstDate: DateTime(2000),
-              lastDate: DateTime(2100),
-              icon: const Icon(Icons.event),
-              dateLabelText: 'Tanggal pelaksanaan',
-              selectableDayPredicate: (date) {
-                // Disable weekend days to select from the calendar
-                if (date.weekday == 6 || date.weekday == 7) {
-                  return false;
-                }
-                return true;
+            child: DateDropDown(
+              labelText: "tanggal kegiatan",
+              valueText: DateFormat.yMd().format(schedule.tanggal),
+              valueStyle: valueStyle,
+              onPressed: () {
+                _selectDate(context, schedule.tanggal);
               },
-              onChanged: (val) => setState(() => _tanggalController.text = val),
-              validator: (val) {
-                print(val);
-                return null;
-              },
-              onSaved: (val) => _tanggalController,
             ),
           ),
           Container(
