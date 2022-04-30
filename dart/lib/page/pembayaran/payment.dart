@@ -58,44 +58,47 @@ class _PagePayment extends State<PagePayment> {
                 ],
               ),
             ),
-            FutureBuilder(
-              future: _payments,
-              builder: (context, AsyncSnapshot<Payment> snapshot) {
-                var state = snapshot.connectionState;
-                if (state != ConnectionState.done) {
-                  return Center(
-                    child: CircularProgressIndicator(),
-                  );
-                } else {
-                  if (snapshot.hasData) {
-                    return ListView.builder(
-                      shrinkWrap: true,
-                      scrollDirection: Axis.vertical,
-                      itemBuilder: (context, index) {
-                        var payment = snapshot.data!.data[index];
-                        return InkWell(
-                          onTap: () {
-                            Navigator.push(context,
-                                MaterialPageRoute(builder: (context) {
-                              return const detailPayment();
-                            }));
-                          },
-                          child: listItem(payment),
-                        );
-                      },
-                      itemCount: snapshot.data!.data.length,
-                    );
-                  } else if (snapshot.hasError) {
+            SizedBox(
+              height: MediaQuery.of(context).size.height * 0.79,
+              child: FutureBuilder(
+                future: _payments,
+                builder: (context, AsyncSnapshot<Payment> snapshot) {
+                  var state = snapshot.connectionState;
+                  if (state != ConnectionState.done) {
                     return Center(
-                      child: Text(
-                        snapshot.error.toString(),
-                      ),
+                      child: CircularProgressIndicator(),
                     );
                   } else {
-                    return Text('');
+                    if (snapshot.hasData) {
+                      return ListView.builder(
+                        shrinkWrap: true,
+                        scrollDirection: Axis.vertical,
+                        itemBuilder: (context, index) {
+                          var payment = snapshot.data!.data[index];
+                          return InkWell(
+                            onTap: () {
+                              Navigator.push(context,
+                                  MaterialPageRoute(builder: (context) {
+                                return const detailPayment();
+                              }));
+                            },
+                            child: listItem(payment),
+                          );
+                        },
+                        itemCount: snapshot.data!.data.length,
+                      );
+                    } else if (snapshot.hasError) {
+                      return Center(
+                        child: Text(
+                          snapshot.error.toString(),
+                        ),
+                      );
+                    } else {
+                      return Text('');
+                    }
                   }
-                }
-              },
+                },
+              ),
             ),
           ]),
     );
@@ -119,9 +122,9 @@ class _PagePayment extends State<PagePayment> {
         child: Column(
           children: [
             ListTile(
-              title: Text("Maret 2022"),
+              title: Text(view.tanggal.toString()),
               trailing: Text(
-                "Masih utang la bang",
+                view.keterangan,
                 style: TextStyle(color: Colors.red),
               ),
             ),
@@ -129,9 +132,9 @@ class _PagePayment extends State<PagePayment> {
               color: Colors.grey,
             ),
             ListTile(
-              title: Text("Wedding Organize"),
+              title: Text(view.namaVendor),
               subtitle: Text(
-                "Rp100.000.000,-",
+                view.tunaiKeseluruhan,
                 maxLines: 2,
                 overflow: TextOverflow.ellipsis,
               ),
@@ -149,7 +152,7 @@ class _PagePayment extends State<PagePayment> {
                 style: TextStyle(color: Color(0xFF666D66)),
               ),
               trailing: Text(
-                "Rp20.000,-",
+                view.tunai,
                 style: TextStyle(color: Colors.green),
               ),
             ),
