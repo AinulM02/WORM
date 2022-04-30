@@ -3,8 +3,8 @@ import 'package:http/http.dart' as http;
 import 'package:worm/model/paymentModel.dart';
 
 class PaymentService {
-  static const String _baseUrl = 'http://10.0.2.2:8000/api/';
-  // static const String _baseUrl = 'http://192.168.1.10:8000/api/';
+  // static const String _baseUrl = 'http://10.0.2.2:8000/api/';
+  static const String _baseUrl = 'http://192.168.1.10:8000/api/';
 
   var tokenData = {
     'Content-Type': 'application/x-www-form-urlencoded',
@@ -54,7 +54,8 @@ class PaymentService {
     if (response.statusCode == 200) {
       return true;
     } else {
-      return false;
+      // return false;
+      throw ("false");
     }
   }
 }

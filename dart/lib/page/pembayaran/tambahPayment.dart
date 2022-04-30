@@ -2,35 +2,35 @@
 
 import 'package:flutter/material.dart';
 import 'package:date_time_picker/date_time_picker.dart';
-import 'package:worm/page/jadwalPage.dart';
+import 'package:worm/page/pembayaran/payment.dart';
 import 'package:worm/widgets/navbar.dart';
-import 'package:worm/service/sceduleService.dart';
+import 'package:worm/service/paymentService.dart';
 import 'package:worm/widgets/date.dart';
 import 'package:intl/intl.dart';
 
-class tambahJadwal extends StatefulWidget {
-  const tambahJadwal({Key? key}) : super(key: key);
+class tambahPayment extends StatefulWidget {
+  const tambahPayment({Key? key}) : super(key: key);
 
   @override
-  State<tambahJadwal> createState() => _tambahJadwalState();
+  State<tambahPayment> createState() => _tambahPaymentState();
 }
 
-class _tambahJadwalState extends State<tambahJadwal> {
-  TextEditingController _nameKegiatanController = TextEditingController();
-  TextEditingController _detailKegiatanController = TextEditingController();
+class _tambahPaymentState extends State<tambahPayment> {
+  TextEditingController _nameVendorController = TextEditingController();
+  TextEditingController _tunaiKeseluruhanController = TextEditingController();
   TextEditingController _tanggalController = TextEditingController();
-  TextEditingController _jamController = TextEditingController();
-  TextEditingController _tempatController = TextEditingController();
+  TextEditingController _tunaiController = TextEditingController();
+  TextEditingController _keteranganController = TextEditingController();
 
-  TimeOfDay time = TimeOfDay.now();
-  void showTime() {
-    showTimePicker(context: context, initialTime: TimeOfDay.now())
-        .then((value) {
-      setState(() {
-        _jamController.text = value!.format(context).toString();
-      });
-    });
-  }
+  // TimeOfDay time = TimeOfDay.now();
+  // void showTime() {
+  //   showTimePicker(context: context, initialTime: TimeOfDay.now())
+  //       .then((value) {
+  //     setState(() {
+  //       _tunaiController.text = value!.format(context).toString();
+  //     });
+  //   });
+  // }
 
   DateTime tanggal = DateTime.now();
   final TextStyle valueStyle = TextStyle(fontSize: 16.0);
@@ -111,10 +111,10 @@ class _tambahJadwalState extends State<tambahJadwal> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  "Nama Kegiatan",
+                  "Nama Vendor",
                 ),
                 TextField(
-                  controller: _nameKegiatanController,
+                  controller: _nameVendorController,
                   decoration: const InputDecoration(
                     border: OutlineInputBorder(),
                   ),
@@ -128,10 +128,10 @@ class _tambahJadwalState extends State<tambahJadwal> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  "Detail Kegiatan",
+                  "Tunai Keseluruhan",
                 ),
                 TextField(
-                  controller: _detailKegiatanController,
+                  controller: _tunaiKeseluruhanController,
                   decoration: const InputDecoration(
                     border: OutlineInputBorder(),
                   ),
@@ -139,34 +139,10 @@ class _tambahJadwalState extends State<tambahJadwal> {
               ],
             ),
           ),
-          // Container(
-          //   margin: const EdgeInsets.only(top: 20, right: 16, left: 16),
-          //   child: DateTimePicker(
-          //     dateMask: 'd MMM, yyyy',
-          //     initialValue: DateTime.now().toString(),
-          //     firstDate: DateTime(2000),
-          //     lastDate: DateTime(2100),
-          //     icon: const Icon(Icons.event),
-          //     dateLabelText: 'Tanggal pelaksanaan',
-          //     selectableDayPredicate: (date) {
-          //       // Disable weekend days to select from the calendar
-          //       if (date.weekday == 6 || date.weekday == 7) {
-          //         return false;
-          //       }
-          //       return true;
-          //     },
-          //     onChanged: (val) => setState(() => _tanggalController.text = val),
-          //     validator: (val) {
-          //       print(val);
-          //       return null;
-          //     },
-          //     onSaved: (val) => _tanggalController,
-          //   ),
-          // ),
           Container(
             margin: const EdgeInsets.only(top: 20, right: 16, left: 16),
             child: DateDropDown(
-              labelText: "tanggal kegiatan",
+              labelText: "tanggal",
               valueText: DateFormat.yMd().format(tanggal),
               valueStyle: valueStyle,
               onPressed: () {
@@ -176,14 +152,18 @@ class _tambahJadwalState extends State<tambahJadwal> {
           ),
           Container(
             margin: const EdgeInsets.only(top: 20, right: 16, left: 16),
-            child: Row(
+            child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                IconButton(
-                  onPressed: showTime,
-                  icon: const Icon(Icons.timer),
+                Text(
+                  "Tunai",
                 ),
-                Text(_jamController.text),
+                TextField(
+                  controller: _tunaiController,
+                  decoration: const InputDecoration(
+                    border: OutlineInputBorder(),
+                  ),
+                ),
               ],
             ),
           ),
@@ -193,11 +173,10 @@ class _tambahJadwalState extends State<tambahJadwal> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  "Tempat Kegiatan",
+                  "Keterangan",
                 ),
                 TextField(
-                  controller: _tempatController,
-                  // obscureText: true,
+                  controller: _keteranganController,
                   decoration: InputDecoration(
                     border: OutlineInputBorder(),
                   ),
@@ -212,17 +191,17 @@ class _tambahJadwalState extends State<tambahJadwal> {
                 ElevatedButton(
                     onPressed: () async {
                       Map<String, dynamic> body = {
-                        'nama_kegiatan': _nameKegiatanController.text,
-                        'detail_kegiatan': _detailKegiatanController.text,
+                        'nama_vendor': _nameVendorController.text,
+                        'tunai_keseluruhan': _tunaiKeseluruhanController.text,
                         'tanggal': _tanggalController.text,
-                        'jam': _jamController.text,
-                        'tempat': _tempatController.text,
+                        'tunai': _tunaiController.text,
+                        'keterangan': _keteranganController.text,
                       };
 
-                      await SceduleService().createSchedule(body).then((value) {
+                      await PaymentService().createPayment(body).then((value) {
                         Navigator.push(context,
                             MaterialPageRoute(builder: (context) {
-                          return navbar(index: 1);
+                          return navbar(index: 2);
                         }));
                         ScaffoldMessenger.of(context).showSnackBar(
                             const SnackBar(

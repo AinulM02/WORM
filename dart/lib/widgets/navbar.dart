@@ -22,7 +22,7 @@ class _navbarState extends State<navbar> {
     const MyHomePage(),
     const jadwalPage(),
     const PagePayment(),
-    const profile(),
+    // const profile(),
   ];
 
   @override

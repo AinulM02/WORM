@@ -2,8 +2,11 @@
 
 import 'package:flutter/material.dart';
 import 'package:worm/model/paymentModel.dart';
-import 'package:worm/page/uploadPayment.dart';
+import 'package:worm/page/pembayaran/editPayment.dart';
+import 'package:worm/page/pembayaran/uploadPayment.dart';
+import 'package:worm/service/paymentService.dart';
 import 'package:worm/widgets/navbar.dart';
+import 'package:flutter_speed_dial/flutter_speed_dial.dart';
 
 class detailPayment extends StatelessWidget {
   static final url = "/detail-payment";
@@ -14,6 +17,27 @@ class detailPayment extends StatelessWidget {
     final payments payment =
         ModalRoute.of(context)!.settings.arguments as payments;
     return Scaffold(
+      floatingActionButton: SpeedDial(
+        backgroundColor: Colors.black,
+        animatedIcon: AnimatedIcons.menu_arrow,
+        children: [
+          SpeedDialChild(
+              child: Icon(Icons.edit),
+              onTap: () {
+                Navigator.pushNamed(context, editPayment.url,
+                    arguments: payment);
+              }),
+          SpeedDialChild(
+              child: Icon(Icons.delete),
+              onTap: () async {
+                await PaymentService().deletePayment(payment.id).then((value) {
+                  Navigator.push(context, MaterialPageRoute(builder: (context) {
+                    return navbar(index: 2);
+                  }));
+                });
+              }),
+        ],
+      ),
       body: Column(
         children: <Widget>[
           const Padding(padding: EdgeInsets.all(18.0)),
@@ -99,10 +123,16 @@ class detailPayment extends StatelessWidget {
                             SizedBox(
                               height: 5,
                             ),
-                            Text(
-                              payment.keterangan,
-                              style: TextStyle(color: Colors.red),
-                            ),
+                            payment.keterangan != "lunas"
+                                ? Text(
+                                    payment.keterangan,
+                                    style: TextStyle(color: Colors.red),
+                                  )
+                                : Text(
+                                    payment.keterangan,
+                                    style: TextStyle(color: Colors.green),
+                                  ),
+
                           ],
                         )
                       ],
@@ -137,19 +167,19 @@ class detailPayment extends StatelessWidget {
                     color: Colors.grey,
                   ),
                   ListTile(
-                    title: Text("Rp10.000.000,-"),
+                    title: Text("Rp10.000 (sample),-"),
                     trailing: Row(
                       mainAxisSize: MainAxisSize.min,
                       children: <Widget>[
                         Column(
                           children: const [
-                            Text("12 Maret 2022",
+                            Text("12 Maret 2022 (sample)",
                                 style: TextStyle(color: Color(0xFF828282))),
                             SizedBox(
                               height: 5,
                             ),
                             Text(
-                              "05.35 PM",
+                              "05.35 PM (sample)",
                               style: TextStyle(color: Color(0xFF828282)),
                             ),
                           ],
@@ -161,19 +191,19 @@ class detailPayment extends StatelessWidget {
                     color: Colors.grey,
                   ),
                   ListTile(
-                    title: Text("Rp20.000.000,-"),
+                    title: Text("Rp20.000 (sample),-"),
                     trailing: Row(
                       mainAxisSize: MainAxisSize.min,
                       children: <Widget>[
                         Column(
                           children: const [
-                            Text("12 Maret 2022",
+                            Text("12 Maret 2022 (sample)",
                                 style: TextStyle(color: Color(0xFF828282))),
                             SizedBox(
                               height: 5,
                             ),
                             Text(
-                              "05.35 PM",
+                              "05.35 PM (sample)",
                               style: TextStyle(color: Color(0xFF828282)),
                             ),
                           ],
@@ -214,10 +244,10 @@ class detailPayment extends StatelessWidget {
                     ],
                   )),
             ),
-            onTap: () =>
-                Navigator.push(context, MaterialPageRoute(builder: (context) {
-              return const uploadPayment();
-            })),
+              onTap: () {
+                Navigator.pushNamed(context, uploadPayment.url,
+                    arguments: payment);
+              }
           ),
         ],
       ),

@@ -2,55 +2,57 @@
 
 import 'package:flutter/material.dart';
 import 'package:date_time_picker/date_time_picker.dart';
-import 'package:worm/page/jadwalPage.dart';
+import 'package:worm/model/paymentModel.dart';
+import 'package:worm/page/pembayaran/payment.dart';
+import 'package:worm/page/pembayaran/detailPayment.dart';
 import 'package:worm/widgets/navbar.dart';
-import 'package:worm/service/sceduleService.dart';
+import 'package:worm/service/paymentService.dart';
 import 'package:worm/widgets/date.dart';
 import 'package:intl/intl.dart';
 
-class tambahJadwal extends StatefulWidget {
-  const tambahJadwal({Key? key}) : super(key: key);
+class editPayment extends StatefulWidget {
+  static final url = "/edit-payment";
+  const editPayment({Key? key}) : super(key: key);
 
   @override
-  State<tambahJadwal> createState() => _tambahJadwalState();
+  State<editPayment> createState() => _tambahPaymentState();
 }
 
-class _tambahJadwalState extends State<tambahJadwal> {
-  TextEditingController _nameKegiatanController = TextEditingController();
-  TextEditingController _detailKegiatanController = TextEditingController();
+class _tambahPaymentState extends State<editPayment> {
+  TextEditingController _nameVendorController = TextEditingController();
+  TextEditingController _tunaiKeseluruhanController = TextEditingController();
   TextEditingController _tanggalController = TextEditingController();
-  TextEditingController _jamController = TextEditingController();
-  TextEditingController _tempatController = TextEditingController();
+  TextEditingController _tunaiController = TextEditingController();
+  TextEditingController _keteranganController = TextEditingController();
 
-  TimeOfDay time = TimeOfDay.now();
-  void showTime() {
-    showTimePicker(context: context, initialTime: TimeOfDay.now())
-        .then((value) {
-      setState(() {
-        _jamController.text = value!.format(context).toString();
-      });
-    });
-  }
-
-  DateTime tanggal = DateTime.now();
   final TextStyle valueStyle = TextStyle(fontSize: 16.0);
-  Future<Null> _selectDate(BuildContext context) async {
+  Future<Null> _selectDate(BuildContext context, DateTime tgl) async {
     // Initial DateTime FIinal Picked
     final DateTime? picked = await showDatePicker(
         context: context,
-        initialDate: tanggal,
+        initialDate: tgl,
         firstDate: DateTime(2015),
         lastDate: DateTime(2101));
 
-    if (picked != null && picked != tanggal)
+    if (picked != null && picked != tgl)
       setState(() {
         _tanggalController.text = picked.toString();
-        tanggal = picked;
       });
   }
 
   @override
   Widget build(BuildContext context) {
+    final payments payment =
+        ModalRoute.of(context)!.settings.arguments as payments;
+
+    if (payment != null) {
+      _nameVendorController.text = payment.namaVendor;
+      _tunaiKeseluruhanController.text = payment.tunaiKeseluruhan;
+      _tanggalController.text = payment.tanggal.toString();
+      _tunaiController.text = payment.tunai;
+      _keteranganController.text = payment.keterangan;
+    }
+
     return Scaffold(
       body: Column(
         mainAxisAlignment: MainAxisAlignment.start,
@@ -114,7 +116,7 @@ class _tambahJadwalState extends State<tambahJadwal> {
                   "Nama Kegiatan",
                 ),
                 TextField(
-                  controller: _nameKegiatanController,
+                  controller: _nameVendorController,
                   decoration: const InputDecoration(
                     border: OutlineInputBorder(),
                   ),
@@ -131,7 +133,7 @@ class _tambahJadwalState extends State<tambahJadwal> {
                   "Detail Kegiatan",
                 ),
                 TextField(
-                  controller: _detailKegiatanController,
+                  controller: _tunaiKeseluruhanController,
                   decoration: const InputDecoration(
                     border: OutlineInputBorder(),
                   ),
@@ -139,51 +141,31 @@ class _tambahJadwalState extends State<tambahJadwal> {
               ],
             ),
           ),
-          // Container(
-          //   margin: const EdgeInsets.only(top: 20, right: 16, left: 16),
-          //   child: DateTimePicker(
-          //     dateMask: 'd MMM, yyyy',
-          //     initialValue: DateTime.now().toString(),
-          //     firstDate: DateTime(2000),
-          //     lastDate: DateTime(2100),
-          //     icon: const Icon(Icons.event),
-          //     dateLabelText: 'Tanggal pelaksanaan',
-          //     selectableDayPredicate: (date) {
-          //       // Disable weekend days to select from the calendar
-          //       if (date.weekday == 6 || date.weekday == 7) {
-          //         return false;
-          //       }
-          //       return true;
-          //     },
-          //     onChanged: (val) => setState(() => _tanggalController.text = val),
-          //     validator: (val) {
-          //       print(val);
-          //       return null;
-          //     },
-          //     onSaved: (val) => _tanggalController,
-          //   ),
-          // ),
           Container(
             margin: const EdgeInsets.only(top: 20, right: 16, left: 16),
             child: DateDropDown(
               labelText: "tanggal kegiatan",
-              valueText: DateFormat.yMd().format(tanggal),
+              valueText: DateFormat.yMd().format(payment.tanggal),
               valueStyle: valueStyle,
               onPressed: () {
-                _selectDate(context);
+                _selectDate(context, payment.tanggal);
               },
             ),
           ),
           Container(
             margin: const EdgeInsets.only(top: 20, right: 16, left: 16),
-            child: Row(
+            child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                IconButton(
-                  onPressed: showTime,
-                  icon: const Icon(Icons.timer),
+                Text(
+                  "Tunai",
                 ),
-                Text(_jamController.text),
+                TextField(
+                  controller: _tunaiController,
+                  decoration: const InputDecoration(
+                    border: OutlineInputBorder(),
+                  ),
+                ),
               ],
             ),
           ),
@@ -196,8 +178,7 @@ class _tambahJadwalState extends State<tambahJadwal> {
                   "Tempat Kegiatan",
                 ),
                 TextField(
-                  controller: _tempatController,
-                  // obscureText: true,
+                  controller: _keteranganController,
                   decoration: InputDecoration(
                     border: OutlineInputBorder(),
                   ),
@@ -212,22 +193,24 @@ class _tambahJadwalState extends State<tambahJadwal> {
                 ElevatedButton(
                     onPressed: () async {
                       Map<String, dynamic> body = {
-                        'nama_kegiatan': _nameKegiatanController.text,
-                        'detail_kegiatan': _detailKegiatanController.text,
+                        'nama_vendor': _nameVendorController.text,
+                        'tunai_keseluruhan': _tunaiKeseluruhanController.text,
                         'tanggal': _tanggalController.text,
-                        'jam': _jamController.text,
-                        'tempat': _tempatController.text,
+                        'tunai': _tunaiController.text,
+                        'keterangan': _keteranganController.text,
                       };
 
-                      await SceduleService().createSchedule(body).then((value) {
+                      await PaymentService()
+                          .updatePayment(body, payment.id)
+                          .then((value) {
                         Navigator.push(context,
                             MaterialPageRoute(builder: (context) {
-                          return navbar(index: 1);
+                          return navbar(index: 2);
                         }));
                         ScaffoldMessenger.of(context).showSnackBar(
                             const SnackBar(
                                 content: Text(
-                                    'You have successfully create a scedule')));
+                                    'You have successfully update a payment')));
                       });
                     },
                     child: const Text(

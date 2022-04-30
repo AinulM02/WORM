@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:worm/page/pembayaran/detailPayment.dart';
 import 'package:worm/model/paymentModel.dart';
+import 'package:worm/page/pembayaran/tambahPayment.dart';
 import 'package:worm/service/paymentService.dart';
 
 class PagePayment extends StatefulWidget {
@@ -55,7 +56,16 @@ class _PagePayment extends State<PagePayment> {
                         fontSize: 16,
                       ),
                     ),
-                  )
+                  ),
+                  const Padding(padding: EdgeInsets.only(left: 60)),
+                  IconButton(
+                      alignment: Alignment.bottomRight,
+                      color: Colors.amber,
+                      onPressed: () => Navigator.push(context,
+                              MaterialPageRoute(builder: (context) {
+                            return const tambahPayment();
+                          })),
+                      icon: const Icon(Icons.add)),
                 ],
               ),
             ),
@@ -119,13 +129,18 @@ class _PagePayment extends State<PagePayment> {
           ],
         ),
         child: Column(
-          children: [
+          children: <Widget>[
             ListTile(
               title: Text(view.tanggal.toString()),
-              trailing: Text(
-                view.keterangan,
-                style: TextStyle(color: Colors.red),
-              ),
+              trailing: view.keterangan != "lunas"
+                  ? Text(
+                      view.keterangan,
+                      style: TextStyle(color: Colors.red),
+                    )
+                  : Text(
+                      view.keterangan,
+                      style: TextStyle(color: Colors.green),
+                    ),
             ),
             Divider(
               color: Colors.grey,

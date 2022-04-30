@@ -11,7 +11,7 @@ import 'package:worm/widgets/date.dart';
 import 'package:intl/intl.dart';
 
 class editJadwal extends StatefulWidget {
-  static final url = "/form-edit";
+  static final url = "/edit-jadwal";
   const editJadwal({Key? key}) : super(key: key);
 
   @override

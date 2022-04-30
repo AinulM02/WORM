@@ -1,8 +1,8 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
-import 'package:worm/model/sceduleModel.dart';
+import 'package:worm/model/paymentDetailModel.dart';
 
-class SceduleService {
+class PaymentDetailService {
   // static const String _baseUrl = 'http://10.0.2.2:8000/api/';
   static const String _baseUrl = 'http://192.168.1.10:8000/api/';
 
@@ -11,31 +11,33 @@ class SceduleService {
     'Accept': "application/json"
   };
 
-  Future<Scedule> getAllSchedule() async {
-    final response = await http.get(Uri.parse(_baseUrl + "scedule"));
+  Future<PaymentDetail> getAllPaymentDetail() async {
+    final response = await http.get(Uri.parse(_baseUrl + "payment_detail"));
     if (response.statusCode == 200) {
-      return Scedule.fromJson(json.decode(response.body));
+      return PaymentDetail.fromJson(json.decode(response.body));
     } else {
       throw Exception('Failed to load data');
     }
   }
 
-  Future createSchedule(Map<String, dynamic> body) async {
-    final response = await http.post(Uri.parse(_baseUrl + "scedule"),
+  Future createPaymentDetail(Map<String, dynamic> body) async {
+    final response = await http.post(Uri.parse(_baseUrl + "payment_detail"),
         body: body, headers: tokenData);
 
     try {
       if (response.statusCode == 201) {
         return true;
+      } else {
+        throw ("fail");
       }
     } catch (e) {
       print(e);
     }
   }
 
-  Future<bool> deleteSchedule(int id) async {
+  Future<bool> deletePaymentDetail(int id) async {
     final response = await http.delete(
-        Uri.parse(_baseUrl + "scedule/" + id.toString()),
+        Uri.parse(_baseUrl + "payment_detail/" + id.toString()),
         headers: tokenData);
 
     if (response.statusCode == 200) {
@@ -45,16 +47,17 @@ class SceduleService {
     }
   }
 
-  Future<bool> updateSchedule(Map<String, dynamic> body, int id) async {
+  Future<bool> updatePaymentDetail(Map<String, dynamic> body, int id) async {
     final response = await http.put(
-        Uri.parse(_baseUrl + "scedule/" + id.toString()),
+        Uri.parse(_baseUrl + "payment_detail/" + id.toString()),
         body: body,
         headers: tokenData);
 
     if (response.statusCode == 200) {
       return true;
     } else {
-      return false;
+      // return false;
+      throw ("false");
     }
   }
 }
