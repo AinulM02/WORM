@@ -40,7 +40,7 @@ class PaymentDetails {
   int id;
   String bayar;
   DateTime tanggal;
-  String idPayment;
+  int idPayment;
   DateTime createdAt;
   DateTime updatedAt;
 

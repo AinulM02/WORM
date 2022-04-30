@@ -20,6 +20,7 @@ class _uploadPayment extends State<uploadPayment> {
   TextEditingController _tanggalController = TextEditingController();
   TextEditingController _id_paymentController = TextEditingController();
 
+  int a = 6;
   // TimeOfDay time = TimeOfDay.now();
   // void showTime() {
   //   showTimePicker(context: context, initialTime: TimeOfDay.now())
@@ -74,6 +75,7 @@ class _uploadPayment extends State<uploadPayment> {
                   "Nominal Pembayaran",
                 ),
                 TextField(
+                  controller: _bayarController,
                   decoration: InputDecoration(
                     border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(20.0)),

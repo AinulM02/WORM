@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('bayar');
             $table->date('tanggal');
-            $table->string('id_payment');
+            $table->integer('id_payment');
             $table->timestamps();
         });
     }
