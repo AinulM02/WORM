@@ -14,19 +14,7 @@ class detailPayment extends StatefulWidget {
 class _detailPayment extends State<detailPayment> {
   @override
   Widget build(BuildContext context) {
-    // final args = ModalRoute.of(context)!.settings.arguments as int;
     return Scaffold(
-      // appBar: AppBar(
-      //   title: const Text(
-      //     "Detail Pembayaran",
-      //     style: TextStyle(
-      //       color: Colors.black,
-      //       fontSize: 17,
-      //       fontWeight: FontWeight.w600,
-      //     ),
-      //   ),
-      //   backgroundColor: const Color.fromRGBO(246, 246, 246, 1),
-      // ),
       body: Column(
         children: <Widget>[
           const Padding(padding: EdgeInsets.all(18.0)),

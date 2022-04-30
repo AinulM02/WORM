@@ -3,7 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:worm/page/myHomePage.dart';
 import 'package:worm/page/jadwalPage.dart';
-import 'package:worm/page/payment.dart';
+import 'package:worm/page/pembayaran/payment.dart';
 import 'package:worm/page/profile.dart';
 
 class navbar extends StatefulWidget {
