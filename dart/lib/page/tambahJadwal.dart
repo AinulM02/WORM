@@ -5,6 +5,8 @@ import 'package:date_time_picker/date_time_picker.dart';
 import 'package:worm/page/jadwalPage.dart';
 import 'package:worm/widgets/navbar.dart';
 import 'package:worm/service/sceduleService.dart';
+import 'package:worm/widgets/date.dart';
+import 'package:intl/intl.dart';
 
 class tambahJadwal extends StatefulWidget {
   const tambahJadwal({Key? key}) : super(key: key);
@@ -28,6 +30,23 @@ class _tambahJadwalState extends State<tambahJadwal> {
         _jamController.text = value!.format(context).toString();
       });
     });
+  }
+
+  DateTime tanggal = DateTime.now();
+  final TextStyle valueStyle = TextStyle(fontSize: 16.0);
+  Future<Null> _selectDate(BuildContext context) async {
+    // Initial DateTime FIinal Picked
+    final DateTime? picked = await showDatePicker(
+        context: context,
+        initialDate: tanggal,
+        firstDate: DateTime(2015),
+        lastDate: DateTime(2101));
+
+    if (picked != null && picked != tanggal)
+      setState(() {
+        _tanggalController.text = picked.toString();
+        tanggal = picked;
+      });
   }
 
   @override
@@ -120,28 +139,39 @@ class _tambahJadwalState extends State<tambahJadwal> {
               ],
             ),
           ),
+          // Container(
+          //   margin: const EdgeInsets.only(top: 20, right: 16, left: 16),
+          //   child: DateTimePicker(
+          //     dateMask: 'd MMM, yyyy',
+          //     initialValue: DateTime.now().toString(),
+          //     firstDate: DateTime(2000),
+          //     lastDate: DateTime(2100),
+          //     icon: const Icon(Icons.event),
+          //     dateLabelText: 'Tanggal pelaksanaan',
+          //     selectableDayPredicate: (date) {
+          //       // Disable weekend days to select from the calendar
+          //       if (date.weekday == 6 || date.weekday == 7) {
+          //         return false;
+          //       }
+          //       return true;
+          //     },
+          //     onChanged: (val) => setState(() => _tanggalController.text = val),
+          //     validator: (val) {
+          //       print(val);
+          //       return null;
+          //     },
+          //     onSaved: (val) => _tanggalController,
+          //   ),
+          // ),
           Container(
             margin: const EdgeInsets.only(top: 20, right: 16, left: 16),
-            child: DateTimePicker(
-              dateMask: 'd MMM, yyyy',
-              initialValue: DateTime.now().toString(),
-              firstDate: DateTime(2000),
-              lastDate: DateTime(2100),
-              icon: const Icon(Icons.event),
-              dateLabelText: 'Tanggal pelaksanaan',
-              selectableDayPredicate: (date) {
-                // Disable weekend days to select from the calendar
-                if (date.weekday == 6 || date.weekday == 7) {
-                  return false;
-                }
-                return true;
+            child: DateDropDown(
+              labelText: "tanggal kegiatan",
+              valueText: DateFormat.yMd().format(tanggal),
+              valueStyle: valueStyle,
+              onPressed: () {
+                _selectDate(context);
               },
-              onChanged: (val) => setState(() => _tanggalController.text = val),
-              validator: (val) {
-                print(val);
-                return null;
-              },
-              onSaved: (val) => _tanggalController,
             ),
           ),
           Container(
@@ -167,7 +197,7 @@ class _tambahJadwalState extends State<tambahJadwal> {
                 ),
                 TextField(
                   controller: _tempatController,
-                  obscureText: true,
+                  // obscureText: true,
                   decoration: InputDecoration(
                     border: OutlineInputBorder(),
                   ),
@@ -192,7 +222,7 @@ class _tambahJadwalState extends State<tambahJadwal> {
                       await SceduleService().createSchedule(body).then((value) {
                         Navigator.push(context,
                             MaterialPageRoute(builder: (context) {
-                          return const jadwalPage();
+                          return navbar(index: 1);
                         }));
                         ScaffoldMessenger.of(context).showSnackBar(
                             const SnackBar(

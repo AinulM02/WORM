@@ -2,18 +2,51 @@ import 'package:flutter/material.dart';
 import 'package:worm/page/tambahJadwal.dart';
 import 'package:worm/widgets/navbar.dart';
 import 'package:worm/page/FormEditJadwal.dart';
+import 'package:worm/service/sceduleService.dart';
+import 'package:flutter_speed_dial/flutter_speed_dial.dart';
+import 'package:worm/model/sceduleModel.dart';
 
-class detailJadwal extends StatefulWidget {
+class detailJadwal extends StatelessWidget {
+  static final url = "/detail-page";
   const detailJadwal({Key? key}) : super(key: key);
 
-  @override
-  State<detailJadwal> createState() => _detailJadwalState();
-}
+//   @override
+//   State<detailJadwal> createState() => _detailJadwalState();
+// }
 
-class _detailJadwalState extends State<detailJadwal> {
+// class _detailJadwalState extends State<detailJadwal> {
   @override
   Widget build(BuildContext context) {
+    final Scedules schedule =
+        ModalRoute.of(context)!.settings.arguments as Scedules;
+
     return Scaffold(
+      floatingActionButton: SpeedDial(
+        backgroundColor: Colors.black,
+        animatedIcon: AnimatedIcons.menu_arrow,
+        children: [
+          SpeedDialChild(
+              child: Icon(Icons.edit),
+              onTap: () {
+                Navigator.pushNamed(context, editJadwal.url,
+                    arguments: schedule);
+              }),
+          SpeedDialChild(
+              child: Icon(Icons.delete),
+              onTap: () async {
+                // await SceduleService().deleteSchedule(schedule.id).then(
+                //     ((value) => Navigator.pushReplacementNamed(context, '/jadwal-page')));
+
+                await SceduleService()
+                    .deleteSchedule(schedule.id)
+                    .then((value) {
+                  Navigator.push(context, MaterialPageRoute(builder: (context) {
+                    return navbar(index: 1);
+                  }));
+                });
+              }),
+        ],
+      ),
       body: Column(children: <Widget>[
         const Padding(padding: EdgeInsets.all(18.0)),
         const Padding(padding: EdgeInsets.only(top: 8)),
@@ -85,8 +118,8 @@ class _detailJadwalState extends State<detailJadwal> {
                 margin: const EdgeInsets.only(right: 16, left: 16, top: 20),
                 child: Row(
                   children: [
-                    Text("Nama      :"),
-                    Text("   Ainul M"),
+                    Text("Nama Kegiatan  :"),
+                    Text(schedule.namaKegiatan),
                   ],
                 ),
               ),
@@ -95,7 +128,7 @@ class _detailJadwalState extends State<detailJadwal> {
                 child: Row(
                   children: [
                     Text("Tanggal  :"),
-                    Text("   Kamis, 20 April 2022"),
+                    Text(schedule.tanggal.toString()),
                   ],
                 ),
               ),
@@ -104,19 +137,19 @@ class _detailJadwalState extends State<detailJadwal> {
                 child: Row(
                   children: [
                     Text("Waktu      :"),
-                    Text("   14.00 WIB"),
+                    Text(schedule.jam),
                   ],
                 ),
               ),
-              Container(
-                margin: const EdgeInsets.only(right: 16, left: 16, top: 20),
-                child: Row(
-                  children: [
-                    Text("Kegiatan :"),
-                    Text("   Meeting dengan Customer"),
-                  ],
-                ),
-              ),
+              // Container(
+              //   margin: const EdgeInsets.only(right: 16, left: 16, top: 20),
+              //   child: Row(
+              //     children: [
+              //       Text("Kegiatan :"),
+              //       Text("   Meeting dengan Customer"),
+              //     ],
+              //   ),
+              // ),
               Container(
                 margin: const EdgeInsets.only(right: 16, left: 16, top: 20),
                 child: Row(
@@ -125,7 +158,7 @@ class _detailJadwalState extends State<detailJadwal> {
                     Text("Detail       :"),
                     Flexible(
                       child: Text(
-                        "   Kedua mempelai diharapkan hadir untuk bertemu dengan pihak WO",
+                        schedule.detailKegiatan,
                         maxLines: 5,
                       ),
                     ),
@@ -140,21 +173,13 @@ class _detailJadwalState extends State<detailJadwal> {
                     Text("Tempat   :"),
                     Flexible(
                       child: Text(
-                        "   Kantor Alvia, Jalan Raya Sambung - Kecamatan Diwek Kabupaten Jombang - Jawa Timur",
+                        schedule.tempat,
                         maxLines: 5,
                       ),
                     ),
                   ],
                 ),
               ),
-              IconButton(
-                  alignment: Alignment.bottomRight,
-                  color: Colors.amber,
-                  onPressed: () => Navigator.push(context,
-                          MaterialPageRoute(builder: (context) {
-                        return const tambahJadwal();
-                      })),
-                  icon: const Icon(Icons.add)),
             ],
           ),
         ),

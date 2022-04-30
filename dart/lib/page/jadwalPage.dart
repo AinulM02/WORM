@@ -8,8 +8,10 @@ import 'package:worm/page/detailJadwal.dart';
 import 'package:worm/page/tambahJadwal.dart';
 import 'package:getwidget/getwidget.dart';
 import 'package:worm/service/sceduleService.dart';
+import 'package:worm/page/detailJadwal.dart';
 
 class jadwalPage extends StatefulWidget {
+  static final url = "/jadwal-page";
   const jadwalPage({Key? key}) : super(key: key);
 
   @override
@@ -141,23 +143,39 @@ class _jadwalPageState extends State<jadwalPage> {
                           );
                         } else {
                           if (snapshot.hasData) {
+                            // return ListView.builder(
+                            //   shrinkWrap: true,
+                            //   scrollDirection: Axis.vertical,
+                            //   itemBuilder: (context, index) {
+                            //     var scedule = snapshot.data!.data[index];
+                            //     return InkWell(
+                            //       onTap: () {
+                            //         Navigator.push(context,
+                            //             MaterialPageRoute(builder: (context) {
+                            //           return const detailJadwal();
+                            //         }));
+                            //       },
+                            //       child: listItem(scedule),
+                            //     );
+                            //   },
+                            //   itemCount: snapshot.data!.data.length,
+                            // );
                             return ListView.builder(
-                              shrinkWrap: true,
-                              scrollDirection: Axis.vertical,
                               itemBuilder: (context, index) {
-                                var scedule = snapshot.data!.data[index];
+                                var schedule = snapshot.data!.data[index];
                                 return InkWell(
                                   onTap: () {
-                                    Navigator.push(context,
-                                        MaterialPageRoute(builder: (context) {
-                                      return const detailJadwal();
-                                    }));
+                                    Navigator.pushNamed(
+                                        context, detailJadwal.url,
+                                        arguments: schedule);
                                   },
-                                  child: listItem(scedule),
+                                  child: listItem(schedule),
                                 );
                               },
                               itemCount: snapshot.data!.data.length,
                             );
+
+
                           } else if (snapshot.hasError) {
                             return Center(
                               child: Text(
@@ -185,10 +203,10 @@ class _jadwalPageState extends State<jadwalPage> {
         "Progres sudah selesai",
       ),
       trailing: Text(view.jam),
-      onTap: () =>
-          Navigator.push(context, MaterialPageRoute(builder: (context) {
-        return const detailJadwal();
-      })),
+      // onTap: () =>
+      //     Navigator.pushNamed(context, detailJadwal.url,
+      //                     arguments: vacation);
+      // })),
     );
   }
 }

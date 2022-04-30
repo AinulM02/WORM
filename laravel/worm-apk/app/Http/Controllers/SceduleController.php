@@ -67,7 +67,7 @@ class SceduleController extends Controller
         ]);
 
             $scedule->update($attribut);
-            return response()->json(['data'=> $scedule]);
+            return response()->json(['data'=>$scedule]);
     }
 
     /**
