@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\JadwalController;
 use App\Http\Controllers\SceduleController;
+use App\Http\Controllers\PaymentController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -17,6 +18,7 @@ use Illuminate\Support\Facades\Route;
 */
 Route::apiResource('/jadwal', JadwalController::class);
 Route::apiResource('/scedule', SceduleController::class);
+Route::apiResource('/payment', PaymentController::class);
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
