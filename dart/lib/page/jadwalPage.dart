@@ -174,8 +174,6 @@ class _jadwalPageState extends State<jadwalPage> {
                               },
                               itemCount: snapshot.data!.data.length,
                             );
-
-
                           } else if (snapshot.hasError) {
                             return Center(
                               child: Text(

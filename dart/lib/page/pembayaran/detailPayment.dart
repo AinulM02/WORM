@@ -1,19 +1,18 @@
 // ignore_for_file: camel_case_types
 
 import 'package:flutter/material.dart';
+import 'package:worm/model/paymentModel.dart';
 import 'package:worm/page/uploadPayment.dart';
 import 'package:worm/widgets/navbar.dart';
 
-class detailPayment extends StatefulWidget {
+class detailPayment extends StatelessWidget {
+  static final url = "/detail-payment";
   const detailPayment({Key? key}) : super(key: key);
 
   @override
-  State<detailPayment> createState() => _detailPayment();
-}
-
-class _detailPayment extends State<detailPayment> {
-  @override
   Widget build(BuildContext context) {
+    final payments payment =
+        ModalRoute.of(context)!.settings.arguments as payments;
     return Scaffold(
       body: Column(
         children: <Widget>[
@@ -85,9 +84,9 @@ class _detailPayment extends State<detailPayment> {
               child: ListView(
                 children: [
                   ListTile(
-                    title: const Text("Ainul Muhlasin"),
-                    subtitle: const Text(
-                      "Rp85.000.000,-",
+                    title: Text(payment.namaVendor),
+                    subtitle: Text(
+                      payment.tunaiKeseluruhan,
                       maxLines: 2,
                       overflow: TextOverflow.ellipsis,
                     ),
@@ -95,13 +94,13 @@ class _detailPayment extends State<detailPayment> {
                       mainAxisSize: MainAxisSize.min,
                       children: <Widget>[
                         Column(
-                          children: const [
-                            Text("Maret 2022"),
+                          children: [
+                            Text(payment.tanggal.toString()),
                             SizedBox(
                               height: 5,
                             ),
                             Text(
-                              "Blom Lunas",
+                              payment.keterangan,
                               style: TextStyle(color: Colors.red),
                             ),
                           ],
@@ -114,13 +113,13 @@ class _detailPayment extends State<detailPayment> {
                     color: Colors.grey,
                   ),
                   ListTile(
-                    title: const Text("Rp5.000.000,-"),
+                    title: Text(payment.tunai),
                     trailing: Row(
                       mainAxisSize: MainAxisSize.min,
                       children: <Widget>[
                         Column(
-                          children: const [
-                            Text("12 Maret 2022",
+                          children: [
+                            Text(payment.tanggal.toString(),
                                 style: TextStyle(color: Color(0xFF828282))),
                             SizedBox(
                               height: 5,

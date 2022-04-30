@@ -6,6 +6,7 @@ import 'package:worm/model/paymentModel.dart';
 import 'package:worm/service/paymentService.dart';
 
 class PagePayment extends StatefulWidget {
+  static final url = "/payment-page";
   const PagePayment({Key? key}) : super(key: key);
 
   @override
@@ -77,10 +78,8 @@ class _PagePayment extends State<PagePayment> {
                           var payment = snapshot.data!.data[index];
                           return InkWell(
                             onTap: () {
-                              Navigator.push(context,
-                                  MaterialPageRoute(builder: (context) {
-                                return const detailPayment();
-                              }));
+                              Navigator.pushNamed(context, detailPayment.url,
+                                  arguments: payment);
                             },
                             child: listItem(payment),
                           );
@@ -138,17 +137,13 @@ class _PagePayment extends State<PagePayment> {
                 maxLines: 2,
                 overflow: TextOverflow.ellipsis,
               ),
-              onTap: () =>
-                  Navigator.push(context, MaterialPageRoute(builder: (context) {
-                return detailPayment();
-              })),
             ),
             Divider(
               color: Colors.grey,
             ),
             ListTile(
               title: Text(
-                "Terbayar",
+                view.keterangan,
                 style: TextStyle(color: Color(0xFF666D66)),
               ),
               trailing: Text(
