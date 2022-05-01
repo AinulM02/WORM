@@ -30,6 +30,7 @@ class PaymentDetailController extends Controller
             'bayar'=>['required'],
             'tanggal'=>['required'],
             'id_payment'=>['required'],
+            'jam'=>['required'],
         ]);
 
         $payment_detail = payment_detail::create($attribut);
@@ -60,6 +61,7 @@ class PaymentDetailController extends Controller
             'bayar'=>['required'],
             'tanggal'=>['required'],
             'id_payment'=>['required'],
+            'jam'=>['required'],
         ]);
 
         $payment_detail->update($attribut);

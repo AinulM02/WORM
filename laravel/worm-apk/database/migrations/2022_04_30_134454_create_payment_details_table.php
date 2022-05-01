@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('bayar');
             $table->date('tanggal');
             $table->integer('id_payment');
+            $table->string('jam');
             $table->timestamps();
         });
     }

@@ -33,6 +33,7 @@ class PaymentDetails {
     required this.bayar,
     required this.tanggal,
     required this.idPayment,
+    required this.jam,
     required this.createdAt,
     required this.updatedAt,
   });
@@ -41,6 +42,7 @@ class PaymentDetails {
   String bayar;
   DateTime tanggal;
   int idPayment;
+  String jam;
   DateTime createdAt;
   DateTime updatedAt;
 
@@ -49,6 +51,7 @@ class PaymentDetails {
         bayar: json["bayar"],
         tanggal: DateTime.parse(json["tanggal"]),
         idPayment: json["id_payment"],
+        jam: json["jam"],
         createdAt: DateTime.parse(json["created_at"]),
         updatedAt: DateTime.parse(json["updated_at"]),
       );
@@ -59,6 +62,7 @@ class PaymentDetails {
         "tanggal":
             "${tanggal.year.toString().padLeft(4, '0')}-${tanggal.month.toString().padLeft(2, '0')}-${tanggal.day.toString().padLeft(2, '0')}",
         "id_payment": idPayment,
+        "jam": jam,
         "created_at": createdAt.toIso8601String(),
         "updated_at": updatedAt.toIso8601String(),
       };

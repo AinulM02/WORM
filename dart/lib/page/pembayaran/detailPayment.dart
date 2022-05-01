@@ -1,16 +1,44 @@
-// ignore_for_file: camel_case_types
+import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:worm/page/pembayaran/detailPayment.dart';
+import 'package:worm/model/paymentDetailModel.dart';
+import 'package:worm/page/pembayaran/tambahPayment.dart';
+import 'package:worm/service/paymentDetailService.dart';
 import 'package:worm/model/paymentModel.dart';
-import 'package:worm/page/pembayaran/editPayment.dart';
-import 'package:worm/page/pembayaran/uploadPayment.dart';
+import 'package:flutter_speed_dial/flutter_speed_dial.dart';
 import 'package:worm/service/paymentService.dart';
 import 'package:worm/widgets/navbar.dart';
-import 'package:flutter_speed_dial/flutter_speed_dial.dart';
+import 'package:worm/page/pembayaran/editPayment.dart';
+import 'package:worm/page/pembayaran/uploadPayment.dart';
+import 'package:intl/intl.dart';
 
-class detailPayment extends StatelessWidget {
+class detailPayment extends StatefulWidget {
   static final url = "/detail-payment";
   const detailPayment({Key? key}) : super(key: key);
+
+  @override
+  State<detailPayment> createState() => _detailPayment();
+}
+
+class _detailPayment extends State<detailPayment> {
+  late Future<PaymentDetail> _payments;
+  int id = 0;
+
+  @override
+  void initState() {
+    super.initState();
+    _payments = PaymentDetailService().getAllPaymentDetail();
+  }
+
+  void refreshData() {
+    id++;
+  }
+
+  FutureOr onGoBack(dynamic value) {
+    refreshData();
+    setState(() {});
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -39,218 +67,223 @@ class detailPayment extends StatelessWidget {
         ],
       ),
       body: Column(
-        children: <Widget>[
-          const Padding(padding: EdgeInsets.all(18.0)),
-          const Padding(padding: EdgeInsets.only(top: 8)),
-          Container(
-            margin: const EdgeInsets.only(top: 15, right: 16, left: 16),
-            height: 70,
-            child: Row(
-              children: <Widget>[
-                Container(
-                  height: 48,
-                  width: 48,
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(5),
-                    boxShadow: const [
-                      BoxShadow(
-                        color: Colors.grey,
-                        blurRadius: 1,
-                        offset: Offset(0, 0),
-                      ),
-                    ],
-                  ),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      IconButton(
-                          alignment: Alignment.centerRight,
-                          onPressed: () => Navigator.push(context,
-                                  MaterialPageRoute(builder: (context) {
-                                return navbar(index: 2);
-                              })),
-                          icon: const Icon(
-                            Icons.arrow_back_ios,
-                            size: 22,
-                          )),
-                    ],
-                  ),
-                ),
-                const Padding(padding: EdgeInsets.only(left: 15)),
-                const Text(
-                  "Detail Pembayaran",
-                  style: TextStyle(
-                    color: Color.fromARGB(255, 24, 24, 24),
-                    fontWeight: FontWeight.bold,
-                    fontSize: 16,
-                  ),
-                )
-              ],
-            ),
-          ),
-          Container(
-            margin: const EdgeInsets.only(right: 16, left: 16, bottom: 8),
-            height: MediaQuery.of(context).size.height * 0.7,
-            child: Container(
-              decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.circular(10),
-                boxShadow: const [
-                  BoxShadow(
-                    color: Colors.grey,
-                    blurRadius: 2,
-                    offset: Offset(0, 0), // Shadow position
-                  ),
-                ],
-              ),
-              child: ListView(
-                children: [
-                  ListTile(
-                    title: Text(payment.namaVendor),
-                    subtitle: Text(
-                      payment.tunaiKeseluruhan,
-                      maxLines: 2,
-                      overflow: TextOverflow.ellipsis,
+          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+            Padding(padding: EdgeInsets.all(18.0)),
+            Padding(padding: EdgeInsets.only(top: 8)),
+            Container(
+              margin: const EdgeInsets.only(top: 15, right: 16, left: 16),
+              height: 70,
+              child: Row(
+                children: <Widget>[
+                  Container(
+                    height: 48,
+                    width: 48,
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(5),
+                      boxShadow: const [
+                        BoxShadow(
+                          color: Colors.grey,
+                          blurRadius: 1,
+                          offset: Offset(0, 0),
+                        ),
+                      ],
                     ),
-                    trailing: Row(
-                      mainAxisSize: MainAxisSize.min,
-                      children: <Widget>[
-                        Column(
-                          children: [
-                            Text(payment.tanggal.toString()),
-                            SizedBox(
-                              height: 5,
-                            ),
-                            payment.keterangan != "lunas"
-                                ? Text(
-                                    payment.keterangan,
-                                    style: TextStyle(color: Colors.red),
-                                  )
-                                : Text(
-                                    payment.keterangan,
-                                    style: TextStyle(color: Colors.green),
-                                  ),
-
-                          ],
-                        )
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        IconButton(
+                            alignment: Alignment.centerRight,
+                            onPressed: () => Navigator.push(context,
+                                    MaterialPageRoute(builder: (context) {
+                                  return navbar(index: 2);
+                                })),
+                            icon: const Icon(
+                              Icons.arrow_back_ios,
+                              size: 22,
+                            )),
                       ],
                     ),
                   ),
-                  const Padding(padding: EdgeInsets.all(8)),
-                  const Divider(
-                    color: Colors.grey,
-                  ),
-                  ListTile(
-                    title: Text(payment.tunai),
-                    trailing: Row(
-                      mainAxisSize: MainAxisSize.min,
-                      children: <Widget>[
-                        Column(
-                          children: [
-                            Text(payment.tanggal.toString(),
-                                style: TextStyle(color: Color(0xFF828282))),
-                            SizedBox(
-                              height: 5,
-                            ),
-                            Text(
-                              "05.35 PM",
-                              style: TextStyle(color: Color(0xFF828282)),
-                            ),
-                          ],
-                        )
-                      ],
+                  const Padding(padding: EdgeInsets.only(left: 15)),
+                  const Text(
+                    "Detail Pembayaran",
+                    style: TextStyle(
+                      color: Color.fromARGB(255, 24, 24, 24),
+                      fontWeight: FontWeight.bold,
+                      fontSize: 16,
                     ),
-                  ),
-                  const Divider(
-                    color: Colors.grey,
-                  ),
-                  ListTile(
-                    title: Text("Rp10.000 (sample),-"),
-                    trailing: Row(
-                      mainAxisSize: MainAxisSize.min,
-                      children: <Widget>[
-                        Column(
-                          children: const [
-                            Text("12 Maret 2022 (sample)",
-                                style: TextStyle(color: Color(0xFF828282))),
-                            SizedBox(
-                              height: 5,
-                            ),
-                            Text(
-                              "05.35 PM (sample)",
-                              style: TextStyle(color: Color(0xFF828282)),
-                            ),
-                          ],
-                        )
-                      ],
-                    ),
-                  ),
-                  const Divider(
-                    color: Colors.grey,
-                  ),
-                  ListTile(
-                    title: Text("Rp20.000 (sample),-"),
-                    trailing: Row(
-                      mainAxisSize: MainAxisSize.min,
-                      children: <Widget>[
-                        Column(
-                          children: const [
-                            Text("12 Maret 2022 (sample)",
-                                style: TextStyle(color: Color(0xFF828282))),
-                            SizedBox(
-                              height: 5,
-                            ),
-                            Text(
-                              "05.35 PM (sample)",
-                              style: TextStyle(color: Color(0xFF828282)),
-                            ),
-                          ],
-                        )
-                      ],
-                    ),
-                  ),
+                  )
                 ],
               ),
             ),
-          ),
-          InkWell(
-            child: Container(
-              margin: const EdgeInsets.only(right: 16, left: 16),
-              height: 50,
-              width: 400,
+            Container(
+              margin: const EdgeInsets.only(right: 16, left: 16, bottom: 8),
+              height: MediaQuery.of(context).size.height * 0.7,
               child: Container(
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(10),
-                    boxShadow: const [
-                      BoxShadow(
-                        color: Colors.grey,
-                        blurRadius: 2,
-                        offset: Offset(0, 0), // Shadow position
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(10),
+                  boxShadow: const [
+                    BoxShadow(
+                      color: Colors.grey,
+                      blurRadius: 2,
+                      offset: Offset(0, 0), // Shadow position
+                    ),
+                  ],
+                ),
+                child: ListView(
+                  children: [
+                    ListTile(
+                      title: Text(payment.namaVendor),
+                      subtitle: Text(
+                        payment.tunaiKeseluruhan,
+                        maxLines: 2,
+                        overflow: TextOverflow.ellipsis,
                       ),
-                    ],
-                  ),
-                  child: Column(
-                    children: const [
-                      SizedBox(
-                        height: 16,
+                      trailing: Row(
+                        mainAxisSize: MainAxisSize.min,
+                        children: <Widget>[
+                          Column(
+                            children: [
+                              Text(payment.tanggal.toString()),
+                              SizedBox(
+                                height: 5,
+                              ),
+                              payment.keterangan != "lunas"
+                                  ? Text(
+                                      payment.keterangan,
+                                      style: TextStyle(color: Colors.red),
+                                    )
+                                  : Text(
+                                      payment.keterangan,
+                                      style: TextStyle(color: Colors.green),
+                                    ),
+                            ],
+                          )
+                        ],
                       ),
-                      Text(
-                        "Bukti Pembayaran",
-                        textAlign: TextAlign.center,
-                      ),
-                    ],
-                  )),
+                    ),
+                    const Padding(padding: EdgeInsets.all(8)),
+                    const Divider(
+                      color: Colors.grey,
+                    ),
+                    FutureBuilder(
+                      future: _payments,
+                      builder:
+                          (context, AsyncSnapshot<PaymentDetail> snapshot) {
+                        var state = snapshot.connectionState;
+                        if (state != ConnectionState.done) {
+                          return Center(
+                            child: CircularProgressIndicator(),
+                          );
+                        } else {
+                          if (snapshot.hasData) {
+                            return ListView.builder(
+                              physics: NeverScrollableScrollPhysics(),
+                              shrinkWrap: true,
+                              scrollDirection: Axis.vertical,
+                              itemBuilder: (context, index) {
+                                var payment_detail = snapshot.data!.data[index];
+                                return InkWell(
+                                    // onTap: () {
+                                    //   Navigator.pushNamed(context, detailPayment.url,
+                                    //       arguments: payment);
+                                    // },
+                                    child:
+                                        payment_detail.idPayment == payment.id
+                                            ? listItem(payment_detail, payment)
+                                            : SizedBox());
+                              },
+                              itemCount: snapshot.data!.data.length,
+                            );
+                          } else if (snapshot.hasError) {
+                            return Center(
+                              child: Text(
+                                snapshot.error.toString(),
+                              ),
+                            );
+                          } else {
+                            return Text('');
+                          }
+                        }
+                      },
+                    ),
+                  ],
+                ),
+              ),
             ),
-              onTap: () {
-                Navigator.pushNamed(context, uploadPayment.url,
-                    arguments: payment);
-              }
-          ),
-        ],
-      ),
+
+            InkWell(
+                child: Container(
+                  margin: const EdgeInsets.only(right: 16, left: 16),
+                  height: 50,
+                  width: 400,
+                  child: Container(
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(10),
+                        boxShadow: const [
+                          BoxShadow(
+                            color: Colors.grey,
+                            blurRadius: 2,
+                            offset: Offset(0, 0), // Shadow position
+                          ),
+                        ],
+                      ),
+                      child: Column(
+                        children: const [
+                          SizedBox(
+                            height: 16,
+                          ),
+                          Text(
+                            "Bukti Pembayaran",
+                            textAlign: TextAlign.center,
+                          ),
+                        ],
+                      )),
+                ),
+                onTap: () {
+                  Navigator.pushNamed(context, uploadPayment.url,
+                      arguments: payment);
+                }),
+          ]),
     );
+  }
+
+  Widget listItem(PaymentDetails paymentDetail, payments payment) {
+    String tanggal = DateFormat.yMd().format(paymentDetail.tanggal);
+
+    return Container(
+        child: Column(
+      children: [
+        ListTile(
+          title: Text(paymentDetail.bayar),
+          trailing: Row(
+            mainAxisSize: MainAxisSize.min,
+            children: <Widget>[
+              Column(
+                children: [
+                  Text(tanggal, style: TextStyle(color: Color(0xFF828282))),
+                  SizedBox(
+                    height: 5,
+                  ),
+                  Text(
+                    paymentDetail.jam,
+                    style: TextStyle(color: Color(0xFF828282)),
+                  ),
+                ],
+              ),
+            ],
+          ),
+        ),
+        const Divider(
+          color: Colors.grey,
+        ),
+      ],
+    ));
   }
 }

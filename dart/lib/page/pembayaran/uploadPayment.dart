@@ -19,17 +19,7 @@ class _uploadPayment extends State<uploadPayment> {
   TextEditingController _bayarController = TextEditingController();
   TextEditingController _tanggalController = TextEditingController();
   TextEditingController _id_paymentController = TextEditingController();
-
-  int a = 6;
-  // TimeOfDay time = TimeOfDay.now();
-  // void showTime() {
-  //   showTimePicker(context: context, initialTime: TimeOfDay.now())
-  //       .then((value) {
-  //     setState(() {
-  //       time = value!;
-  //     });
-  //   });
-  // }
+  TextEditingController _jamController = TextEditingController();
 
   DateTime tanggal = DateTime.now();
   final TextStyle valueStyle = TextStyle(fontSize: 16.0);
@@ -46,6 +36,16 @@ class _uploadPayment extends State<uploadPayment> {
         _tanggalController.text = picked.toString();
         tanggal = picked;
       });
+  }
+
+  TimeOfDay time = TimeOfDay.now();
+  void showTime() {
+    showTimePicker(context: context, initialTime: TimeOfDay.now())
+        .then((value) {
+      setState(() {
+        _jamController.text = value!.format(context).toString();
+      });
+    });
   }
 
   @override
@@ -122,19 +122,19 @@ class _uploadPayment extends State<uploadPayment> {
           new Padding(
             padding: new EdgeInsets.only(top: 20.0),
           ),
-          // Container(
-          //   margin: const EdgeInsets.only(top: 20, right: 16, left: 16),
-          //   child: Row(
-          //     crossAxisAlignment: CrossAxisAlignment.start,
-          //     children: [
-          //       IconButton(
-          //         onPressed: showTime,
-          //         icon: const Icon(Icons.timer),
-          //       ),
-          //       Text(time.format(context).toString()),
-          //     ],
-          //   ),
-          // ),
+          Container(
+            margin: const EdgeInsets.only(top: 20, right: 16, left: 16),
+            child: Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                IconButton(
+                  onPressed: showTime,
+                  icon: const Icon(Icons.timer),
+                ),
+                Text(_jamController.text),
+              ],
+            ),
+          ),
           SizedBox(
             height: 10,
           ),
@@ -148,6 +148,7 @@ class _uploadPayment extends State<uploadPayment> {
                         'bayar': _bayarController.text,
                         'tanggal': _tanggalController.text,
                         'id_payment': payment.id.toString(),
+                        'jam': _jamController.text,
                       };
 
                       await PaymentDetailService()
