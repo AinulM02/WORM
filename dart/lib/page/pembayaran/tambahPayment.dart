@@ -95,7 +95,7 @@ class _tambahPaymentState extends State<tambahPayment> {
                 ),
                 const Padding(padding: EdgeInsets.only(left: 15)),
                 const Text(
-                  "Tambah Jadwal",
+                  "Tambah Pembayaran",
                   style: TextStyle(
                     color: Color.fromARGB(255, 24, 24, 24),
                     fontWeight: FontWeight.bold,
@@ -128,7 +128,7 @@ class _tambahPaymentState extends State<tambahPayment> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  "Tunai Keseluruhan",
+                  "Total",
                 ),
                 TextField(
                   controller: _tunaiKeseluruhanController,
@@ -142,46 +142,12 @@ class _tambahPaymentState extends State<tambahPayment> {
           Container(
             margin: const EdgeInsets.only(top: 20, right: 16, left: 16),
             child: DateDropDown(
-              labelText: "tanggal",
+              labelText: "Tanggal",
               valueText: DateFormat.yMd().format(tanggal),
               valueStyle: valueStyle,
               onPressed: () {
                 _selectDate(context);
               },
-            ),
-          ),
-          Container(
-            margin: const EdgeInsets.only(top: 20, right: 16, left: 16),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  "Tunai",
-                ),
-                TextField(
-                  controller: _tunaiController,
-                  decoration: const InputDecoration(
-                    border: OutlineInputBorder(),
-                  ),
-                ),
-              ],
-            ),
-          ),
-          Container(
-            margin: const EdgeInsets.only(top: 20, right: 16, left: 16),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  "Keterangan",
-                ),
-                TextField(
-                  controller: _keteranganController,
-                  decoration: InputDecoration(
-                    border: OutlineInputBorder(),
-                  ),
-                ),
-              ],
             ),
           ),
           Container(
@@ -194,8 +160,8 @@ class _tambahPaymentState extends State<tambahPayment> {
                         'nama_vendor': _nameVendorController.text,
                         'tunai_keseluruhan': _tunaiKeseluruhanController.text,
                         'tanggal': _tanggalController.text,
-                        'tunai': _tunaiController.text,
-                        'keterangan': _keteranganController.text,
+                        'tunai': "0",
+                        'keterangan': "belum lunas",
                       };
 
                       await PaymentService().createPayment(body).then((value) {

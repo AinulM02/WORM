@@ -12,6 +12,7 @@ import 'package:worm/widgets/navbar.dart';
 import 'package:worm/page/pembayaran/editPayment.dart';
 import 'package:worm/page/pembayaran/uploadPayment.dart';
 import 'package:intl/intl.dart';
+import 'package:worm/format/formatAngka.dart';
 
 class detailPayment extends StatefulWidget {
   static final url = "/detail-payment";
@@ -140,7 +141,8 @@ class _detailPayment extends State<detailPayment> {
                     ListTile(
                       title: Text(payment.namaVendor),
                       subtitle: Text(
-                        payment.tunaiKeseluruhan,
+                        formatAngka.convertToIdr(
+                            int.parse(payment.tunaiKeseluruhan), 2),
                         maxLines: 2,
                         overflow: TextOverflow.ellipsis,
                       ),
@@ -189,13 +191,9 @@ class _detailPayment extends State<detailPayment> {
                               itemBuilder: (context, index) {
                                 var payment_detail = snapshot.data!.data[index];
                                 return InkWell(
-                                    // onTap: () {
-                                    //   Navigator.pushNamed(context, detailPayment.url,
-                                    //       arguments: payment);
-                                    // },
                                     child:
                                         payment_detail.idPayment == payment.id
-                                            ? listItem(payment_detail, payment)
+                                            ? listItem(payment_detail)
                                             : SizedBox());
                               },
                               itemCount: snapshot.data!.data.length,
@@ -254,14 +252,15 @@ class _detailPayment extends State<detailPayment> {
     );
   }
 
-  Widget listItem(PaymentDetails paymentDetail, payments payment) {
+  Widget listItem(PaymentDetails paymentDetail) {
     String tanggal = DateFormat.yMd().format(paymentDetail.tanggal);
 
     return Container(
         child: Column(
       children: [
         ListTile(
-          title: Text(paymentDetail.bayar),
+          title:
+              Text(formatAngka.convertToIdr(int.parse(paymentDetail.bayar), 2)),
           trailing: Row(
             mainAxisSize: MainAxisSize.min,
             children: <Widget>[

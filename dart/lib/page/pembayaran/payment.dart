@@ -5,6 +5,7 @@ import 'package:worm/page/pembayaran/detailPayment.dart';
 import 'package:worm/model/paymentModel.dart';
 import 'package:worm/page/pembayaran/tambahPayment.dart';
 import 'package:worm/service/paymentService.dart';
+import 'package:worm/format/formatAngka.dart';
 
 class PagePayment extends StatefulWidget {
   static final url = "/payment-page";
@@ -148,7 +149,7 @@ class _PagePayment extends State<PagePayment> {
             ListTile(
               title: Text(view.namaVendor),
               subtitle: Text(
-                view.tunaiKeseluruhan,
+                formatAngka.convertToIdr(int.parse(view.tunaiKeseluruhan), 2),
                 maxLines: 2,
                 overflow: TextOverflow.ellipsis,
               ),
@@ -162,7 +163,7 @@ class _PagePayment extends State<PagePayment> {
                 style: TextStyle(color: Color(0xFF666D66)),
               ),
               trailing: Text(
-                view.tunai,
+                formatAngka.convertToIdr(int.parse(view.tunai), 2),
                 style: TextStyle(color: Colors.green),
               ),
             ),

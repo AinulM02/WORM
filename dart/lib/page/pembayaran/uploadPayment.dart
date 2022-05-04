@@ -6,6 +6,8 @@ import 'package:worm/widgets/navbar.dart';
 import 'package:worm/widgets/date.dart';
 import 'package:intl/intl.dart';
 import 'package:worm/model/paymentModel.dart';
+import 'package:worm/page/jadwalPage.dart';
+import 'package:worm/service/paymentService.dart';
 
 class uploadPayment extends StatefulWidget {
   static final url = "/upload-payment";
@@ -16,10 +18,21 @@ class uploadPayment extends StatefulWidget {
 }
 
 class _uploadPayment extends State<uploadPayment> {
+  //untuk tabel detail_pembayaran
   TextEditingController _bayarController = TextEditingController();
   TextEditingController _tanggalController = TextEditingController();
   TextEditingController _id_paymentController = TextEditingController();
   TextEditingController _jamController = TextEditingController();
+
+  //untuk tabel pembayaran
+  TextEditingController _nameVendorController = TextEditingController();
+  TextEditingController _tunaiKeseluruhanController = TextEditingController();
+  TextEditingController _tanggalPaymentController = TextEditingController();
+  TextEditingController _tunaiController = TextEditingController();
+  TextEditingController _keteranganController = TextEditingController();
+
+  //untuk menyimpan sementara nilai dari total pembayaran
+  int total = 0;
 
   DateTime tanggal = DateTime.now();
   final TextStyle valueStyle = TextStyle(fontSize: 16.0);
@@ -53,6 +66,15 @@ class _uploadPayment extends State<uploadPayment> {
     final payments payment =
         ModalRoute.of(context)!.settings.arguments as payments;
 
+    if (payment != null) {
+      _nameVendorController.text = payment.namaVendor;
+      _tunaiKeseluruhanController.text = payment.tunaiKeseluruhan;
+      _tanggalPaymentController.text = payment.tanggal.toString();
+      _tunaiController.text = payment.tunai;
+      // _tunaiController.text = "10k ae lah";
+      _keteranganController.text = payment.keterangan;
+    }
+
     return Scaffold(
         appBar: AppBar(
           title: const Text(
@@ -80,34 +102,10 @@ class _uploadPayment extends State<uploadPayment> {
                     border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(20.0)),
                   ),
-                )
+                ),
               ],
             ),
           ),
-          // Container(
-          //   margin: const EdgeInsets.only(top: 20, right: 16, left: 16),
-          //   child: DateTimePicker(
-          //     dateMask: 'd MMM, yyyy',
-          //     initialValue: DateTime.now().toString(),
-          //     firstDate: DateTime(2000),
-          //     lastDate: DateTime(2100),
-          //     icon: const Icon(Icons.event),
-          //     dateLabelText: 'Tanggal Pembayaran',
-          //     selectableDayPredicate: (date) {
-          //       // Disable weekend days to select from the calendar
-          //       if (date.weekday == 6 || date.weekday == 7) {
-          //         return false;
-          //       }
-          //       return true;
-          //     },
-          //     onChanged: (val) => print(val),
-          //     validator: (val) {
-          //       print(val);
-          //       return null;
-          //     },
-          //     onSaved: (val) => print(val),
-          //   ),
-          // ),
           Container(
             margin: const EdgeInsets.only(top: 20, right: 16, left: 16),
             child: DateDropDown(
@@ -144,15 +142,34 @@ class _uploadPayment extends State<uploadPayment> {
               children: <Widget>[
                 ElevatedButton(
                     onPressed: () async {
+                      //untuk menyimpan data dari upload pembayaran
                       Map<String, dynamic> body = {
                         'bayar': _bayarController.text,
                         'tanggal': _tanggalController.text,
                         'id_payment': payment.id.toString(),
                         'jam': _jamController.text,
                       };
+                      //untuk menyimpan data dari upload pembayaran
+                      await PaymentDetailService().createPaymentDetail(body);
 
-                      await PaymentDetailService()
-                          .createPaymentDetail(body)
+                      total = int.parse(_tunaiController.text) +
+                          int.parse(_bayarController.text);
+                      if (total ==
+                          int.parse(_tunaiKeseluruhanController.text)) {
+                        _keteranganController.text = "lunas";
+                      }
+
+                      //untuk update data pada tabel payment kolom tunai
+                      Map<String, dynamic> body1 = {
+                        'nama_vendor': _nameVendorController.text,
+                        'tunai_keseluruhan': _tunaiKeseluruhanController.text,
+                        'tanggal': _tanggalPaymentController.text,
+                        'tunai': total.toString(),
+                        'keterangan': _keteranganController.text,
+                      };
+                      //untuk update data pada tabel payment kolom tunai
+                      await PaymentService()
+                          .updatePayment(body1, payment.id)
                           .then((value) {
                         Navigator.push(context,
                             MaterialPageRoute(builder: (context) {
@@ -161,7 +178,7 @@ class _uploadPayment extends State<uploadPayment> {
                         ScaffoldMessenger.of(context).showSnackBar(
                             const SnackBar(
                                 content: Text(
-                                    'You have successfully upload a payment')));
+                                    'You have successfully update a payment')));
                       });
                     },
                     child: const Text(
