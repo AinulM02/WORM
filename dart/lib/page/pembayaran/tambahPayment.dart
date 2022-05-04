@@ -141,14 +141,19 @@ class _tambahPaymentState extends State<tambahPayment> {
           ),
           Container(
             margin: const EdgeInsets.only(top: 20, right: 16, left: 16),
-            child: DateDropDown(
-              labelText: "Tanggal",
+            child: Column(children: [
+              Divider(
+                color: Colors.black,
+              ),
+              DateDropDown(
+                labelText: "tanggal kegiatan",
               valueText: DateFormat.yMd().format(tanggal),
               valueStyle: valueStyle,
               onPressed: () {
                 _selectDate(context);
               },
             ),
+            ]),
           ),
           Container(
             margin: const EdgeInsets.only(top: 10, right: 20),

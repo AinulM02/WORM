@@ -165,7 +165,11 @@ class _tambahJadwalState extends State<tambahJadwal> {
           // ),
           Container(
             margin: const EdgeInsets.only(top: 20, right: 16, left: 16),
-            child: DateDropDown(
+            child: Column(children: [
+              Divider(
+                color: Colors.black,
+              ),
+              DateDropDown(
               labelText: "tanggal kegiatan",
               valueText: DateFormat.yMd().format(tanggal),
               valueStyle: valueStyle,
@@ -173,19 +177,31 @@ class _tambahJadwalState extends State<tambahJadwal> {
                 _selectDate(context);
               },
             ),
+            ]),
           ),
           Container(
             margin: const EdgeInsets.only(top: 20, right: 16, left: 16),
-            child: Row(
+            child: Column(children: [
+              Divider(
+                color: Colors.black,
+              ),
+              Row(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
+                  Column(children: [
+                    Text("Jam"),
                 IconButton(
                   onPressed: showTime,
                   icon: const Icon(Icons.timer),
                 ),
-                Text(_jamController.text),
+                  ]),
+                  Text("\n\n" + _jamController.text),
               ],
             ),
+              Divider(
+                color: Colors.black,
+              ),
+            ]),
           ),
           Container(
             margin: const EdgeInsets.only(top: 20, right: 16, left: 16),

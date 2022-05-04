@@ -97,7 +97,7 @@ class _tambahPaymentState extends State<editPayment> {
                 ),
                 const Padding(padding: EdgeInsets.only(left: 15)),
                 const Text(
-                  "Tambah Jadwal",
+                  "Edit Pembayaran",
                   style: TextStyle(
                     color: Color.fromARGB(255, 24, 24, 24),
                     fontWeight: FontWeight.bold,
@@ -113,7 +113,7 @@ class _tambahPaymentState extends State<editPayment> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  "Nama Kegiatan",
+                  "Nama Vendor",
                 ),
                 TextField(
                   controller: _nameVendorController,
@@ -130,7 +130,7 @@ class _tambahPaymentState extends State<editPayment> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  "Detail Kegiatan",
+                  "Total",
                 ),
                 TextField(
                   controller: _tunaiKeseluruhanController,
@@ -143,45 +143,18 @@ class _tambahPaymentState extends State<editPayment> {
           ),
           Container(
             margin: const EdgeInsets.only(top: 20, right: 16, left: 16),
-            child: DateDropDown(
-              labelText: "tanggal kegiatan",
+            child: Column(
+              children: [
+                Divider(
+                  color: Colors.black,
+                ),
+                DateDropDown(
+                  labelText: "tanggal",
               valueText: DateFormat.yMd().format(payment.tanggal),
               valueStyle: valueStyle,
               onPressed: () {
                 _selectDate(context, payment.tanggal);
               },
-            ),
-          ),
-          Container(
-            margin: const EdgeInsets.only(top: 20, right: 16, left: 16),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  "Tunai",
-                ),
-                TextField(
-                  controller: _tunaiController,
-                  decoration: const InputDecoration(
-                    border: OutlineInputBorder(),
-                  ),
-                ),
-              ],
-            ),
-          ),
-          Container(
-            margin: const EdgeInsets.only(top: 20, right: 16, left: 16),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  "Tempat Kegiatan",
-                ),
-                TextField(
-                  controller: _keteranganController,
-                  decoration: InputDecoration(
-                    border: OutlineInputBorder(),
-                  ),
                 ),
               ],
             ),
@@ -192,6 +165,9 @@ class _tambahPaymentState extends State<editPayment> {
               children: <Widget>[
                 ElevatedButton(
                     onPressed: () async {
+                      if (payment.tunaiKeseluruhan != payment.tunai) {
+                        _keteranganController.text = "belum lunas";
+                      }
                       Map<String, dynamic> body = {
                         'nama_vendor': _nameVendorController.text,
                         'tunai_keseluruhan': _tunaiKeseluruhanController.text,
