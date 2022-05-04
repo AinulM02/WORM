@@ -10,7 +10,8 @@ import 'package:flutter_speed_dial/flutter_speed_dial.dart';
 import 'package:worm/service/paymentService.dart';
 import 'package:worm/widgets/navbar.dart';
 import 'package:worm/page/pembayaran/editPayment.dart';
-import 'package:worm/page/pembayaran/uploadPayment.dart';
+import 'package:worm/page/pembayaran/editDetailPayment.dart';
+import 'package:worm/page/pembayaran/tambahDetailPayment.dart';
 import 'package:intl/intl.dart';
 import 'package:worm/format/formatAngka.dart';
 
@@ -191,6 +192,11 @@ class _detailPayment extends State<detailPayment> {
                               itemBuilder: (context, index) {
                                 var payment_detail = snapshot.data!.data[index];
                                 return InkWell(
+                                    onTap: () {
+                                      Navigator.pushNamed(
+                                          context, editDetailPayment.url,
+                                          arguments: payment_detail);
+                                    },
                                     child:
                                         payment_detail.idPayment == payment.id
                                             ? listItem(payment_detail)

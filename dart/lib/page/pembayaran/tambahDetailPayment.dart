@@ -113,13 +113,13 @@ class _uploadPayment extends State<uploadPayment> {
                 color: Colors.black,
               ),
               DateDropDown(
-              labelText: "tanggal kegiatan",
-              valueText: DateFormat.yMd().format(tanggal),
-              valueStyle: valueStyle,
-              onPressed: () {
-                _selectDate(context);
-              },
-            ),
+                labelText: "tanggal kegiatan",
+                valueText: DateFormat.yMd().format(tanggal),
+                valueStyle: valueStyle,
+                onPressed: () {
+                  _selectDate(context);
+                },
+              ),
             ]),
           ),
           new Padding(
@@ -132,18 +132,18 @@ class _uploadPayment extends State<uploadPayment> {
                 color: Colors.black,
               ),
               Row(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
                   Column(children: [
                     Text("Jam"),
-                IconButton(
-                  onPressed: showTime,
-                  icon: const Icon(Icons.timer),
-                ),
+                    IconButton(
+                      onPressed: showTime,
+                      icon: const Icon(Icons.timer),
+                    ),
                   ]),
                   Text("\n\n" + _jamController.text),
-              ],
-            ),
+                ],
+              ),
               Divider(
                 color: Colors.black,
               ),

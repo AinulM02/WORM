@@ -2,29 +2,46 @@
 
 import 'package:flutter/material.dart';
 import 'package:date_time_picker/date_time_picker.dart';
-import 'package:worm/model/sceduleModel.dart';
-import 'package:worm/page/detailJadwal.dart';
-import 'package:worm/page/jadwalPage.dart';
+import 'package:worm/model/paymentDetailModel.dart';
+import 'package:worm/page/pembayaran/payment.dart';
+import 'package:worm/page/pembayaran/detailPayment.dart';
 import 'package:worm/widgets/navbar.dart';
-import 'package:worm/service/sceduleService.dart';
+import 'package:worm/service/paymentDetailService.dart';
 import 'package:worm/widgets/date.dart';
 import 'package:intl/intl.dart';
 
-class editJadwal extends StatefulWidget {
-  static final url = "/edit-jadwal";
-  const editJadwal({Key? key}) : super(key: key);
+class editDetailPayment extends StatefulWidget {
+  static final url = "/editDetail-payment";
+  const editDetailPayment({Key? key}) : super(key: key);
 
   @override
-  State<editJadwal> createState() => _tambahJadwalState();
+  State<editDetailPayment> createState() => _tambahDetailPaymentState();
 }
 
-class _tambahJadwalState extends State<editJadwal> {
-  TextEditingController _nameKegiatanController = TextEditingController();
-  TextEditingController _detailKegiatanController = TextEditingController();
+class _tambahDetailPaymentState extends State<editDetailPayment> {
+  TextEditingController _bayarController = TextEditingController();
   TextEditingController _tanggalController = TextEditingController();
+  TextEditingController _idPaymentController = TextEditingController();
   TextEditingController _jamController = TextEditingController();
-  TextEditingController _tempatController = TextEditingController();
   bool cek = false;
+
+  final TextStyle valueStyle = TextStyle(fontSize: 16.0);
+  DateTime tanggal = DateTime.now();
+  Future<Null> _selectDate(BuildContext context, DateTime tgl) async {
+    // Initial DateTime FIinal Picked
+    final DateTime? picked = await showDatePicker(
+        context: context,
+        initialDate: tgl,
+        firstDate: DateTime(2015),
+        lastDate: DateTime(2101));
+
+    if (picked != null && picked != tgl)
+      setState(() {
+        _tanggalController.text = picked.toString();
+        tanggal = picked;
+        cek = true;
+      });
+  }
 
   TimeOfDay time = TimeOfDay.now();
   void showTime() {
@@ -37,35 +54,16 @@ class _tambahJadwalState extends State<editJadwal> {
     });
   }
 
-  final TextStyle valueStyle = TextStyle(fontSize: 16.0);
-  DateTime tanggal = DateTime.now();
-  Future<Null> _selectDate(BuildContext context, DateTime tgl) async {
-    // Initial DateTime FIinal Picked
-    final DateTime? picked = await showDatePicker(
-        context: context,
-        initialDate: tanggal,
-        firstDate: DateTime(2015),
-        lastDate: DateTime(2101));
-
-    if (picked != tanggal && picked != null)
-      setState(() {
-        _tanggalController.text = picked.toString();
-        tanggal = picked;
-        cek = true;
-      });
-  }
-
   @override
   Widget build(BuildContext context) {
-    final Scedules schedule =
-        ModalRoute.of(context)!.settings.arguments as Scedules;
+    final PaymentDetails Detailpayment =
+        ModalRoute.of(context)!.settings.arguments as PaymentDetails;
 
-    if (schedule != null && !cek) {
-      _nameKegiatanController.text = schedule.namaKegiatan;
-      _detailKegiatanController.text = schedule.detailKegiatan;
-      tanggal = schedule.tanggal;
-      _jamController.text = schedule.jam;
-      _tempatController.text = schedule.tempat;
+    if (Detailpayment != null && !cek) {
+      _bayarController.text = Detailpayment.bayar;
+      _tanggalController.text = Detailpayment.tanggal.toString();
+      _idPaymentController.text = Detailpayment.idPayment.toString();
+      _jamController.text = Detailpayment.jam;
     }
 
     return Scaffold(
@@ -112,7 +110,7 @@ class _tambahJadwalState extends State<editJadwal> {
                 ),
                 const Padding(padding: EdgeInsets.only(left: 15)),
                 const Text(
-                  "Edit Jadwal",
+                  "Edit Detail Pembayaran",
                   style: TextStyle(
                     color: Color.fromARGB(255, 24, 24, 24),
                     fontWeight: FontWeight.bold,
@@ -128,10 +126,10 @@ class _tambahJadwalState extends State<editJadwal> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  "Nama Kegiatan",
+                  "Nominal Pembayaran",
                 ),
                 TextField(
-                  controller: _nameKegiatanController,
+                  controller: _bayarController,
                   decoration: const InputDecoration(
                     border: OutlineInputBorder(),
                   ),
@@ -142,85 +140,47 @@ class _tambahJadwalState extends State<editJadwal> {
           Container(
             margin: const EdgeInsets.only(top: 20, right: 16, left: 16),
             child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(
-                  "Detail Kegiatan",
+                Divider(
+                  color: Colors.black,
                 ),
-                TextField(
-                  controller: _detailKegiatanController,
-                  decoration: const InputDecoration(
-                    border: OutlineInputBorder(),
-                  ),
+                DateDropDown(
+                  labelText: "tanggal Kegiatan",
+                  valueText: DateFormat.yMd().format(tanggal),
+                  valueStyle: valueStyle,
+                  onPressed: () {
+                    _selectDate(context, Detailpayment.tanggal);
+                  },
                 ),
               ],
             ),
           ),
-          // Container(
-          //   margin: const EdgeInsets.only(top: 20, right: 16, left: 16),
-          //   child: DateTimePicker(
-          //     dateMask: 'd MMM, yyyy',
-          //     initialValue: schedule.tanggal.toString(),
-          //     firstDate: DateTime(2000),
-          //     lastDate: DateTime(2100),
-          //     icon: const Icon(Icons.event),
-          //     dateLabelText: 'Tanggal pelaksanaan',
-          //     selectableDayPredicate: (date) {
-          //       // Disable weekend days to select from the calendar
-          //       if (date.weekday == 6 || date.weekday == 7) {
-          //         return false;
-          //       }
-          //       return true;
-          //     },
-          //     onChanged: (val) => setState(() => _tanggalController.text = val),
-          //     validator: (val) {
-          //       print(val);
-          //       return null;
-          //     },
-          //     onSaved: (val) => _tanggalController,
-          //   ),
-          // ),
-          Container(
-            margin: const EdgeInsets.only(top: 20, right: 16, left: 16),
-            child: DateDropDown(
-              labelText: "tanggal kegiatan",
-              valueText: DateFormat.yMd().format(tanggal),
-              valueStyle: valueStyle,
-              onPressed: () {
-                _selectDate(context, schedule.tanggal);
-              },
-            ),
+          new Padding(
+            padding: new EdgeInsets.only(top: 20.0),
           ),
           Container(
             margin: const EdgeInsets.only(top: 20, right: 16, left: 16),
-            child: Row(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                IconButton(
-                  onPressed: showTime,
-                  icon: const Icon(Icons.timer),
-                ),
-                Text(_jamController.text),
-              ],
-            ),
-          ),
-          Container(
-            margin: const EdgeInsets.only(top: 20, right: 16, left: 16),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  "Tempat Kegiatan",
-                ),
-                TextField(
-                  controller: _tempatController,
-                  // obscureText: true,
-                  decoration: InputDecoration(
-                    border: OutlineInputBorder(),
-                  ),
-                ),
-              ],
-            ),
+            child: Column(children: [
+              Divider(
+                color: Colors.black,
+              ),
+              Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Column(children: [
+                    Text("Jam"),
+                    IconButton(
+                      onPressed: showTime,
+                      icon: const Icon(Icons.timer),
+                    ),
+                  ]),
+                  Text("\n\n" + _jamController.text),
+                ],
+              ),
+              Divider(
+                color: Colors.black,
+              ),
+            ]),
           ),
           Container(
             margin: const EdgeInsets.only(top: 10, right: 20),
@@ -229,24 +189,22 @@ class _tambahJadwalState extends State<editJadwal> {
                 ElevatedButton(
                     onPressed: () async {
                       Map<String, dynamic> body = {
-                        'nama_kegiatan': _nameKegiatanController.text,
-                        'detail_kegiatan': _detailKegiatanController.text,
+                        'bayar': _bayarController.text,
                         'tanggal': _tanggalController.text,
+                        'id_payment': _idPaymentController.text,
                         'jam': _jamController.text,
-                        'tempat': _tempatController.text,
                       };
 
-                      await SceduleService()
-                          .updateSchedule(body, schedule.id)
+                      await PaymentDetailService()
+                          .updatePaymentDetail(body, Detailpayment.id)
                           .then((value) {
                         Navigator.push(context,
                             MaterialPageRoute(builder: (context) {
-                          return navbar(index: 1);
+                          return navbar(index: 2);
                         }));
-                        ScaffoldMessenger.of(context).showSnackBar(
-                            const SnackBar(
-                                content: Text(
-                                    'You have successfully update a scedule')));
+                        ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+                            content: Text(
+                                'You have successfully update a detail payment')));
                       });
                     },
                     child: const Text(

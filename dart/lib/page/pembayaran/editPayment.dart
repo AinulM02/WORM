@@ -165,7 +165,8 @@ class _tambahPaymentState extends State<editPayment> {
               children: <Widget>[
                 ElevatedButton(
                     onPressed: () async {
-                      if (payment.tunaiKeseluruhan != payment.tunai) {
+                      if (_tunaiKeseluruhanController.text !=
+                          _tunaiController.text) {
                         _keteranganController.text = "belum lunas";
                       }
                       Map<String, dynamic> body = {

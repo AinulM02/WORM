@@ -5,6 +5,7 @@ import 'package:worm/page/FormEditJadwal.dart';
 import 'package:worm/service/sceduleService.dart';
 import 'package:flutter_speed_dial/flutter_speed_dial.dart';
 import 'package:worm/model/sceduleModel.dart';
+import 'package:intl/intl.dart';
 
 class detailJadwal extends StatelessWidget {
   static final url = "/detail-page";
@@ -19,6 +20,8 @@ class detailJadwal extends StatelessWidget {
   Widget build(BuildContext context) {
     final Scedules schedule =
         ModalRoute.of(context)!.settings.arguments as Scedules;
+
+    String tanggal = DateFormat.yMd().format(schedule.tanggal);
 
     return Scaffold(
       floatingActionButton: SpeedDial(
@@ -128,7 +131,7 @@ class detailJadwal extends StatelessWidget {
                 child: Row(
                   children: [
                     Text("Tanggal  :"),
-                    Text(schedule.tanggal.toString()),
+                    Text(tanggal),
                   ],
                 ),
               ),
