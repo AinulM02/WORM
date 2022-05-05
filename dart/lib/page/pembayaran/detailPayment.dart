@@ -261,7 +261,7 @@ class _detailPayment extends State<detailPayment> {
                           height: 16,
                         ),
                         Text(
-                          "Bukti Pembayaran",
+                          "Lihat bukti Pembayaran",
                           textAlign: TextAlign.center,
                         ),
                       ],

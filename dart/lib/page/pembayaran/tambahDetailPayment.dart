@@ -8,6 +8,7 @@ import 'package:intl/intl.dart';
 import 'package:worm/model/paymentModel.dart';
 import 'package:worm/page/jadwalPage.dart';
 import 'package:worm/service/paymentService.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class uploadPayment extends StatefulWidget {
   static final url = "/tambahDetail-payment";
@@ -59,6 +60,14 @@ class _uploadPayment extends State<uploadPayment> {
         _jamController.text = value!.format(context).toString();
       });
     });
+  }
+
+  launchURL(String url) async {
+    if (await canLaunch(url)) {
+      await launch(url);
+    } else {
+      throw 'Could not launch $url';
+    }
   }
 
   @override
@@ -113,7 +122,7 @@ class _uploadPayment extends State<uploadPayment> {
                 color: Colors.black,
               ),
               DateDropDown(
-                labelText: "tanggal kegiatan",
+                labelText: "tanggal Pembayaran",
                 valueText: DateFormat.yMd().format(tanggal),
                 valueStyle: valueStyle,
                 onPressed: () {
@@ -148,6 +157,35 @@ class _uploadPayment extends State<uploadPayment> {
                 color: Colors.black,
               ),
             ]),
+          ),
+          InkWell(
+            child: Container(
+              margin: const EdgeInsets.only(top: 20, right: 16, left: 16),
+              child: Column(children: [
+                Divider(
+                  color: Colors.black,
+                ),
+                Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Column(children: [
+                      Text("Bukti pembayaran"),
+                    ]),
+                  ],
+                ),
+                SizedBox(
+                  height: 30,
+                ),
+                Divider(
+                  color: Colors.black,
+                ),
+              ]),
+            ),
+            onTap: () async {
+              const url =
+                  'https://drive.google.com/drive/folders/1x8Xm3ZZsXvXXshcj3p47pBiNMb0Eqme1?usp=sharing';
+              launchURL(url);
+            },
           ),
           SizedBox(
             height: 10,
