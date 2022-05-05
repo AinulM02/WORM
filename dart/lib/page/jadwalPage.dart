@@ -9,6 +9,7 @@ import 'package:worm/page/tambahJadwal.dart';
 import 'package:getwidget/getwidget.dart';
 import 'package:worm/service/sceduleService.dart';
 import 'package:worm/page/detailJadwal.dart';
+import 'package:worm/page/sendMessage.dart';
 
 class jadwalPage extends StatefulWidget {
   static final url = "/jadwal-page";
@@ -36,6 +37,8 @@ class _jadwalPageState extends State<jadwalPage> {
     refreshData();
     setState(() {});
   }
+
+  void _incrementCounter() {}
 
   @override
   Widget build(BuildContext context) {
@@ -191,6 +194,15 @@ class _jadwalPageState extends State<jadwalPage> {
               ),
             ),
           ]),
+      floatingActionButton: FloatingActionButton(
+        backgroundColor: Colors.green,
+        onPressed: () =>
+            Navigator.push(context, MaterialPageRoute(builder: (context) {
+          return const sendMessage();
+        })),
+        tooltip: 'Increment',
+        child: const Icon(Icons.whatsapp),
+      ),
     );
   }
 
