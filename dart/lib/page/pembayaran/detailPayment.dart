@@ -14,6 +14,7 @@ import 'package:worm/page/pembayaran/editDetailPayment.dart';
 import 'package:worm/page/pembayaran/tambahDetailPayment.dart';
 import 'package:intl/intl.dart';
 import 'package:worm/format/formatAngka.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class detailPayment extends StatefulWidget {
   static final url = "/detail-payment";
@@ -24,6 +25,14 @@ class detailPayment extends StatefulWidget {
 }
 
 class _detailPayment extends State<detailPayment> {
+  launchURL(String url) async {
+    if (await canLaunch(url)) {
+      await launch(url);
+    } else {
+      throw 'Could not launch $url';
+    }
+  }
+
   late Future<PaymentDetail> _payments;
   int id = 0;
 
@@ -118,7 +127,16 @@ class _detailPayment extends State<detailPayment> {
                       fontWeight: FontWeight.bold,
                       fontSize: 16,
                     ),
-                  )
+                  ),
+                  const Padding(padding: EdgeInsets.only(left: 20)),
+                  IconButton(
+                      alignment: Alignment.bottomRight,
+                      color: Colors.amber,
+                      onPressed: () {
+                        Navigator.pushNamed(context, uploadPayment.url,
+                            arguments: payment);
+                      },
+                      icon: const Icon(Icons.add)),
                 ],
               ),
             ),
@@ -220,40 +238,41 @@ class _detailPayment extends State<detailPayment> {
                 ),
               ),
             ),
-
             InkWell(
+              child: Container(
+                margin: const EdgeInsets.only(right: 16, left: 16),
+                height: 50,
+                width: 400,
                 child: Container(
-                  margin: const EdgeInsets.only(right: 16, left: 16),
-                  height: 50,
-                  width: 400,
-                  child: Container(
-                      decoration: BoxDecoration(
-                        color: Colors.white,
-                        borderRadius: BorderRadius.circular(10),
-                        boxShadow: const [
-                          BoxShadow(
-                            color: Colors.grey,
-                            blurRadius: 2,
-                            offset: Offset(0, 0), // Shadow position
-                          ),
-                        ],
-                      ),
-                      child: Column(
-                        children: const [
-                          SizedBox(
-                            height: 16,
-                          ),
-                          Text(
-                            "Bukti Pembayaran",
-                            textAlign: TextAlign.center,
-                          ),
-                        ],
-                      )),
-                ),
-                onTap: () {
-                  Navigator.pushNamed(context, uploadPayment.url,
-                      arguments: payment);
-                }),
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(10),
+                      boxShadow: const [
+                        BoxShadow(
+                          color: Colors.grey,
+                          blurRadius: 2,
+                          offset: Offset(0, 0), // Shadow position
+                        ),
+                      ],
+                    ),
+                    child: Column(
+                      children: const [
+                        SizedBox(
+                          height: 16,
+                        ),
+                        Text(
+                          "Bukti Pembayaran",
+                          textAlign: TextAlign.center,
+                        ),
+                      ],
+                    )),
+              ),
+              onTap: () async {
+                const url =
+                    'https://drive.google.com/drive/folders/1x8Xm3ZZsXvXXshcj3p47pBiNMb0Eqme1?usp=sharing';
+                launchURL(url);
+              },
+            ),
           ]),
     );
   }

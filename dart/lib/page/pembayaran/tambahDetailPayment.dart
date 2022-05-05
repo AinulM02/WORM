@@ -10,7 +10,7 @@ import 'package:worm/page/jadwalPage.dart';
 import 'package:worm/service/paymentService.dart';
 
 class uploadPayment extends StatefulWidget {
-  static final url = "/upload-payment";
+  static final url = "/tambahDetail-payment";
   const uploadPayment({Key? key}) : super(key: key);
 
   @override

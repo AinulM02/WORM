@@ -45,17 +45,16 @@ class _PagePayment extends State<PagePayment> {
             Padding(padding: EdgeInsets.only(top: 8)),
             Container(
               margin: const EdgeInsets.only(top: 16, bottom: 16, left: 16),
-              child: Column(
-                children: <Widget>[
-                  Container(
-                    child: const Text(
+              child: Container(
+                  child: Row(
+                children: [
+                  Text(
                       "Rekap Pembayaran",
                       textAlign: TextAlign.start,
                       style: TextStyle(
                         color: Color.fromARGB(255, 24, 24, 24),
                         fontWeight: FontWeight.bold,
                         fontSize: 16,
-                      ),
                     ),
                   ),
                   const Padding(padding: EdgeInsets.only(left: 60)),
@@ -68,7 +67,7 @@ class _PagePayment extends State<PagePayment> {
                           })),
                       icon: const Icon(Icons.add)),
                 ],
-              ),
+              )),
             ),
             SizedBox(
               height: MediaQuery.of(context).size.height * 0.79,
