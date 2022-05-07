@@ -145,7 +145,7 @@ class _tambahDetailPaymentState extends State<editDetailPayment> {
                   color: Colors.black,
                 ),
                 DateDropDown(
-                  labelText: "tanggal Kegiatan",
+                  labelText: "tanggal Pembayaran",
                   valueText: DateFormat.yMd().format(tanggal),
                   valueStyle: valueStyle,
                   onPressed: () {

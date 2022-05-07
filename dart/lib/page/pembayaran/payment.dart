@@ -6,6 +6,7 @@ import 'package:worm/model/paymentModel.dart';
 import 'package:worm/page/pembayaran/tambahPayment.dart';
 import 'package:worm/service/paymentService.dart';
 import 'package:worm/format/formatAngka.dart';
+import 'package:intl/intl.dart';
 
 class PagePayment extends StatefulWidget {
   static final url = "/payment-page";
@@ -114,6 +115,7 @@ class _PagePayment extends State<PagePayment> {
   }
 
   Widget listItem(payments view) {
+    String tanggal = DateFormat.yMd().format(view.tanggal);
     return Container(
       margin: const EdgeInsets.only(right: 16, left: 16, bottom: 8),
       child: Container(
@@ -131,7 +133,7 @@ class _PagePayment extends State<PagePayment> {
         child: Column(
           children: <Widget>[
             ListTile(
-              title: Text(view.tanggal.toString()),
+              title: Text(tanggal),
               trailing: view.keterangan != "lunas"
                   ? Text(
                       view.keterangan,

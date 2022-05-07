@@ -55,6 +55,9 @@ class _detailPayment extends State<detailPayment> {
   Widget build(BuildContext context) {
     final payments payment =
         ModalRoute.of(context)!.settings.arguments as payments;
+
+    String tanggalPayment = DateFormat.yMd().format(payment.tanggal);
+
     return Scaffold(
       floatingActionButton: SpeedDial(
         backgroundColor: Colors.black,
@@ -170,7 +173,7 @@ class _detailPayment extends State<detailPayment> {
                         children: <Widget>[
                           Column(
                             children: [
-                              Text(payment.tanggal.toString()),
+                              Text(tanggalPayment),
                               SizedBox(
                                 height: 5,
                               ),

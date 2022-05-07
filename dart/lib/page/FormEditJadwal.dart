@@ -24,7 +24,6 @@ class _tambahJadwalState extends State<editJadwal> {
   TextEditingController _tanggalController = TextEditingController();
   TextEditingController _jamController = TextEditingController();
   TextEditingController _tempatController = TextEditingController();
-  bool cek = false;
 
   TimeOfDay time = TimeOfDay.now();
   void showTime() {
@@ -32,7 +31,6 @@ class _tambahJadwalState extends State<editJadwal> {
         .then((value) {
       setState(() {
         _jamController.text = value!.format(context).toString();
-        cek = true;
       });
     });
   }
@@ -51,7 +49,6 @@ class _tambahJadwalState extends State<editJadwal> {
       setState(() {
         _tanggalController.text = picked.toString();
         tanggal = picked;
-        cek = true;
       });
   }
 
@@ -60,10 +57,10 @@ class _tambahJadwalState extends State<editJadwal> {
     final Scedules schedule =
         ModalRoute.of(context)!.settings.arguments as Scedules;
 
-    if (schedule != null && !cek) {
+    if (schedule != null) {
       _nameKegiatanController.text = schedule.namaKegiatan;
       _detailKegiatanController.text = schedule.detailKegiatan;
-      tanggal = schedule.tanggal;
+      _tanggalController.text = schedule.tanggal.toString();
       _jamController.text = schedule.jam;
       _tempatController.text = schedule.tempat;
     }

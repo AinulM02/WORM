@@ -4,7 +4,8 @@ import 'package:worm/model/sceduleModel.dart';
 
 class SceduleService {
   // static const String _baseUrl = 'http://10.0.2.2:8000/api/';
-  static const String _baseUrl = 'http://192.168.1.10:8000/api/';
+  // static const String _baseUrl = 'http://192.168.1.10:8000/api/';
+  static const String _baseUrl = 'http://192.168.1.23:8000/api/';
 
   var tokenData = {
     'Content-Type': 'application/x-www-form-urlencoded',
